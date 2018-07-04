@@ -1,5 +1,5 @@
 <?php
-// Modifiqué los links del menú de Administrador
+// revisado Modifiqué los links del menú de Administrador
 require_once "models/enlaces.php";
 require_once "models/ingreso.php";
 require_once "models/crud.php";
