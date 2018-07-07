@@ -4,7 +4,7 @@ class TemplateController{
 
 	public function template(){
 
-		include "views/templateSistema.php";
+		include "views/template.php";
 
 	}
 

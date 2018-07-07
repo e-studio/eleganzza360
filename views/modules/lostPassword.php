@@ -1,4 +1,43 @@
-<section id="content">
+<div class="container">
+	<div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: url('views/img/home/5.jpg') center center no-repeat; background-size: cover;"></div>
+    <div class="card card-login mx-auto mt-5">
+
+      <div class="card-header"><h3>Recupere su contraseña</h3></div>
+      <div class="card-body">
+      	<form id="login-form" name="login-form" class="nobottommargin" method="post" onsubmit="return validarIngreso()">
+			
+			<div class="col_full">
+				<label for="login-form-username">Email:</label>
+				<input required="true" type="email" id="usuarioIngreso" name="usuarioIngreso" placeholder="Escriba aqui su correo electr&oacute;nico"  class="form-control not-dark" />
+			</div>
+
+			<?php							
+
+				$ingreso = new Ingreso();
+				$ingreso -> ingresoController();
+
+			?>
+
+			<div class="col_full nobottommargin">
+				<br>
+				<button class="btn btn-primary nomargin" id="login-form-submit" name="login-form-submit" value="login">Enviar</button>
+				<a href="index.php" class="fright">Volver al Login</a>
+				
+		</form>
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<!--<section id="content">
 
 			<div class="content-wrap nopadding">
 
@@ -34,21 +73,12 @@
 										
 								</form>
 
-								<!--<div class="line line-sm"></div>
-
-								<div class="center">
-									<h4 style="margin-bottom: 15px;">or Login with:</h4>
-									<a href="#" class="button button-rounded si-facebook si-colored">Facebook</a>
-									<span class="hidden-xs">or</span>
-									<a href="#" class="button button-rounded si-twitter si-colored">Twitter</a>
-								</div>-->
 							</div>
 						</div>
 
-<!--						<div class="row center dark"><small>Copyrights &copy; All Rights Reserved by Canvas Inc.</small></div> s-->
 					</div>
 				</div>
 
 			</div>
 
-		</section>
+		</section>-->

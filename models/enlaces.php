@@ -6,17 +6,17 @@ class EnlacesModels{
 
 		if($enlaces == "inicio" ||
 		   $enlaces == "ingreso" ||
-		   $enlaces == "pagina1" ||
-		   $enlaces == "alta1" ||
+		   //$enlaces == "pagina1" ||
+		   //$enlaces == "alta1" ||
 		   $enlaces == "registroUsuario" ||
-		   $enlaces == "lostPassword" ||
-		   $enlaces == "usuarios" ||
-		   $enlaces == "galeria" ||
-		   $enlaces == "videos" ||
-		   $enlaces == "suscriptores" ||
-		   $enlaces == "mensajes" ||
-		   $enlaces == "perfil" ||
-		   $enlaces == "salir"){
+		   $enlaces == "lostPassword"){
+		   //$enlaces == "usuarios" ||
+		   //$enlaces == "galeria" ||
+		   //$enlaces == "videos" ||
+		   //$enlaces == "suscriptores" ||
+		   //$enlaces == "mensajes" ||
+		   //$enlaces == "perfil" ||
+		   //$enlaces == "salir"){
 
 			$module = "views/modules/".$enlaces.".php";
 		}	
