@@ -60,5 +60,16 @@
     <script src="views/js/validarIngreso.js"></script>
 
 	</div>
+
+<script>
+        $('#dataTable').dataTable( {
+          "language": {
+            url: 'views/vendor/datatables/es-mx.json' //Ubicacion del archivo con el json del idioma.
+          },
+             retrieve: true
+        } ); 
+    
+ </script>
+
 </body>
 </html>
