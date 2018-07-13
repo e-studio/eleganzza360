@@ -6,17 +6,18 @@ class EnlacesModels{
 
 		if($enlaces == "inicio" ||
 		   $enlaces == "ingreso" ||
-		   //$enlaces == "pagina1" ||
-		   //$enlaces == "alta1" ||
+		   $enlaces == "addCliente" ||
+		   $enlaces == "hisCliente" ||
 		   $enlaces == "registroUsuario" ||
-		   $enlaces == "lostPassword"){
-		   //$enlaces == "usuarios" ||
-		   //$enlaces == "galeria" ||
-		   //$enlaces == "videos" ||
+		   //$enlaces == "lostPassword"
+		   $enlaces == "addProducto" ||
+		   $enlaces == "productos"||
+		   $enlaces == "clientes" 
 		   //$enlaces == "suscriptores" ||
 		   //$enlaces == "mensajes" ||
 		   //$enlaces == "perfil" ||
-		   //$enlaces == "salir"){
+		   //$enlaces == "salir")
+		   ){
 
 			$module = "views/modules/".$enlaces.".php";
 		}	
@@ -28,7 +29,7 @@ class EnlacesModels{
 		else{
 			$module = "views/modules/login.php";		
 		}
-
+		
 		return $module;
 
 	}
