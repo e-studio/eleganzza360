@@ -64,18 +64,26 @@ if ($_SESSION["rol"] > 0){
   <!-- end navigation -->
 
 
-  <div class="content-wrapper">
-    <div class="container-fluid">
+ <div class="content-wrapper">
+    <div class="container-fluid"> 
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
+      <!-- <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">Navbar</li>
-      </ol>
-      <h1>Navbar</h1>
+      </ol> -->
+     <!-- <h1>Navbar</h1>
       <hr>
-      <p>The SB Admin navbar can be either fixed or static, and it supports the navbar-light and navbar-dark Bootstrap 4 classes.</p>
+      <p>The SB Admin navbar can be either fixed or static, and it supports the navbar-light and navbar-dark Bootstrap 4 classes.</p>  -->
+
+
+   
+     <?php  include "calendario.php" ?>
+
+
+
+
       
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>
