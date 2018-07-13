@@ -9,7 +9,7 @@
 
 		case 'agregar':
 
-			try{//instrucciones de agregar
+			//instrucciones de agregar
 			$sentenciaSQL = $pdo -> prepare ("INSERT INTO citas (idPaciente, idTratamiento, idEmpleada, fechaInicio, fechaFin, color, colorTexto) VALUES (:title,:descripcion,:empleada,:start,:end,:color,:textColor)");
 			$respuesta = $sentenciaSQL -> execute(array(
 				"title" => $_POST["idPaciente"],
@@ -23,12 +23,8 @@
 			));
 			echo json_encode ($respuesta);
 
-		break;}
-		catch(Exception $e){
-			echo ('Erreur : '.$e->getMessage());
-
-		}
-
+		break;
+		
 		case 'modificar':
 
 			$sentenciaSQL = $pdo -> prepare("UPDATE eventos SET

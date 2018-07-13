@@ -18,7 +18,8 @@ if ($_SESSION["rol"] > 0){
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       
-      <p>Aqui va el contenido de inicio para Usuarios.</p>
+      <!-- <p>Aqui va el contenido de inicio para Usuarios.</p> -->
+      <?php include "calendario.php" ?>
       
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>

@@ -11,7 +11,7 @@
 	$(document).ready(function(){
 		$('#calendario').fullCalendar({
 
-			eventLimit: 3,
+			eventLimit: true,
 			hiddenDays: [7],
 
 			minTime: "08:00",
