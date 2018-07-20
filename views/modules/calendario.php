@@ -1,170 +1,200 @@
+<style>
+	.fc-day-header{
+		padding: 10px 0px;
+		vertical-align: left;
+		background: #F2F2F2;
+	}
+</style>
+
 <div class="container">
 	<div class="row">
-		<div class="col"></div> 
-		<div class="col-7"><br><div id="calendario"></div></div>
+		<div class="col"></div>
+		<div class="col-8"><div id="calendario"></div></div>
 		<div class="col"></div>
 	</div>
 </div>
-
+<?php include "modalCita.php"; ?>
+<?php include "modalEvento.php"; ?>
 <script>
+	var NuevoEvento;
+	var ExisteEvento;
+	var Requerido;
+	var horaend;
+	var horainicio;
 
 	$(document).ready(function(){
-		$('#calendario').fullCalendar({
+		$("#calendario").fullCalendar({
 
-			eventLimit: true,
-			hiddenDays: [7],
-
+			eventLimit: 2,
+			hiddenDays: [ 0 ],
+			editable: true,
 			minTime: "08:00",
 			maxTime: "19:00",
+			slotDuration: "00:15:00",
+			defaultTimedEventDuration: "00:45:00",
+			displayEventEnd: true,
 
-			footer:{
-				left:'today,prev,next',
-				center:'title',
-				right:'month, listDay,listWeek, agendaWeek'
-			},
-
-			buttonText:{
-				listWeek: "Lista Semanal",
-				listDay: "lista Diaria",
-				today: moment().format("DD/MMMM"),
-			},
+			eventSources:[
+			{
+				url: "views/modules/eventos.php",
+				color: "#1BC1D7",
+				textColor: "#6B1B9D"
+			}
+			],
 
 			header: false,
 
+			footer:{
+				left:"today,prev,next",
+				center:"title",
+				right:"month, listDay,listWeek, agendaWeek"
+			},
+
+			buttonText:{
+				listWeek:"Agenda Semanal",
+				listDay:"Agenda Diaria",
+				today:moment().format("DD/MMMM")
+			},
+
 			dayClick:function(date,jsEvent,view){
-
-				$('#btnAgregar').prop("disabled", false);
-				$('#btnEliminar').prop("disabled", true);
-				$('#btnModificar').prop("disabled", true);
-				$('#txtDescripcion').prop("disabled", false);
-
-				LimpiarFormulario();
-
-				$('#txtFecha').val(date.format());
-
-				$("#ModalEventos").modal('show');
-
-				$('#empleada').css('visibility','hidden');
-
+				limpieza();
+				$("#ModalCitas").modal();
+				$("#txtFecha").val(date.format());
 			},
 
-			events:{ 
-				url: 'http://localhost:8080/eleganzza360/views/modules/eventos.php',
-				allDay: false
-			},
-
-			eventClick: function(calEvent,jsEvent,view){
-
+			eventClick:function(calEvent,jsEvent,view){
 				$("#ModalEventos").modal();
-				$('#btnAgregar').prop("disabled", true);
-				$('#btnEliminar').prop("disabled", false);
-				$('#btnModificar').prop("disabled", false);
-				$('#tituloEvento').html(calEvent.title);
-				$('#txtTratamiento').val(calEvent.descripcion);
-				$('#txtTratamiento').prop("disabled", true);
-				$('#txtID').val(calEvent.id);
-				$('#txtPaciente').val(calEvent.title);
-				$('#txtColor').val(calEvent.colorTexto);
-				FechaHora = calEvent.start._i.split(" ");
-				$('#txtFecha').val(FechaHora [0]);
-				$('#txtHora').val(FechaHora [1]);
-				$('#txtHora').prop("visible", false);
-				$('#empleada').css('visibility','visible');
-				$('#empleada').val("");				
-
+				$("#tituloEventoE").html(calEvent.title);
+				$("#txtTratamientoEvento").val(calEvent.tratamiento);
+				$("#txtIDEvento").val(calEvent.idCitas);
+				FechaHora=calEvent.start._i.split(" ");
+				$("#txtHoraEvento").val(FechaHora[1]);
+				$("#txtFechaEvento").val(FechaHora[0]);
+				$("#txtPacienteEvento").val(calEvent.title);
+				$("#txtEmpleadaEvento").val(calEvent.empleada);
 			},
 
-			editable:true,
-
-			eventDrop: function(calEvent){
-
-				$('#txtID').val(calEvent.id);
-				$('#txtPaciente').val(calEvent.title);
-				$('#txtColor').val(calEvent.colorTexto);
-				$('#txtTratamiento').val(calEvent.descripcion);
-				var fechaHora = calEvent.start.format().split(" ");
-				$('#txtFecha').val(fechaHora[0]);
-				$('#txtHora').val(fechaHora[1]);
-				$('#empleada').val(idEmpleada)
-				RecolectarDatosGUI();
-				EnviarInformacion('modificar',NuevoEvento,true);
-
+			eventDrop:function(calEvent){
+				$("#txtIDEvento").val(calEvent.idCitas);
+				$("#txtPacienteEvento").val(calEvent.title);
+				$("#txtTratamientoEvento").val(calEvent.tratamiento);
+				$("#txtEmpleadaEvento").val(calEvent.empleada);
+				var fechaEvento = calEvent.start.format().split("T");
+				$("#txtFechaEvento").val(fechaEvento[0]);
+				$("#txtHoraEvento").val(fechaEvento[1]);
+				DatosEventos();
+				InfoEventos("modificar",ExisteEvento,true);
 			}
+
 		});
 	});
 
-</script>
-
-<?php include "modal.php" ?>
-
-<script>
-
-	var NuevoEvento;
-	var Requerido;
-	$('#btnAgregar').click(function(){
-		RecolectarDatosGUI();
-		EnviarInformacion('agregar',NuevoEvento);
+	$("#btnAgregar").click(function(){
+		RecolectarDatos();
+		EnviarInformacion("agregar",NuevoEvento);
 	});
 
-	$('#btnEliminar').click(function(){
-		Requerido = $('#empleada').val();
-		if(Requerido === ""){
-			alert ("Ingresa el Numero de Empleada:");
-		}
-		else {
-			RecolectarDatosGUI();
-			EnviarInformacion('eliminar',NuevoEvento);
-		}
-	});
-
-	$('#btnModificar').click(function(){
-		Requerido = $('#empleada').val();
+	$("#btnEliminar").click(function(){
+		Requerido = $("#txtEmpleadaEvento").val();
 		if (Requerido === ""){
-			alert ("Ingresa el Numero de Empleada:");
-		}
-		else {
-			RecolectarDatosGUI();
-			EnviarInformacion('modificar',NuevoEvento);
+			alert ("Ingresa tu numero de Empleada");
+		} else {	
+			DatosEventos();
+			InfoEventos("eliminar",ExisteEvento);
 		}
 	});
 
-	function RecolectarDatosGUI(){
-		NuevoEvento= {
-			id:$('#txtID').val(),
-			title:$('#txtPaciente').val(),
-			start:$('#txtFecha').val()+" "+$('#txtHora').val(),
-			color:"#FF22FF",
-			descripcion:$('#txtTratamiento').val(),
-			colorTexto:"#FFFFFF",
-			end:$('#txtFecha').val()+" "+$('#txtHora').val(),
-			idEmpleada:$('#empleada').val()
+	$("#btnModificar").click(function(){
+		Requerido = $("#txtEmpleadaEvento").val();
+		if (Requerido === ""){
+			alert ("Ingresa tu numero de empleada");
+		} else {
+			DatosEventos();
+			InfoEventos("modificar",ExisteEvento);
+		}
+	});
+
+	function RecolectarDatos(){
+		horainicio=$("#txtFecha").val()+" "+$("#txtHora").val();
+		console.log("HORANICIO   "+horainicio);
+		horainicio=horainicio+":00";
+		console.log("HORAINICIO     "+horainicio);
+		horaend = moment(horainicio,"YYYY-MM-DD HH:mm:ss");
+		console.log("HORAEND   "+horaend);
+		horaend.add(45,'minutes');
+		console.log("HORAEND MAS   "+horaend);
+		var final = horaend.format("YYYY-MM-DD HH:mm:ss");
+		console.log ("FINAL   "+final);
+
+		NuevoEvento = {
+			idCitas:$("#txtID").val(),
+			title:$("#txtPaciente").val(),
+			tratamiento:$("#txtTratamiento").val(),
+			start:$("#txtFecha").val()+" "+$("#txtHora").val(),
+			end:final,
+			color: "#1BC1D7",
+			textColor: "#6B1B9D"
 		};
+
+		console.log("HORAEND   "+horaend);
 	}
 
-	function EnviarInformacion(accion,objEvento,modal){ //modal es para saber si esta activo el modal
+	function DatosEventos(){
+		ExisteEvento = {
+			idCitas:$("#txtIDEvento").val(),
+			title:$("#txtPacienteEvento").val(),
+			tratamiento:$("#txtTratamientoEvento").val(),
+			empleada:$("#txtEmpleadaEvento").val(),
+			start:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
+			end:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
+			color: "#1BC1D7",
+			textColor: "#6B1B9D"
+		}
+	}
+
+	function EnviarInformacion(accion,objEvento){
 		$.ajax({
-			type: 'POST',
-			url: 'views/modules/eventos.php?accion='+ accion,
-			data: objEvento,
-			success:function(msg){
+			type:"POST",
+			url:"views/modules/eventos.php?accion="+accion,
+			data:objEvento,
+			success: function(msg){
 				if(msg){
-					$('#calendario').fullCalendar('refetchEvents');
-					if(!modal){
-						$('#ModalEventos').modal('toggle');
-					}
+					$("#calendario").fullCalendar("refetchEvents");
+					$("#ModalCitas").modal("toggle");
 				}
 			},
-			error:function(){
-				alert("Hay un error ....");
+			error: function(){
+				alert ("hay un error...");
 			}
 		});
 	}
 
-	$('.clockpicker').clockpicker();
-
-	function LimpiarFormulario(){
-		$('#txtID').val('');
-		$('#txtPaciente').val('');
-		$('#txtTratamiento').val('');
+	function InfoEventos(accion,objEvento,modal){
+		$.ajax({
+			type:"POST",
+			url:"views/modules/eventos.php?accion="+accion,
+			data:objEvento,
+			success: function(msg){
+			if(msg){
+				$("#calendario").fullCalendar("refetchEvents");
+				if (!modal){
+					$("#ModalEventos").modal("toggle");
+				}
+			}
+		},
+		error: function(){
+			alert ("hay un error...");
+		}
+		});
 	}
+
+	function limpieza(){
+		$("#txtID").val("");
+		$("#txtPaciente").val("");
+		$("#txtTratamiento").val("");
+	}
+
+	$(".clockpicker").clockpicker();
+
+
 </script>
