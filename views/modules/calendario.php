@@ -48,7 +48,10 @@
 
 			},
 
-			events: 'http://localhost:8080/eleganzza360/views/modules/eventos.php',
+			events:{ 
+				url: 'http://localhost:8080/eleganzza360/views/modules/eventos.php',
+				allDay: false
+			},
 
 			eventClick: function(calEvent,jsEvent,view){
 
@@ -56,13 +59,13 @@
 				$('#btnAgregar').prop("disabled", true);
 				$('#btnEliminar').prop("disabled", false);
 				$('#btnModificar').prop("disabled", false);
-				$('#tituloEvento').html(calEvent.idPaciente);
-				$('#txtTratamiento').val(calEvent.idTratamiento);
+				$('#tituloEvento').html(calEvent.title);
+				$('#txtTratamiento').val(calEvent.descripcion);
 				$('#txtTratamiento').prop("disabled", true);
-				$('#txtID').val(calEvent.idCitas);
-				$('#txtPaciente').val(calEvent.idPaciente);
+				$('#txtID').val(calEvent.id);
+				$('#txtPaciente').val(calEvent.title);
 				$('#txtColor').val(calEvent.colorTexto);
-				FechaHora = calEvent.fechaInicio._i.split(" ");
+				FechaHora = calEvent.start._i.split(" ");
 				$('#txtFecha').val(FechaHora [0]);
 				$('#txtHora').val(FechaHora [1]);
 				$('#txtHora').prop("visible", false);
@@ -75,13 +78,14 @@
 
 			eventDrop: function(calEvent){
 
-				$('#txtID').val(calEvent.idCitas);
-				$('#txtPaciente').val(calEvent.idPaciente);
+				$('#txtID').val(calEvent.id);
+				$('#txtPaciente').val(calEvent.title);
 				$('#txtColor').val(calEvent.colorTexto);
-				$('#txtTratamiento').val(calEvent.idTratamiento);
-				var fechaHora = calEvent.fechaInicio.format().split(" ");
+				$('#txtTratamiento').val(calEvent.descripcion);
+				var fechaHora = calEvent.start.format().split(" ");
 				$('#txtFecha').val(fechaHora[0]);
 				$('#txtHora').val(fechaHora[1]);
+				$('#empleada').val(idEmpleada)
 				RecolectarDatosGUI();
 				EnviarInformacion('modificar',NuevoEvento,true);
 
@@ -126,13 +130,13 @@
 
 	function RecolectarDatosGUI(){
 		NuevoEvento= {
-			idCitas:$('#txtID').val(),
-			idPaciente:$('#txtPaciente').val(),
-			fechaInicio:$('#txtFecha').val()+" "+$('#txtHora').val(),
+			id:$('#txtID').val(),
+			title:$('#txtPaciente').val(),
+			start:$('#txtFecha').val()+" "+$('#txtHora').val(),
 			color:"#FF22FF",
-			idTratamiento:$('#txtTratamiento').val(),
+			descripcion:$('#txtTratamiento').val(),
 			colorTexto:"#FFFFFF",
-			fechaFin:$('#txtFecha').val()+" "+$('#txtHora').val(),
+			end:$('#txtFecha').val()+" "+$('#txtHora').val(),
 			idEmpleada:$('#empleada').val()
 		};
 	}

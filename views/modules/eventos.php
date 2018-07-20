@@ -12,11 +12,11 @@
 			//instrucciones de agregar
 			$sentenciaSQL = $pdo -> prepare ("INSERT INTO citas (idPaciente, idTratamiento, idEmpleada, fechaInicio, fechaFin, color, colorTexto) VALUES (:title,:descripcion,:empleada,:start,:end,:color,:textColor)");
 			$respuesta = $sentenciaSQL -> execute(array(
-				"title" => $_POST["idPaciente"],
-				"descripcion" => $_POST["idTratamiento"],
+				"title" => $_POST["title"],
+				"descripcion" => $_POST["descripcion"],
 				"empleada" => $_POST["idEmpleada"],
-				"start" => $_POST["fechaInicio"],
-				"end" => $_POST["fechaFin"],
+				"start" => $_POST["start"],
+				"end" => $_POST["end"],
 				"color" => $_POST["color"],
 				"textColor" => $_POST["colorTexto"]
 				
@@ -34,18 +34,19 @@
 				color = :color,
 				colorTexto = :textColor,
 				fechaInicio = :start,
-				fechaFin = :end
-				WHERE IdCitas = :ID
+				fechaFin = :end,
+				WHERE ID = :ID
 				");
 
 			$respuesta = $sentenciaSQL -> execute(array(
-				"ID" => $_POST['idCitas'],
-				"title" => $_POST['idPaciente'],
-				"descripcion" => $_POST['idTratamiento'],
+				"ID" => $_POST['id'],
+				"title" => $_POST['title'],
+				"descripcion" => $_POST['descripcion'],
+				"empleada" => $_POST["idEmpleada"],
 				"color" => $_POST['color'],
 				"textColor" => $_POST['colorTexto'],
-				"start" => $_POST['FechaInicio'],
-				"end" => $_POST['fechaFin']
+				"start" => $_POST['start'],
+				"end" => $_POST['end']
 			));
 
 			echo json_encode($respuesta);
@@ -60,10 +61,10 @@
 			$respuesta = false;
 
 			// hay algo en el id cuando me lo enviaste mediante la accion eliminar?
-			if(isset($_POST['idCitas'])){
+			if(isset($_POST['id'])){
 
-				$sentenciaSQL = $pdo -> prepare("DELETE FROM eventos WHERE IdCitas=:ID");
-				$respuesta = $sentenciaSQL -> execute(array("ID" => $_POST['idCitas']));
+				$sentenciaSQL = $pdo -> prepare("DELETE FROM eventos WHERE ID =:ID");
+				$respuesta = $sentenciaSQL -> execute(array("ID" => $_POST['id']));
 
 			}
 
