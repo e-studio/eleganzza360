@@ -18,17 +18,47 @@ class MvcController{
 
 			$respuesta = Datos::registroUsuarioModel($datosController, "usuarios");
 
-			echo $respuesta;
-
 			if($respuesta == "success"){
 
-				//header("location:index.php?action=ok");
-				
+				//header("location:index.php?action=ok");				
 			}
 
 			else{
 
 				//header("location:index.php");
+			}
+		}
+	}
+
+	# Registro de Pacientes
+	#------------------------------------
+
+	public function registroPacientesController(){
+
+		if(isset($_POST["nombres"])){
+
+			$datosController = array( "nombres"=>$_POST["nombres"],
+									  "apellidos"=>$_POST["apellidos"], 
+								      "email"=>$_POST["email"],
+								      "tel"=>$_POST["telLocal"],
+								      "movil"=>$_POST["celular"]);
+
+			$respuesta = Datos::consultaPacientesModel($datosController, "clientes");
+
+			if ($respuesta["nombres"]==""){
+				$respuesta = Datos::registroPacientesModel($datosController, "clientes");
+				
+				if ($respuesta=="ok"){
+					echo '<div class="alert alert-success">';
+  					echo 'Cliente Registrado Exitosamente!.';
+					echo '</div>';
+				}
+			}
+			else{
+
+				echo '<div class="alert alert-danger">';
+  				echo "<strong>Error!</strong> esos datos ya estan registrados.";
+				echo "</div>";
 			}
 
 		}

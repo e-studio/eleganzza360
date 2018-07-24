@@ -29,7 +29,50 @@ else {
       </ol>
       
       <hr>
-      <p>Contenido para agregar clientes.</p>
+      <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Registro de Usuarios</div>
+      <div class="card-body">
+        <form method="post" action="">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="nombre">Nombre</label>
+                <input class="form-control" name ="nombres" id="nombres" type="text" aria-describedby="nameHelp" placeholder="Escriba el nombre" required="true">
+              </div>
+              <div class="col-md-6">
+                <label for="apellidos">Apellidos</label>
+                <input class="form-control" name="apellidos" id="apellidos" type="text" aria-describedby="nameHelp" placeholder="Apellidos" required="true">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" name="email" id="email" type="email" aria-describedby="emailHelp" placeholder="Correo Electrónico" >
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="telLocal">Telefono Local</label>
+               <input class="form-control" name="telLocal" id="telLocal" type="tel" name="telefono" requiered>
+              </div>
+              <div class="col-md-6">
+                <label for="celular">Celular</label>
+                <input class="form-control" name="celular" id="celular" type="tel" required="true">
+              </div>
+            </div>
+          </div>
+          <input class="btn btn-primary btn-block" type="submit" value="Registrar">
+       </form>
+
+
+        <?php
+        $ingreso = new MvcController();
+        $ingreso -> registroPacientesController();
+        
+        ?>
+        
+      </div>
+    </div>
       
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>

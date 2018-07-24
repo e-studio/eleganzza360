@@ -1,6 +1,4 @@
 <?php
-
-
 require_once "conexion.php";
 
 class Datos extends Conexion{
@@ -40,6 +38,53 @@ class Datos extends Conexion{
 	}
 
 
+	#REGISTRO DE PACIENTES
+	#-------------------------------------
+
+	public function consultaPacientesModel($datosModel, $tabla){
+
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE nombres = :nombres and apellidos = :apellidos and movil = :movil");
+
+		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
+		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
+		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
+		
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+	
+
+
+	public function registroPacientesModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, tel, movil, email) VALUES (:nombres,:apellidos,:tel, :movil, :email)");
+
+		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
+		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
+		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
+		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
 
 
 	#VISTA USUARIOS
