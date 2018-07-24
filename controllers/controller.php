@@ -30,10 +30,10 @@ class MvcController{
 		}
 	}
 
-	# Registro de Pacientes
+	# REGISTRO DE CLIENTES
 	#------------------------------------
 
-	public function registroPacientesController(){
+	public function registroClientesController(){
 
 		if(isset($_POST["nombres"])){
 
@@ -64,6 +64,29 @@ class MvcController{
 		}
 
 	}
+
+	#LISTADO DE CLIENTES
+	#------------------------------------
+
+	public function listaClientesController(){
+
+		$respuesta = Datos::listaClientesModel("clientes");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["nombres"].'</td>
+				<td>'.$item["apellidos"].'</td>
+				<td>'.$item["movil"].'</td>
+				<td>'.$item["tel"].'</td>
+				<td>'.$item["email"].'</td>
+				<td><a href="index.php?action=editar&id='.$item["idClientes"].'"><button>Editar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["idClientes"].'"><button>Borrar</button></a></td>
+			</tr>';
+		}
+
+	}
+
+
 
 
 

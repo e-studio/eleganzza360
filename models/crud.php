@@ -38,10 +38,10 @@ class Datos extends Conexion{
 	}
 
 
-	#REGISTRO DE PACIENTES
+	#VERIFICA SI UN CLIENTE YA ESTA REGISTRADO
 	#-------------------------------------
 
-	public function consultaPacientesModel($datosModel, $tabla){
+	public function consultaClientesModel($datosModel, $tabla){
 
 
 
@@ -58,7 +58,22 @@ class Datos extends Conexion{
 	}
 	
 
+	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES
+	#-------------------------------------
 
+	public function listaClientesModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+	
+
+
+	#REGISTRO DE PACIENTES
+	#-------------------------------------
 	public function registroPacientesModel($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, tel, movil, email) VALUES (:nombres,:apellidos,:tel, :movil, :email)");
