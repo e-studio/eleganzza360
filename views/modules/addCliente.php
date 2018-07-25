@@ -67,7 +67,7 @@ else {
 
         <?php
         $ingreso = new MvcController();
-        $ingreso -> registroPacientesController();
+        $ingreso -> registroClientesController();
         
         ?>
         

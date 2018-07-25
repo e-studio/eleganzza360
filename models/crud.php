@@ -72,9 +72,9 @@ class Datos extends Conexion{
 	
 
 
-	#REGISTRO DE PACIENTES
+	#REGISTRO DE Clientes
 	#-------------------------------------
-	public function registroPacientesModel($datosModel, $tabla){
+	public function registroClientesModel($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, tel, movil, email) VALUES (:nombres,:apellidos,:tel, :movil, :email)");
 
@@ -100,6 +100,68 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
+
+
+	#VERIFICA SI UN PRODUCTO YA ESTA REGISTRADO
+	#-------------------------------------
+
+	public function consultaProductosModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE nombre = :nombre and categoria = :categoria");
+
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
+				
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+
+
+	#REGISTRO DE PRODUCTOS
+	#-------------------------------------
+	public function registroProductosModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, categoria, precio, paquete) VALUES (:nombre,:categoria,:precio,:paquete)");
+
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(":paquete", $datosModel["paquete"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "INSERT INTO $tabla (nombre, categoria, precio, paquete) VALUES (".$datosModel["nombre"].",".$datosModel["categoria"].",".$datosModel["precio"].",".$datosModel["paquete"].")";
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+
+	#DEVUELVE UN LISTADO DE TODOS LOS PRODUCTOS
+	#-------------------------------------
+
+	public function listaProductosModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
 
 
 	#VISTA USUARIOS

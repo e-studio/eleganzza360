@@ -43,10 +43,10 @@ class MvcController{
 								      "tel"=>$_POST["telLocal"],
 								      "movil"=>$_POST["celular"]);
 
-			$respuesta = Datos::consultaPacientesModel($datosController, "clientes");
+			$respuesta = Datos::consultaClientesModel($datosController, "clientes");
 
 			if ($respuesta["nombres"]==""){
-				$respuesta = Datos::registroPacientesModel($datosController, "clientes");
+				$respuesta = Datos::registroClientesModel($datosController, "clientes");
 				
 				if ($respuesta=="ok"){
 					echo '<div class="alert alert-success">';
@@ -79,15 +79,71 @@ class MvcController{
 				<td>'.$item["movil"].'</td>
 				<td>'.$item["tel"].'</td>
 				<td>'.$item["email"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["idClientes"].'"><button>Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["idClientes"].'"><button>Borrar</button></a></td>
+				<td><a href="index.php?action=editar&id='.$item["idclientes"].'"><button>Editar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["idclientes"].'"><button>Borrar</button></a></td>
 			</tr>';
 		}
 
 	}
 
 
+	# REGISTRO DE PRODUCTOS
+	#------------------------------------
 
+	public function registroProductosController(){
+
+		if(isset($_POST["nombre"])){
+
+			$datosController = array( "nombre"=>$_POST["nombre"],
+									  "categoria"=>$_POST["categoria"], 
+								      "precio"=>$_POST["precio"],
+								      "paquete"=>$_POST["paquete"]);
+
+			$respuesta = Datos::consultaProductosModel($datosController, "productos");
+
+			if ($respuesta["nombre"]==""){
+				$respuesta = Datos::registroProductosModel($datosController, "productos");
+				
+				if ($respuesta=="ok"){
+					echo '<div class="alert alert-success">';
+  					echo 'Cliente Registrado Exitosamente!.';
+					echo '</div>';
+				}
+				else {
+					echo "error al insertar";
+				}
+			}
+			else{
+
+				echo '<div class="alert alert-danger">';
+  				echo "<strong>Error!</strong> esos datos ya estan registrados.";
+				echo "</div>";
+			}
+
+		}
+
+	}
+
+
+	#LISTADO DE CLIENTES
+	#------------------------------------
+
+	public function listaProductosController(){
+
+		$respuesta = Datos::listaProductosModel("productos");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["nombre"].'</td>
+				<td>'.$item["categoria"].'</td>
+				<td>'.$item["precio"].'</td>
+				<td>'.$item["paquete"].'</td>
+				<td><a href="index.php?action=editar&id='.$item["idProductos"].'"><button>Editar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["idProductos"].'"><button>Borrar</button></a></td>
+			</tr>';
+		}
+
+	}
 
 
 	#VISTA DE USUARIOS
