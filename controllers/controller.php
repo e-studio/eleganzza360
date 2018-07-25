@@ -79,8 +79,8 @@ class MvcController{
 				<td>'.$item["movil"].'</td>
 				<td>'.$item["tel"].'</td>
 				<td>'.$item["email"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["idclientes"].'"><button>Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["idclientes"].'"><button>Borrar</button></a></td>
+				<td><a href="index.php?action=editar&id='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -138,8 +138,8 @@ class MvcController{
 				<td>'.$item["categoria"].'</td>
 				<td>'.$item["precio"].'</td>
 				<td>'.$item["paquete"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["idProductos"].'"><button>Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["idProductos"].'"><button>Borrar</button></a></td>
+				<td><a href="index.php?action=editar&id='.$item["idProductos"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["idProductos"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -160,8 +160,8 @@ class MvcController{
 				<td>'.$item["usuario"].'</td>
 				<td>'.$item["password"].'</td>
 				<td>'.$item["email"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["id"].'"><button>Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["id"].'"><button>Borrar</button></a></td>
+				<td><a href="index.php?action=editar&id='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 
 		}
