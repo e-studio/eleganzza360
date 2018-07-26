@@ -56,6 +56,25 @@ class Datos extends Conexion{
 
 		$stmt->close();
 	}
+
+
+
+	#BUSCA UN CLIENTE
+	#-------------------------------------
+
+	public function buscaClienteModel($cliente, $tabla){
+
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idclientes = :idcliente");
+
+		$stmt->bindParam(":idcliente", $cliente, PDO::PARAM_INT);
+		
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
 	
 
 	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES
@@ -83,6 +102,50 @@ class Datos extends Conexion{
 		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+
+
+	#ACTUALIZA CLIENTE
+	#-------------------------------------
+	public function actualizaClienteModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, tel=:tel, movil=:movil, email=:email WHERE idclientes=:idclientes");
+
+		$stmt->bindParam(":idclientes", $datosModel["idclientes"], PDO::PARAM_INT);
+		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
+		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
+		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
+		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+
+		/*var_dump($stmt);
+		echo "<br>".$datosModel['idclientes'];
+		echo "<br>".$datosModel['nombres'];
+		echo "<br>".$datosModel['apellidos'];
+		echo "<br>".$datosModel['tel'];
+		echo "<br>".$datosModel['movil'];
+		echo "<br>".$datosModel['email'];*/
+		
+
 
 
 		if($stmt->execute()){

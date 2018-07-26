@@ -65,6 +65,44 @@ class MvcController{
 
 	}
 
+
+	# ACTUALIZA CLIENTES
+	#------------------------------------
+
+	public function actualizaClienteController(){
+
+		if(isset($_POST["nombres"])){
+
+			$datosController = array( "idclientes"=>$_POST["id"],
+								  "nombres"=>$_POST["nombres"],
+								  "apellidos"=>$_POST["apellidos"], 
+							      "email"=>$_POST["email"],
+							      "tel"=>$_POST["telLocal"],
+							      "movil"=>$_POST["celular"]);
+
+			$respuesta = Datos::actualizaClienteModel($datosController, "clientes");
+			
+			if ($respuesta=="ok"){
+
+				?> <script>$("#actualizaModal").modal();</script><?php
+
+				/*echo '<div class="alert alert-success">';
+					echo 'Cliente Actualizado Exitosamente!.';
+				echo '</div>';*/
+			}
+			else{
+
+				echo '<div class="alert alert-danger">';
+					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+				echo "</div>";
+			}
+
+		}
+
+	}
+
+
+
 	#LISTADO DE CLIENTES
 	#------------------------------------
 
@@ -79,7 +117,7 @@ class MvcController{
 				<td>'.$item["movil"].'</td>
 				<td>'.$item["tel"].'</td>
 				<td>'.$item["email"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=editCliente&idEditar='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=usuarios&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
@@ -115,10 +153,10 @@ class MvcController{
 			}
 			else{
 
-				echo '<div class="alert alert-danger">';
-  				echo "<strong>Error!</strong> esos datos ya estan registrados.";
-				echo "</div>";
-			}
+					echo '<div class="alert alert-danger">';
+  					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+					echo "</div>";
+				}
 
 		}
 

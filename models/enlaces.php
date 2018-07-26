@@ -7,6 +7,7 @@ class EnlacesModels{
 		if($enlaces == "inicio" ||
 		   $enlaces == "ingreso" ||
 		   $enlaces == "addCliente" ||
+		   $enlaces == "editCliente" ||
 		   $enlaces == "hisCliente" ||
 		   $enlaces == "registroUsuario" ||
 		   //$enlaces == "lostPassword"
