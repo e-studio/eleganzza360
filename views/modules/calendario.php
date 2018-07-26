@@ -31,7 +31,6 @@
 			minTime: "08:00",
 			maxTime: "19:00",
 			slotDuration: "00:15:00",
-			defaultTimedEventDuration: "00:45:00",
 			displayEventEnd: true,
 
 			eventSources:[
@@ -115,17 +114,11 @@
 	});
 
 	function RecolectarDatos(){
-		horainicio=$("#txtFecha").val()+" "+$("#txtHora").val();
-		console.log("HORANICIO   "+horainicio);
-		horainicio=horainicio+":00";
-		console.log("HORAINICIO     "+horainicio);
+		horainicio=$("#txtFecha").val()+" "+$("#txtHora").val()+":00";
 		horaend = moment(horainicio,"YYYY-MM-DD HH:mm:ss");
-		console.log("HORAEND   "+horaend);
 		horaend.add(45,'minutes');
-		console.log("HORAEND MAS   "+horaend);
 		var final = horaend.format("YYYY-MM-DD HH:mm:ss");
-		console.log ("FINAL   "+final);
-
+		
 		NuevoEvento = {
 			idCitas:$("#txtID").val(),
 			title:$("#txtPaciente").val(),
@@ -135,8 +128,6 @@
 			color: "#1BC1D7",
 			textColor: "#6B1B9D"
 		};
-
-		console.log("HORAEND   "+horaend);
 	}
 
 	function DatosEventos(){
