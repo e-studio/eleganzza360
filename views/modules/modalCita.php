@@ -1,3 +1,9 @@
+<?php 
+$serv="localhost";
+$bd="sistema";
+$user="root";
+$pass="";
+$link = mysqli_connect($serv, $user, $pass, $bd) ?>
 <!-- Modal -->
 <div class="modal fade" id="ModalCitas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -13,8 +19,21 @@
         <input type="hidden" id="txtID" name="txtID">
         <input type="hidden" id="txtFecha" name="txtFecha">
         <div class="form-group">
-          <div class="col-sm-8">
-            Paciente: <input type="text" id="txtPaciente" name="txtPaciente" placeholder="Nombre de la paciente" class="form-control">
+          <div class="form-group col-sm-8">
+            
+            <label>Paciente:</label>
+            <?php $consulta = $link -> query("SELECT idPacientes AS 'id', nombre AS 'nombre' FROM pacientes ORDER BY nombre"); ?>
+            <select name="txtPaciente" id="txtPaciente" class="form-control" onChange="txtPaciente(this.value);">
+              <option value="">Selecciona Paciente:</option>
+              <?php while ($row = $consulta -> fetch_object()){
+                echo "<option value='".$row->nombre."'>".$row->nombre."</option>";
+              }  ?>
+            </select>
+            <?php $link = NULL; ?>
+            
+           
+        
+            <!-- Paciente: <input type="text" id="txtPaciente" name="txtPaciente" placeholder="Nombre de la paciente" class="form-control"> -->
           </div>
         </div>
         <div class="form-group">
