@@ -84,11 +84,8 @@ class MvcController{
 			
 			if ($respuesta=="ok"){
 
-				?> <script>$("#actualizaModal").modal();</script><?php
-
-				/*echo '<div class="alert alert-success">';
-					echo 'Cliente Actualizado Exitosamente!.';
-				echo '</div>';*/
+				$mensaje = "Actualizacion correcta";
+				echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=clientes'</script>";
 			}
 			else{
 

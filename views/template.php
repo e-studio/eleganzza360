@@ -77,7 +77,7 @@
                 <div class="modal-body">Seleccione "Salir" abajo para cerrar la sesion actual.</div>
                 <div class="modal-footer">
                   
-                  <a class="btn btn-primary" href="http://localhost/eleganzza360/index.php?action=clientes">Cerrar</a>
+                  <a class="btn btn-primary" href="index.php?action=clientes">Cerrar</a>
                 </div>
               </div>
             </div>

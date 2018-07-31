@@ -69,11 +69,6 @@ $cliente = $_REQUEST['idEditar'];
             </div>
           </div>
           <input class="btn btn-primary btn-block"  type="submit" value="Actualizar">
-
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#actualizaModal">
-            Abrir modal
-          </button>
-
           <input type="hidden" id="id" name="id" value="<?php echo $cliente; ?>">
        </form>
 
