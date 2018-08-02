@@ -9,7 +9,7 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Citas">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php?action=citas">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Citas</span>
           </a>

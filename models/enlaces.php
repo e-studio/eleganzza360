@@ -14,8 +14,8 @@ class EnlacesModels{
 		   $enlaces == "addProducto" ||
 		   $enlaces == "productos"||
 		   $enlaces == "clientes" ||
-		   $enlaces == "editProducto"
-		   //$enlaces == "mensajes" ||
+		   $enlaces == "editProducto" ||
+		   $enlaces == "citas" 
 		   //$enlaces == "perfil" ||
 		   //$enlaces == "salir")
 		   ){
