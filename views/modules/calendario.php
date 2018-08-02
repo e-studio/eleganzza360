@@ -99,7 +99,7 @@
 			eventDrop:function(calEvent,delta,revertFunc){
 				Requerido="";
 				FechaHora=calEvent.start.format().split("T");
-				if (FechaHora[0]>=moment().format("YYY-MM-DD")){
+				if (FechaHora[0]>=moment().format("YYYY-MM-DD")){
 					$("#txtEmpleadaEvento").val(calEvent.empleada);
 					Requerido=$("#txtEmpleadaEvento").val();
 					if (Requerido==="" || Requerido==="0"){
