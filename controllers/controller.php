@@ -98,7 +98,36 @@ class MvcController{
 
 	}
 
+	# ACTUALIZA PRODUCTOS
+	#------------------------------------
 
+	public function actualizaProductoController(){
+
+		if(isset($_POST["nombre"])){
+
+			$datosController = array("idProductos"=>$_POST["idProductos"],
+								  "nombre"=>$_POST["nombre"],
+								  "categoria"=>$_POST["categoria"], 
+							      "precio"=>$_POST["precio"],
+							      "paquete"=>$_POST["paquete"]);
+
+			$respuesta = Datos::actualizaProductoModel($datosController, "productos");
+			
+			if ($respuesta=="ok"){
+
+				$mensaje = "Actualizacion correcta";
+				echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=productos'</script>";
+			}
+			else{
+
+				echo '<div class="alert alert-danger">';
+					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+				echo "</div>";
+			}
+
+		}
+
+	}
 
 	#LISTADO DE CLIENTES
 	#------------------------------------
@@ -173,7 +202,7 @@ class MvcController{
 				<td>'.$item["categoria"].'</td>
 				<td>'.$item["precio"].'</td>
 				<td>'.$item["paquete"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["idProductos"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=editProducto&idEditar='.$item["idProductos"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=productos&idBorrar='.$item["idProductos"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}

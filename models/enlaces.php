@@ -13,8 +13,8 @@ class EnlacesModels{
 		   //$enlaces == "lostPassword"
 		   $enlaces == "addProducto" ||
 		   $enlaces == "productos"||
-		   $enlaces == "clientes" 
-		   //$enlaces == "suscriptores" ||
+		   $enlaces == "clientes" ||
+		   $enlaces == "editProducto"
 		   //$enlaces == "mensajes" ||
 		   //$enlaces == "perfil" ||
 		   //$enlaces == "salir")

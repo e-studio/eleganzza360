@@ -76,6 +76,23 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 	
+	#BUSCA UN PRODUCTO
+	#-------------------------------------
+
+	public function buscaProductoModel($producto, $tabla){
+
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idProductos = :idProductos");
+
+		$stmt->bindParam(":idProductos", $producto, PDO::PARAM_INT);
+		
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+	
 
 	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES
 	#-------------------------------------
@@ -135,6 +152,47 @@ class Datos extends Conexion{
 		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+
+		/*var_dump($stmt);
+		echo "<br>".$datosModel['idclientes'];
+		echo "<br>".$datosModel['nombres'];
+		echo "<br>".$datosModel['apellidos'];
+		echo "<br>".$datosModel['tel'];
+		echo "<br>".$datosModel['movil'];
+		echo "<br>".$datosModel['email'];*/
+		
+
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+#ACTUALIZA PRODUCTO
+	#-------------------------------------
+	public function actualizaProductoModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nombre, categoria=:categoria, precio=:precio, paquete=:paquete WHERE idProductos=:idProductos");
+
+		$stmt->bindParam(":idProductos", $datosModel["idProductos"], PDO::PARAM_INT);
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(":paquete", $datosModel["paquete"], PDO::PARAM_STR);
+		/*$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
 
 
 		/*var_dump($stmt);
@@ -248,7 +306,7 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function borrarClienteModel($datosModel,$tabla){
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idclientes = :idclientes");
-		$stmt -> bindPARAM(":idclientes",$datosModel,PDO::PARAM_INT);
+		$stmt -> bindPARAM(":idclientes", $datosModel, PDO::PARAM_INT);
 		if ($stmt->execute()){
 			return "success";
 		} else {
@@ -256,13 +314,11 @@ class Datos extends Conexion{
 		}
 		$stmt -> close();
 	}
-
-	
 	#BORRAR PRODUCTO
 	#-------------------------------------
 	public function borrarProductoModel($datosModel,$tabla){
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idProductos = :idProductos");
-		$stmt -> bindPARAM(":idProductos",$datosModel,PDO::PARAM_INT);
+		$stmt -> bindPARAM(":idProductos",$datosModel, PDO::PARAM_INT);
 		if ($stmt->execute()){
 			return "success";
 		} else {
@@ -270,5 +326,5 @@ class Datos extends Conexion{
 		}
 		$stmt -> close();
 	}
-
+	
 }
