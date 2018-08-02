@@ -244,6 +244,31 @@ class Datos extends Conexion{
 
 	}
 
+	#BORRAR CLIENTE
+	#-------------------------------------
+	public function borrarClienteModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idclientes = :idclientes");
+		$stmt -> bindPARAM(":idclientes",$datosModel,PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
 
 	
+	#BORRAR PRODUCTO
+	#-------------------------------------
+	public function borrarProductoModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idProductos = :idProductos");
+		$stmt -> bindPARAM(":idProductos",$datosModel,PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
 }

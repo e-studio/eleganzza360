@@ -60,7 +60,8 @@ else {
               <tbody>
                 <?php
                   $ingreso = new MvcController();
-                  $ingreso -> listaProductosController();                  
+                  $ingreso -> listaProductosController();
+                  $ingreso -> borrarProductoController();                  
                 ?>
               </tbody>
             </table>

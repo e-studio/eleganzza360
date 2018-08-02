@@ -15,8 +15,34 @@
 			echo json_encode($resultado);
 		break;
 
+		case 'modificarM':
+			$resultado = false;
+			$sentencia = $pdo -> prepare ("UPDATE citas SET
+				title = :title,
+				tratamiento = :tratamiento,
+				empleada = :empleada,
+				start = :start,
+				end = :end
+				WHERE idCitas = :idCitas");
+			$resultado = $sentencia -> execute(array(
+				"idCitas" => $_POST['idCitas'],
+				"title" => $_POST['title'],
+				"tratamiento" => $_POST['tratamiento'],
+				"empleada" => $_POST['empleada'],
+				"start" => $_POST['start'],
+				"end" => $_POST['end']
+			));
+			echo json_encode($resultado);
+		break;
+
 		case 'modificar':
 			$resultado = false;
+			$sentenciaV = $pdo -> prepare ("INSERT INTO ventas (empleadaV,idProducto,fechaV,venta) VALUES (:empleada,:tratamiento,:start,300)");
+			$resultadoV = $sentenciaV -> execute(array(
+				"empleada" => $_POST['empleada'],
+				"tratamiento" => $_POST['tratamiento'],
+				"start" => $_POST['start']
+			));
 			$sentencia = $pdo -> prepare ("UPDATE citas SET
 				title = :title,
 				tratamiento = :tratamiento,

@@ -115,7 +115,7 @@ class MvcController{
 				<td>'.$item["tel"].'</td>
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editCliente&idEditar='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=clientes&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -141,7 +141,7 @@ class MvcController{
 				
 				if ($respuesta=="ok"){
 					echo '<div class="alert alert-success">';
-  					echo 'Cliente Registrado Exitosamente!.';
+  					echo 'Producto Registrado Exitosamente!.';
 					echo '</div>';
 				}
 				else {
@@ -160,7 +160,7 @@ class MvcController{
 	}
 
 
-	#LISTADO DE CLIENTES
+	#LISTADO DE PRODUCTOS
 	#------------------------------------
 
 	public function listaProductosController(){
@@ -174,7 +174,7 @@ class MvcController{
 				<td>'.$item["precio"].'</td>
 				<td>'.$item["paquete"].'</td>
 				<td><a href="index.php?action=editar&id='.$item["idProductos"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["idProductos"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=productos&idBorrar='.$item["idProductos"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -203,7 +203,29 @@ class MvcController{
 
 	}
 
+	#BORRAR USUARIO
+	#------------------------------------
+	public function borrarClienteController(){
+		if (isset($_GET['idBorrar'])){
+			$datosController = $_GET['idBorrar'];
+			$respuesta = Datos::borrarClienteModel($datosController,"clientes");
+			if ($respuesta == "success"){
+				echo "<script type='text/javascript'>window.location.href='index.php?action=clientes'</script>";
+			}
+		}
+	}	
 
+	#BORRAR PRODUCTO
+	#------------------------------------
+	public function borrarProductoController(){
+		if (isset($_GET['idBorrar'])){
+			$datosController = $_GET['idBorrar'];
+			$respuesta = Datos::borrarProductoModel($datosController,"productos");
+			if ($respuesta == "success"){
+				echo "<script>window.location.href='index.php?action=productos'</script>";
+			}
+		}
+	}
 
 
 }

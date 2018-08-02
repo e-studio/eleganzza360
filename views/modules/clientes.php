@@ -62,7 +62,7 @@ else {
                 <?php
                   $ingreso = new MvcController();
                   $ingreso -> listaClientesController();
-                  
+                  $ingreso -> borrarCLienteController();                  
                 ?>
               </tbody>
             </table>

@@ -15,6 +15,7 @@
 </div>
 <?php include "modalCita.php"; ?>
 <?php include "modalEvento.php"; ?>
+<?php include "modalBorrar.php"; ?>
 <script>
 	var NuevoEvento;
 	var ExisteEvento;
@@ -56,35 +57,68 @@
 			},
 
 			dayClick:function(date,jsEvent,view){
-				limpieza();
-				$("#ModalCitas").modal();
-				$("#txtFecha").val(date.format());
+				if (moment().format("YYYY-MM-DD")===date.format("YYYY-MM-DD") || date.isAfter(moment())){
+					limpieza();
+					$("#ModalCitas").modal();
+					$("#txtFecha").val(date.format());
+				}
 			},
 
 			eventClick:function(calEvent,jsEvent,view){
-				$("#ModalEventos").modal();
-				$("#tituloEventoE").html(calEvent.title);
-				$("#txtTratamientoEvento").val(calEvent.tratamiento);
-				$("#txtIDEvento").val(calEvent.idCitas);
 				FechaHora=calEvent.start._i.split(" ");
-				$("#txtHoraEvento").val(FechaHora[1]);
-				$("#txtFechaEvento").val(FechaHora[0]);
-				$("#txtPacienteEvento").val(calEvent.title);
-				$("#txtEmpleadaEvento").val(calEvent.empleada);
+				Requerido="";
+				if (FechaHora[0]>=moment().format("YYYY-MM-DD")){
+					$("#txtEmpleadaEvento").val(calEvent.empleada);
+					Requerido=$("#txtEmpleadaEvento").val();
+					if (Requerido===""||Requerido==="0"){
+						$("#ModalEventos").modal();
+						$("#tituloEventoE").html(calEvent.title);
+						$("#txtTratamientoEvento").val(calEvent.tratamiento);
+						$("#txtIDEvento").val(calEvent.idCitas);
+						$("#txtHoraEvento").val(FechaHora[1]);
+						$("#txtFechaEvento").val(FechaHora[0]);
+						$("#txtPacienteEvento").val(calEvent.title);
+						document.getElementById("txtEmpleadaEvento").disabled=false;
+						document.getElementById("btnEliminar").disabled=false;
+						document.getElementById("btnModificar").disabled=false;
+					} else {
+						$("#ModalEventos").modal();
+						$("#tituloEventoE").html(calEvent.title+" PACIENTE YA ATENDIDA");
+						$("#txtTratamientoEvento").val(calEvent.tratamiento);
+						$("#txtIDEvento").val(calEvent.idCitas);
+						$("#txtHoraEvento").val(FechaHora[1]);
+						$("#txtFechaEvento").val(FechaHora[0]);
+						$("#txtPacienteEvento").val(calEvent.title);
+						document.getElementById("txtEmpleadaEvento").disabled=true;
+						document.getElementById("btnEliminar").disabled=true;
+						document.getElementById("btnModificar").disabled=true;						
+					}
+				}
 			},
 
-			eventDrop:function(calEvent){
-				$("#txtIDEvento").val(calEvent.idCitas);
-				$("#txtPacienteEvento").val(calEvent.title);
-				$("#txtTratamientoEvento").val(calEvent.tratamiento);
-				$("#txtEmpleadaEvento").val(calEvent.empleada);
-				var fechaEvento = calEvent.start.format().split("T");
-				$("#txtFechaEvento").val(fechaEvento[0]);
-				$("#txtHoraEvento").val(fechaEvento[1]);
-				DatosEventos();
-				InfoEventos("modificar",ExisteEvento,true);
+			eventDrop:function(calEvent,delta,revertFunc){
+				Requerido="";
+				FechaHora=calEvent.start.format().split("T");
+				if (FechaHora[0]>=moment().format("YYY-MM-DD")){
+					$("#txtEmpleadaEvento").val(calEvent.empleada);
+					Requerido=$("#txtEmpleadaEvento").val();
+					if (Requerido==="" || Requerido==="0"){
+						$("#txtIDEvento").val(calEvent.idCitas);
+						$("#txtPacienteEvento").val(calEvent.title);
+						$("#txtTratamientoEvento").val(calEvent.tratamiento);
+						$("#txtEmpleadaEvento").val(calEvent.empleada);
+						//var fechaEvento = calEvent.start.format().split("T");
+						$("#txtFechaEvento").val(FechaHora[0]);
+						$("#txtHoraEvento").val(FechaHora[1]);
+						DatosEventos();
+						InfoEventos("modificarM",ExisteEvento,true);
+					} else {
+						revertFunc();
+					}
+				} else {
+					revertFunc();
+				}
 			}
-
 		});
 	});
 
@@ -95,17 +129,21 @@
 
 	$("#btnEliminar").click(function(){
 		Requerido = $("#txtEmpleadaEvento").val();
-		if (Requerido === ""){
+		if (Requerido === "" || Requerido=== "0"){
 			alert ("Ingresa tu numero de Empleada");
 		} else {	
-			DatosEventos();
-			InfoEventos("eliminar",ExisteEvento);
+			$("#ModalBorrar").modal();
 		}
+	});
+
+	$("#btnConfirmar").click(function(){
+		DatosEventos();
+		InfoEventos("eliminar",ExisteEvento);
 	});
 
 	$("#btnModificar").click(function(){
 		Requerido = $("#txtEmpleadaEvento").val();
-		if (Requerido === ""){
+		if (Requerido === "" || Requerido=== "0"){
 			alert ("Ingresa tu numero de empleada");
 		} else {
 			DatosEventos();
@@ -117,8 +155,7 @@
 		horainicio=$("#txtFecha").val()+" "+$("#txtHora").val()+":00";
 		horaend = moment(horainicio,"YYYY-MM-DD HH:mm:ss");
 		horaend.add(45,'minutes');
-		var final = horaend.format("YYYY-MM-DD HH:mm:ss");
-		
+		var final = horaend.format("YYYY-MM-DD HH:mm:ss");	
 		NuevoEvento = {
 			idCitas:$("#txtID").val(),
 			title:$("#txtPaciente").val(),
@@ -131,13 +168,17 @@
 	}
 
 	function DatosEventos(){
+		horainicio=$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val()+":00";
+		horaend = moment(horainicio,"YYYY-MM-DD HH:mm:ss");
+		horaend.add(45,'minutes');
+		var final = horaend.format("YYYY-MM-DD HH:mm:ss");
 		ExisteEvento = {
 			idCitas:$("#txtIDEvento").val(),
 			title:$("#txtPacienteEvento").val(),
 			tratamiento:$("#txtTratamientoEvento").val(),
 			empleada:$("#txtEmpleadaEvento").val(),
 			start:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
-			end:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
+			end:final,
 			color: "#1BC1D7",
 			textColor: "#6B1B9D"
 		}
@@ -170,6 +211,7 @@
 				$("#calendario").fullCalendar("refetchEvents");
 				if (!modal){
 					$("#ModalEventos").modal("toggle");
+					$("#ModalBorrar").modal("toggle");
 				}
 			}
 		},

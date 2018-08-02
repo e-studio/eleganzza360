@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="btnModificar">Atender</button>
+        <button type="button" class="btn btn-success" id="btnModificar">Atendió</button>
         <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
