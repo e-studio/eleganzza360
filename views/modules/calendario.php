@@ -138,7 +138,7 @@
 
 	$("#btnConfirmar").click(function(){
 		DatosEventos();
-		InfoEventos("eliminar",ExisteEvento);
+		InfoEventosEliminar("eliminar",ExisteEvento);
 	});
 
 	$("#btnModificar").click(function(){
@@ -201,7 +201,7 @@
 		});
 	}
 
-	function InfoEventos(accion,objEvento,modal){
+	function InfoEventosEliminar(accion,objEvento,modal){
 		$.ajax({
 			type:"POST",
 			url:"views/modules/eventos.php?accion="+accion,
@@ -212,6 +212,25 @@
 				if (!modal){
 					$("#ModalEventos").modal("toggle");
 					$("#ModalBorrar").modal("toggle");
+				}
+			}
+		},
+		error: function(){
+			alert ("hay un error...");
+		}
+		});
+	}
+
+	function InfoEventos(accion,objEvento,modal){
+		$.ajax({
+			type:"POST",
+			url:"views/modules/eventos.php?accion="+accion,
+			data:objEvento,
+			success: function(msg){
+			if(msg){
+				$("#calendario").fullCalendar("refetchEvents");
+				if (!modal){
+					$("#ModalEventos").modal("toggle");
 				}
 			}
 		},

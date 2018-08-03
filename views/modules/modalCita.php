@@ -22,7 +22,7 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
           <div class="form-group col-sm-8">
             
             <label>Paciente:</label>
-            <?php $consulta = $link -> query("SELECT idPacientes AS 'id', nombre AS 'nombre' FROM pacientes ORDER BY nombre"); ?>
+            <?php $consulta = $link -> query("SELECT idclientes AS 'id', nombres AS 'nombre' FROM clientes ORDER BY nombres"); ?>
             <select name="txtPaciente" id="txtPaciente" class="form-control" onChange="txtPaciente(this.value);">
               <option value="">Selecciona Paciente:</option>
               <?php while ($row = $consulta -> fetch_object()){
