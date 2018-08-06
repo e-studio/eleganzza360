@@ -47,7 +47,20 @@
           </ul>
         </li>
         
-
+        <li class ="nav-item" data-toggle="tooltip" data-placement="right" title="empleados">
+          <a href="#collapseEmpleados" class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Empleados</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseEmpleados">
+            <li>
+              <a href="index.php?action=empleados">Empleados</a>
+            </li>
+            <li>
+              <a href="index.php?action=addEmpleado">Agregar Empleado</a>
+            </li>
+          </ul>
+        </li>
 
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Balances">
           <a class="nav-link" href="index.html">

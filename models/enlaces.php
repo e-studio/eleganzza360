@@ -15,7 +15,10 @@ class EnlacesModels{
 		   $enlaces == "productos"||
 		   $enlaces == "clientes" ||
 		   $enlaces == "editProducto" ||
-		   $enlaces == "citas" 
+		   $enlaces == "citas" ||
+		   $enlaces == "empleados" ||
+		   $enlaces == "editEmpleados" ||
+		   $enlaces == "addEmpleado"
 		   //$enlaces == "perfil" ||
 		   //$enlaces == "salir")
 		   ){

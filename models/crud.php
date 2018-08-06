@@ -83,15 +83,33 @@ class Datos extends Conexion{
 
 
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idProductos = :idProductos");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
 
-		$stmt->bindParam(":idProductos", $producto, PDO::PARAM_INT);
+		$stmt->bindParam(":id", $usuario, PDO::PARAM_INT);
 		
 		$stmt -> execute();
 		return $stmt -> fetch();
 
 		$stmt->close();
 	}
+
+	#BUSCA UN EMPLEADO
+	#-------------------------------------
+
+	public function buscaEmpleadoModel($usuario, $tabla){
+
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
+
+		$stmt->bindParam(":id", $usuario, PDO::PARAM_INT);
+		
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+	
 	
 
 	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES
@@ -106,6 +124,17 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 	
+	#DEVUELVE UN LISTADO DE TODOS LOS EMPLEADOS
+	#-------------------------------------
+
+	public function listaEmpleadosModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
 
 
 	#REGISTRO DE Clientes
@@ -151,6 +180,46 @@ class Datos extends Conexion{
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
 		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+
+		/*var_dump($stmt);
+		echo "<br>".$datosModel['idclientes'];
+		echo "<br>".$datosModel['nombres'];
+		echo "<br>".$datosModel['apellidos'];
+		echo "<br>".$datosModel['tel'];
+		echo "<br>".$datosModel['movil'];
+		echo "<br>".$datosModel['email'];*/
+		
+
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+	#ACTUALIZA EMPLEADO
+	#-------------------------------------
+	public function actualizaEmpleadoModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usuario=:usuario, password=:password, nombre=:nombre, email=:email WHERE id=:id");
+
+		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
 
 
@@ -239,6 +308,23 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 
+	#VERIFICA SI UN EMPLEADO YA ESTA REGISTRADO
+	#-------------------------------------
+
+	public function consultaEmpleadosModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE usuario = :usuario and password = :password");
+
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+				
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+
+
 
 	#REGISTRO DE PRODUCTOS
 	#-------------------------------------
@@ -270,6 +356,35 @@ class Datos extends Conexion{
 
 	}
 
+	#REGISTRO DE EMPLEADOS
+	#-------------------------------------
+	public function registroEmpleadosModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario, password, nombre, email) VALUES (:usuario,:password,:nombre,:email)");
+
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+			//return "INSERT INTO $tabla (nombre, categoria, precio, paquete) VALUES (".$datosModel["nombre"].",".$datosModel["categoria"].",".$datosModel["precio"].",".$datosModel["paquete"].")";
+
+		}
+
+		$stmt->close();
+
+	}
 
 
 	#DEVUELVE UN LISTADO DE TODOS LOS PRODUCTOS
@@ -327,4 +442,17 @@ class Datos extends Conexion{
 		$stmt -> close();
 	}
 	
+	#BORRAR EMPLEADO
+	#-------------------------------------
+	public function borrarEmpleadoModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
 }

@@ -129,6 +129,37 @@ class MvcController{
 
 	}
 
+	# ACTUALIZA EMPLEADOS
+	#------------------------------------
+
+	public function actualizaEmpleadoController(){
+
+		if(isset($_POST["usuario"])){
+
+			$datosController = array("id"=>$_POST["id"],
+								  "usuario"=>$_POST["usuario"],
+								  "password"=>$_POST["password"], 
+							      "nombre"=>$_POST["nombre"],
+							      "email"=>$_POST["email"]);
+
+			$respuesta = Datos::actualizaEmpleadoModel($datosController, "usuarios");
+			
+			if ($respuesta=="ok"){
+
+				$mensaje = "Actualizacion correcta";
+				echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=empleados'</script>";
+			}
+			else{
+
+				echo '<div class="alert alert-danger">';
+					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+				echo "</div>";
+			}
+
+		}
+
+	}
+
 	#LISTADO DE CLIENTES
 	#------------------------------------
 
@@ -145,6 +176,25 @@ class MvcController{
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editCliente&idEditar='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=clientes&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
+			</tr>';
+		}
+
+	}
+
+	#LISTADO DE EMPLEADOS
+	#------------------------------------
+	public function listaEmpleadosController(){
+
+		$respuesta = Datos::listaEmpleadosModel("usuarios");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["usuario"].'</td>
+				<td>'.$item["password"].'</td>
+				<td>'.$item["nombre"].'</td>
+				<td>'.$item["email"].'</td>
+				<td><a href="index.php?action=editEmpleados&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=empleados&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -187,6 +237,44 @@ class MvcController{
 		}
 
 	}
+
+	# REGISTRO DE EMPLEADOS
+	#------------------------------------
+
+	public function registroEmpleadosController(){
+
+		if(isset($_POST["usuario"])){
+
+			$datosController = array( "usuario"=>$_POST["usuario"],
+									  "password"=>$_POST["password"], 
+								      "nombre"=>$_POST["nombre"],
+								      "email"=>$_POST["email"]);
+
+			$respuesta = Datos::consultaEmpleadosModel($datosController, "usuarios");
+
+			if ($respuesta["usuario"]==""){
+				$respuesta = Datos::registroEmpleadosModel($datosController, "usuarios");
+				
+				if ($respuesta=="ok"){
+					echo '<div class="alert alert-success">';
+  					echo 'Empleado Registrado Exitosamente!.';
+					echo '</div>';
+				}
+				else {
+					echo "error al insertar";
+				}
+			}
+			else{
+
+					echo '<div class="alert alert-danger">';
+  					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+					echo "</div>";
+				}
+
+		}
+
+	}
+
 
 
 	#LISTADO DE PRODUCTOS
@@ -256,5 +344,16 @@ class MvcController{
 		}
 	}
 
+	#BORRAR EMPLEADO
+	#------------------------------------
+	public function borrarEmpleadoController(){
+		if (isset($_GET['idBorrar'])){
+			$datosController = $_GET['idBorrar'];
+			$respuesta = Datos::borrarEmpleadoModel($datosController,"usuarios");
+			if ($respuesta == "success"){
+				echo "<script type='text/javascript'>window.location.href='index.php?action=empleados'</script>";
+			}
+		}
+	}	
 
 }
