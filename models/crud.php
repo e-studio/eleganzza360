@@ -129,7 +129,7 @@ class Datos extends Conexion{
 
 	public function listaHistorialModel($historial,$tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:historial");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:historial AND empleada IS NOT NULL AND estado IS NOT NULL");
 		$stmt->bindParam(":historial",$historial,PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchALL();
