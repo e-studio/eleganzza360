@@ -123,6 +123,20 @@ class Datos extends Conexion{
 
 		$stmt->close();
 	}
+
+	#DEVUELVE UN LISTADO DEL HISTORIAL DE CLIENTES
+	#-------------------------------------
+
+	public function listaHistorialModel($historial,$tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:historial");
+		$stmt->bindParam(":historial",$historial,PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
 	
 	#DEVUELVE UN LISTADO DE TODOS LOS EMPLEADOS
 	#-------------------------------------
@@ -398,8 +412,6 @@ class Datos extends Conexion{
 
 		$stmt->close();
 	}
-
-
 
 
 	#VISTA USUARIOS

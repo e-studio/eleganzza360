@@ -15,6 +15,7 @@ if ($_SESSION["rol"] > 0){
 else {
   include "navAdmin.php";
 }
+$histo = $_REQUEST['idHis'];
 
 ?>
   <div class="content-wrapper">
@@ -28,7 +29,43 @@ else {
       </ol>
       
       <hr>
-      <p>Contenido de historial clientes.</p>
+       <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Clientes</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Paciente</th>
+                  <th>Tratamiento</th>
+                  <th>Fecha</th>
+                  <th>Atendida por</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Paciente</th>
+                  <th>Tratamiento</th>
+                  <th>Fecha</th>
+                  <th>Atendida por</th>
+                  <th>Total</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <?php
+                  echo $histo;
+                  $ingreso = new MvcController();
+                  $ingreso -> listaHistorialController($histo);             
+                ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
       
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>

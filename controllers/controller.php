@@ -176,6 +176,25 @@ class MvcController{
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editCliente&idEditar='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=clientes&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=hisCliente&idHis='.$item["nombres"].'"><button class="btn btn-primary">Historial</button></a></td>
+			</tr>';
+		}
+
+	}
+
+#LISTADO DEL HISTORIAL DE CLIENTES
+	#------------------------------------
+
+	public function listaHistorialController($histo){
+
+		$respuesta = Datos::listaHistorialModel($histo, "citas");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["title"].'</td>
+				<td>'.$item["tratamiento"].'</td>
+				<td>'.$item["start"].'</td>
+				<td>'.$item["empleada"].'</td>
 			</tr>';
 		}
 

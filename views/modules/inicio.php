@@ -8,7 +8,6 @@ if(!$_SESSION["validar"]){
 
 	exit();
 
-
 }
 
 if ($_SESSION["rol"] > 0){
