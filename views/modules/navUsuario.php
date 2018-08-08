@@ -41,9 +41,15 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+<<<<<<< HEAD
           <a class="nav-link" href="">
             <i class="fa fa-fw fa-money"></i>
             <span class="nav-link-text">Punto de Venta</span>
+=======
+          <a class="nav-link" href="index.php?action=vacio">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Otro</span>
+>>>>>>> e345ee546aafbe634325e8026716139959a98a39
           </a>
         </li>
         

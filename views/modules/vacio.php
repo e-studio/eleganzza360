@@ -30,8 +30,12 @@ else {
       </ol>
       
       <hr>
-       <!-- Example DataTables Card-->
-      
+       
+
+       <!-- Aqui va el contenido -->
+
+
+       <!-- Fin del contenido -->
       
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>
