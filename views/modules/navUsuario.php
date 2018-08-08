@@ -41,9 +41,9 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="tables.html">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Otro</span>
+          <a class="nav-link" href="">
+            <i class="fa fa-fw fa-money"></i>
+            <span class="nav-link-text">Punto de Venta</span>
           </a>
         </li>
         

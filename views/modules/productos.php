@@ -42,7 +42,6 @@ else {
                   <th>Nombre</th>
                   <th>Categoria</th>
                   <th>Precio</th>
-                  <th>Paquete</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -52,7 +51,6 @@ else {
                   <th>Nombre</th>
                   <th>Categoria</th>
                   <th>Precio</th>
-                  <th>Paquete</th>
                   <th></th>
                   <th></th>
                 </tr>

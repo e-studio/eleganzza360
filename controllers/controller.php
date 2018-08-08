@@ -308,7 +308,6 @@ class MvcController{
 				<td>'.$item["nombre"].'</td>
 				<td>'.$item["categoria"].'</td>
 				<td>'.$item["precio"].'</td>
-				<td>'.$item["paquete"].'</td>
 				<td><a href="index.php?action=editProducto&idEditar='.$item["idProductos"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=productos&idBorrar='.$item["idProductos"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';

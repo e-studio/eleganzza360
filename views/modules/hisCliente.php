@@ -43,6 +43,8 @@ $histo = $_REQUEST['idHis'];
                   <th>Fecha</th>
                   <th>Atendida por</th>
                   <th>Total</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tfoot>
@@ -52,11 +54,12 @@ $histo = $_REQUEST['idHis'];
                   <th>Fecha</th>
                   <th>Atendida por</th>
                   <th>Total</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </tfoot>
               <tbody>
                 <?php
-                  echo $histo;
                   $ingreso = new MvcController();
                   $ingreso -> listaHistorialController($histo);             
                 ?>

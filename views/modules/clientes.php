@@ -45,6 +45,7 @@ else {
                   <th>E-Mail</th>
                   <th></th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tfoot>
@@ -54,6 +55,7 @@ else {
                   <th>Celular</th>
                   <th>Tel Casa</th>
                   <th>E-Mail</th>
+                  <th></th>
                   <th></th>
                   <th></th>
                 </tr>
