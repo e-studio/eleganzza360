@@ -41,7 +41,7 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="index.php?action=vacio">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Otro</span>
           </a>
