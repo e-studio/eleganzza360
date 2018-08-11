@@ -10,7 +10,7 @@ class EnlacesModels{
 		   $enlaces == "editCliente" ||
 		   $enlaces == "hisCliente" ||
 		   $enlaces == "registroUsuario" ||
-		   $enlaces == "vacio"||
+		   $enlaces == "venta"||
 		   $enlaces == "addProducto" ||
 		   $enlaces == "productos"||
 		   $enlaces == "clientes" ||
