@@ -66,9 +66,9 @@ class Datos extends Conexion{
 
 
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idclientes = :idcliente");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
 
-		$stmt->bindParam(":idcliente", $cliente, PDO::PARAM_INT);
+		$stmt->bindParam(":id", $cliente, PDO::PARAM_INT);
 		
 		$stmt -> execute();
 		return $stmt -> fetch();
@@ -187,9 +187,9 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function actualizaClienteModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, tel=:tel, movil=:movil, email=:email WHERE idclientes=:idclientes");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, tel=:tel, movil=:movil, email=:email WHERE id=:id");
 
-		$stmt->bindParam(":idclientes", $datosModel["idclientes"], PDO::PARAM_INT);
+		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
 		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
@@ -432,8 +432,8 @@ class Datos extends Conexion{
 	#BORRAR CLIENTE
 	#-------------------------------------
 	public function borrarClienteModel($datosModel,$tabla){
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idclientes = :idclientes");
-		$stmt -> bindPARAM(":idclientes", $datosModel, PDO::PARAM_INT);
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt -> bindPARAM(":id", $datosModel, PDO::PARAM_INT);
 		if ($stmt->execute()){
 			return "success";
 		} else {

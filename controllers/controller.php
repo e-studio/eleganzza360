@@ -73,7 +73,7 @@ class MvcController{
 
 		if(isset($_POST["nombres"])){
 
-			$datosController = array( "idclientes"=>$_POST["id"],
+			$datosController = array( "id"=>$_POST["id"],
 								  "nombres"=>$_POST["nombres"],
 								  "apellidos"=>$_POST["apellidos"], 
 							      "email"=>$_POST["email"],
@@ -90,7 +90,7 @@ class MvcController{
 			else{
 
 				echo '<div class="alert alert-danger">';
-					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+					echo "<strong>Error!</strong> al actualizar datos.";
 				echo "</div>";
 			}
 
@@ -174,8 +174,8 @@ class MvcController{
 				<td>'.$item["movil"].'</td>
 				<td>'.$item["tel"].'</td>
 				<td>'.$item["email"].'</td>
-				<td><a href="index.php?action=editCliente&idEditar='.$item["idclientes"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=clientes&idBorrar='.$item["idclientes"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=editCliente&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
+				<td><a href="index.php?action=clientes&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
 				<td><a href="index.php?action=hisCliente&idHis='.$item["nombres"].'"><button class="btn btn-primary">Historial</button></a></td>
 			</tr>';
 		}
