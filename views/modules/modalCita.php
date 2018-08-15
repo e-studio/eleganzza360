@@ -1,6 +1,6 @@
 <?php 
 $serv="localhost";
-$bd="sistema";
+$bd="sistema2";
 $user="root";
 $pass="";
 $link = mysqli_connect($serv, $user, $pass, $bd) ?>
@@ -22,11 +22,11 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
           <div class="form-group col-sm-8">
             
             <label>Paciente:</label>
-            <?php $consulta = $link -> query("SELECT idclientes AS 'id', nombres AS 'nombre' FROM clientes ORDER BY nombres"); ?>
+            <?php $consulta = $link -> query("SELECT id AS 'id', nombres AS 'nombre', apellidos AS 'apellido' FROM clientes ORDER BY nombres"); ?>
             <select name="txtPaciente" id="txtPaciente" class="form-control" onChange="txtPaciente(this.value);">
               <option value="">Selecciona Paciente:</option>
               <?php while ($row = $consulta -> fetch_object()){
-                echo "<option value='".$row->nombre."'>".$row->nombre."</option>";
+                echo "<option value='".$row->nombre." ".$row->apellido."'>".$row->nombre." ".$row->apellido."</option>";
               }  ?>
             </select>
             <?php $link = NULL; ?>

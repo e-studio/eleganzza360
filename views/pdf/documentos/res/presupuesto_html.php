@@ -128,7 +128,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
             <td  style="width: 100%; "> 
 			
-				<strong>Nombre: </strong> <?php echo $rw_cliente['nombre'];?><br>
+				<strong>Nombre: </strong> <?php echo $rw_cliente['nombres'];?><br>
 				<strong>Dirección: </strong> <?php echo $rw_cliente['direccion'];?><br>
 				<strong>E-mail: </strong> <?php echo $rw_cliente['email'];?><br>
 				<strong>Teléfono: </strong> <?php echo $rw_cliente['telefono'];?>

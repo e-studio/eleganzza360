@@ -129,8 +129,15 @@ class Datos extends Conexion{
 
 	public function listaHistorialModel($historial,$tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:historial AND empleada IS NOT NULL AND estado IS NOT NULL");
-		$stmt->bindParam(":historial",$historial,PDO::PARAM_STR);
+		$con=Conexion::conectar()->prepare("SELECT nombres, apellidos FROM clientes WHERE id=:historial");
+		$con->bindParam(":historial",$historial,PDO::PARAM_INT);
+		$con->execute();
+		$nomb=$con->fetchAll();
+		echo $nomb[0];
+		$nom = $nomb[0]." ".$nomb[1];
+		$con->close();
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:nom AND empleada IS NOT NULL AND estado IS NOT NULL");
+		$stmt->bindParam(":nom",$nom,PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -155,11 +162,11 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroClientesModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, tel, movil, email) VALUES (:nombres,:apellidos,:tel, :movil, :email)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, telefono, movil, email) VALUES (:nombres,:apellidos,:telefono, :movil, :email)");
 
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
-		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datosModel["telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
 
@@ -187,12 +194,12 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function actualizaClienteModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, tel=:tel, movil=:movil, email=:email WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, telefono=:telefono, movil=:movil, email=:email WHERE id=:id");
 
 		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
-		$stmt->bindParam(":tel", $datosModel["tel"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datosModel["telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
 

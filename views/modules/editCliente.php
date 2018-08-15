@@ -60,7 +60,7 @@ $cliente = $_REQUEST['idEditar'];
             <div class="form-row">
               <div class="col-md-6">
                 <label for="telLocal">Telefono Local</label>
-               <input class="form-control" value ="<?php echo $respuesta['tel'];?>" name="telLocal" id="telLocal" type="tel" name="telefono" requiered>
+               <input class="form-control" value ="<?php echo $respuesta['telefono'];?>" name="telLocal" id="telLocal" type="tel" name="telefono" requiered>
               </div>
               <div class="col-md-6">
                 <label for="celular">Celular</label>

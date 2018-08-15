@@ -1,7 +1,7 @@
 <?php
 
 	header ('Content-Type: application/json');
-	$pdo = new PDO ("mysql:dbname=sistema; host=localhost","root","");
+	$pdo = new PDO ("mysql:dbname=sistema2; host=localhost","root","");
 	$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 	switch($accion){
 		case 'agregar':

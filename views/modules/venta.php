@@ -142,7 +142,7 @@ else {
             <div class="row">
             <div class="col-md-12">
               <label>Descripción del producto/servicio</label>
-              <textarea class="form-control" id="descripcion" name="descripcion"  required></textarea>
+              <textarea class="form-control" id="descripcionm" name="descripcionm" required></textarea>
               <input type="hidden" class="form-control" id="action" name="action"  value="ajax">
             </div>
             
@@ -241,6 +241,9 @@ else {
       success:function(data){
         $(".items").html(data).fadeIn('slow');
         $("#myModal").modal('hide');
+        $("#descripcionm").val("");
+        $("#precio").val("");
+        $("#cantidad").val("");
       }
     })
     

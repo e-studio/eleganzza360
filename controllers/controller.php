@@ -40,7 +40,7 @@ class MvcController{
 			$datosController = array( "nombres"=>$_POST["nombres"],
 									  "apellidos"=>$_POST["apellidos"], 
 								      "email"=>$_POST["email"],
-								      "tel"=>$_POST["telLocal"],
+								      "telefono"=>$_POST["telLocal"],
 								      "movil"=>$_POST["celular"]);
 
 			$respuesta = Datos::consultaClientesModel($datosController, "clientes");
@@ -77,7 +77,7 @@ class MvcController{
 								  "nombres"=>$_POST["nombres"],
 								  "apellidos"=>$_POST["apellidos"], 
 							      "email"=>$_POST["email"],
-							      "tel"=>$_POST["telLocal"],
+							      "telefono"=>$_POST["telLocal"],
 							      "movil"=>$_POST["celular"]);
 
 			$respuesta = Datos::actualizaClienteModel($datosController, "clientes");
@@ -90,7 +90,7 @@ class MvcController{
 			else{
 
 				echo '<div class="alert alert-danger">';
-					echo "<strong>Error!</strong> al actualizar datos.";
+					echo "<strong>Error!</strong> esos datos ya estan registrados.";
 				echo "</div>";
 			}
 
@@ -172,11 +172,11 @@ class MvcController{
 				<td>'.$item["nombres"].'</td>
 				<td>'.$item["apellidos"].'</td>
 				<td>'.$item["movil"].'</td>
-				<td>'.$item["tel"].'</td>
+				<td>'.$item["telefono"].'</td>
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editCliente&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=clientes&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
-				<td><a href="index.php?action=hisCliente&idHis='.$item["nombres"].'"><button class="btn btn-primary">Historial</button></a></td>
+				<td><a href="index.php?action=hisCliente&idHis='.$item["id"].'"><button class="btn btn-primary">Historial</button></a></td>
 			</tr>';
 		}
 
