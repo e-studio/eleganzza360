@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: url('views/img/home/7.png') center center no-repeat; background-size: cover;"></div>
+	<div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: url('views/img/home/7.jpg') center center no-repeat; background-size: cover;"></div>
     <div class="card card-login mx-auto mt-5">
 
       <div class="card-header"><h3>Acceso al sistema</h3></div>
