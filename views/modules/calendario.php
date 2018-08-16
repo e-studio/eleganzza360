@@ -81,6 +81,8 @@
 						document.getElementById("txtEmpleadaEvento").disabled=false;
 						document.getElementById("btnEliminar").disabled=false;
 						document.getElementById("btnModificar").disabled=false;
+						document.getElementById("txtTratamientoEvento").disabled=false;
+						document.getElementById("txtHoraEvento").disabled=false;
 					} else {
 						$("#ModalEventos").modal();
 						$("#tituloEventoE").html(calEvent.title+" PACIENTE YA ATENDIDA");
@@ -91,7 +93,9 @@
 						$("#txtPacienteEvento").val(calEvent.title);
 						document.getElementById("txtEmpleadaEvento").disabled=true;
 						document.getElementById("btnEliminar").disabled=true;
-						document.getElementById("btnModificar").disabled=true;						
+						document.getElementById("btnModificar").disabled=true;
+						document.getElementById("txtTratamientoEvento").disabled=true;
+						document.getElementById("txtHoraEvento").disabled=true;						
 					}
 				}
 			},

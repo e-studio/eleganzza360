@@ -1,3 +1,9 @@
+<?php 
+$serv="localhost";
+$bd="sistema";
+$user="root";
+$pass="";
+$link = mysqli_connect($serv, $user, $pass, $bd) ?>
 <!-- Modal -->
 <div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -25,7 +31,15 @@
         </div>
         <div class="form-group">
           <div class="col-sm-10">
-            Tratamiento: <input type="text" id="txtTratamientoEvento" name="txtTratamientoEvento" class="form-control">
+            <label>Tratamiento</label>
+            <?php $con = $link -> query("SELECT nombre as 'nombre' FROM productos ORDER BY nombre"); ?>
+            <select name="txtTratamientoEvento" id="txtTratamientoEvento" class="form-control" onChange="txtTratamientoEvento(this.value);">
+              <option></option>
+              <?php while ($rw = $con -> fetch_object()){
+                echo "<option value='".$rw->nombre."'>".$rw->nombre."</option>";
+              } ?>
+            </select> <!--<input type="text" id="txtTratamiento" name="txtTratamiento" class="form-control">-->
+            <?php $link=NULL; ?>
           </div>
         </div>
         <div class="form-group">

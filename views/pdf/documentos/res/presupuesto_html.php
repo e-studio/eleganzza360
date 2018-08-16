@@ -45,7 +45,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                     P&aacute;gina [[page_cu]]/[[page_nb]]
                 </td>
                 <td style="width: 50%; text-align: right">
-                    &copy; <?php echo "obedalvarado.pw "; echo  $anio=date('Y'); ?>
+                    &copy; <?php echo "eleganzza 360 "; echo  $anio=date('Y'); ?>
                 </td>
             </tr>
         </table>
@@ -78,7 +78,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <td  style="width: 20%; ">               
             </td>
 			<td style="width: 60%;text-align:center;font-size:27px;color:#3498db; background-color: #eee;padding:10px; border-radius: 10px ">
-				PRESUPUESTO DE TRABAJO
+				NOTA DE VENTA
 			</td>
 			
 			
@@ -93,7 +93,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 				
 			</td>
 			<td  style="width: 20%;color:white;background-color:#3498db;padding:5px;text-align:center "> 
-				<strong style="font-size:14px;" >PRESUPUESTO #</strong>
+				<strong style="font-size:14px;" >NOTA #</strong>
 			</td>
 			<td  style="width: 20%; color:white;background-color:#3498db;padding:5px;text-align:center " > 
 				<strong style="font-size:14px;">FECHA</strong>

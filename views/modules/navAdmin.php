@@ -59,10 +59,10 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Balances">
-          <a class="nav-link" href="index.html">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Punto de Venta">
+          <a class="nav-link" href="index.php?action=venta">
             <i class="fa fa-fw fa-money"></i>
-            <span class="nav-link-text">Balances</span>
+            <span class="nav-link-text">Punto de venta</span>
           </a>
         </li>
       </ul>

@@ -23,13 +23,12 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
             
             <label>Paciente:</label>
             <?php $consulta = $link -> query("SELECT id AS 'id', nombres AS 'nombre', apellidos AS 'apellido' FROM clientes ORDER BY nombres"); ?>
-            <select name="txtPaciente" id="txtPaciente" class="form-control" onChange="txtPaciente(this.value);">
+            <select name="txtPaciente" id="txtPaciente" required class="form-control" onChange="txtPaciente(this.value);">
               <option value="">Selecciona Paciente:</option>
               <?php while ($row = $consulta -> fetch_object()){
                 echo "<option value='".$row->nombre." ".$row->apellido."'>".$row->nombre." ".$row->apellido."</option>";
               }  ?>
             </select>
-            <?php $link = NULL; ?>
             
            
         
@@ -44,7 +43,15 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
         </div>
         <div class="form-group">
           <div class="col-sm-10">
-            Tratamiento: <input type="text" id="txtTratamiento" name="txtTratamiento" class="form-control">
+            <label>Tratamiento</label>
+            <?php $con = $link -> query("SELECT nombre as 'nombre' FROM productos ORDER BY nombre"); ?>
+            <select name="txtTratamiento" id="txtTratamiento" class="form-control" onChange="txtTratamiento(this.value);">
+              <option value="">Selecciona Tratamiento</option>
+              <?php while ($rw = $con -> fetch_object()){
+                echo "<option value='".$rw->nombre."'>".$rw->nombre."</option>";
+              } ?>
+            </select> <!--<input type="text" id="txtTratamiento" name="txtTratamiento" class="form-control">-->
+            <?php $link=NULL; ?>
           </div>
         </div>
       </div>

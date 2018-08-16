@@ -43,7 +43,7 @@ else {
         <div id="print-area">
                   <div class="row pad-top font-big">
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                  <a href="https://obedalvarado.pw/" target="_blank">  <img src="views/img/eleganzzaLogo.png" alt="Eleganzza 360 Spa" /></a>
+                  <a href="" target="_blank">  <img src="views/img/eleganzzaLogo.png" alt="Eleganzza 360 Spa" /></a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <strong>E-mail : </strong> <?php echo $rw['email'];?>
@@ -75,8 +75,8 @@ else {
                     <h4><strong>Teléfono: </strong><span id="telefono"></span></h4>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h2>Detalles del presupuesto de trabajo :</h2>
-                    <h4><strong>Presupuesto #: </strong><?php echo $numero;?></h4>
+                    <h2>Detalles del tratamiento :</h2>
+                    <h4><strong>Tratamiento #: </strong><?php echo $numero;?></h4>
                     <h4><strong>Fecha: </strong> <?php echo date("d/m/Y");?></h4>
         
                 
