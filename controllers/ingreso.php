@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Ingreso{
 
 	public function ingresoController(){
@@ -29,18 +29,13 @@ class Ingreso{
 						$datosController = array("usuarioActual"=>$usuarioActual, "actualizarIntentos"=>$intentos);
 
 						$respuestaActualizarIntentos = IngresoModels::intentosModel($datosController, "usuarios");
-
-						session_start();
-
 						$_SESSION["validar"] = true;
 						$_SESSION["usuario"] = $respuesta["usuario"];
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["rol"] = $respuesta["rol"];
 						$_SESSION["sistema"] = $respuesta["sistema"];
 
-
-
-						header("location:index.php?action=inicio");
+						echo '<script> window.location ="index.php?action=inicio" </script>';
 
 					}
 
