@@ -41,7 +41,9 @@ class MvcController{
 									  "apellidos"=>$_POST["apellidos"], 
 								      "email"=>$_POST["email"],
 								      "telefono"=>$_POST["telLocal"],
-								      "movil"=>$_POST["celular"]);
+								      "movil"=>$_POST["celular"],
+								      "direccion"=>$_POST["direccion"],
+								      "fechaNac"=>$_POST["fechaNac"]);
 
 			$respuesta = Datos::consultaClientesModel($datosController, "clientes");
 
@@ -78,7 +80,9 @@ class MvcController{
 								  "apellidos"=>$_POST["apellidos"], 
 							      "email"=>$_POST["email"],
 							      "telefono"=>$_POST["telLocal"],
-							      "movil"=>$_POST["celular"]);
+							      "movil"=>$_POST["celular"],
+							      "direccion"=>$_POST["direccion"],
+							      "fechaNac"=>$_POST["fechaNac"]);
 
 			$respuesta = Datos::actualizaClienteModel($datosController, "clientes");
 			

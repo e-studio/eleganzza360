@@ -155,13 +155,15 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroClientesModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, telefono, movil, email) VALUES (:nombres,:apellidos,:telefono, :movil, :email)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, telefono, movil, email, direccion, fechaNac) VALUES (:nombres,:apellidos,:telefono, :movil, :email, :direccion, :fechaNac)");
 
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
 		$stmt->bindParam(":telefono", $datosModel["telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datosModel["direccion"], PDO::PARAM_STR);
+		$stmt->bindParam(":fechaNac", $datosModel["fechaNac"], PDO::PARAM_STR);
 
 
 		if($stmt->execute()){
@@ -187,7 +189,7 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function actualizaClienteModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, telefono=:telefono, movil=:movil, email=:email WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres=:nombres, apellidos=:apellidos, telefono=:telefono, movil=:movil, email=:email, direccion=:direccion, fechaNac=:fechaNac WHERE id=:id");
 
 		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
@@ -195,6 +197,8 @@ class Datos extends Conexion{
 		$stmt->bindParam(":telefono", $datosModel["telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datosModel["direccion"], PDO::PARAM_STR);
+		$stmt->bindParam(":fechaNac", $datosModel["fechaNac"], PDO::PARAM_STR);
 
 
 		/*var_dump($stmt);

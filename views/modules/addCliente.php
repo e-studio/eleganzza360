@@ -61,6 +61,18 @@ else {
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <label for="email">Direccion</label>
+            <input class="form-control" name="direccion" id="direccion" type="text" aria-describedby="emailHelp" placeholder="Direccion" >
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="telLocal">Fecha de Nacimiento</label>
+               <input class="form-control" name="fechaNac" id="fechaNac" type="date" name="fechaNac">
+              </div>
+            </div>
+          </div>
           <input class="btn btn-primary btn-block" type="submit" value="Registrar">
        </form>
 
