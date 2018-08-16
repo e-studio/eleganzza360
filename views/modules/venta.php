@@ -78,7 +78,7 @@ else {
                     <h2>Detalles del tratamiento :</h2>
                     <h4><strong>Tratamiento #: </strong><?php echo $numero;?></h4>
                     <h4><strong>Fecha: </strong> <?php echo date("d/m/Y");?></h4>
-        
+                    <h4><span id="test" hidden></span></h4>
                 
                     <textarea  class="form-control" id="descripcion" name="descripcion"  required placeholder="Ingresa la descripción del proyecto" ></textarea>
                     
@@ -196,9 +196,11 @@ else {
     var email = $('.cliente').select2('data')[0].email;
     var telefono = $('.cliente').select2('data')[0].telefono;
     var direccion = $('.cliente').select2('data')[0].direccion;
+    var test = $('.cliente').select2('data')[0].text;
     $('#email').html(email);
     $('#telefono').html(telefono);
     $('#direccion').html(direccion);
+    $('#test').html(test);
 })
 });
 
@@ -252,11 +254,12 @@ else {
   $("#datos_presupuesto").submit(function(){
       var cliente = $("#cliente").val();
       var descripcion = $("#descripcion").val();
+      var nombre = $("#test").text();
      
       
       if (cliente>0)
      {
-      VentanaCentrada('views/pdf/documentos/presupuesto.php?cliente='+cliente+'&descripcion='+descripcion,'Presupuesto','','1024','768','true');  
+      VentanaCentrada('views/pdf/documentos/presupuesto.php?cliente='+cliente+'&descripcion='+descripcion+'&nombre='+nombre,'Presupuesto','','1024','768','true');  
      } else {
        alert("Selecciona el cliente");
        return false;

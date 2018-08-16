@@ -24,7 +24,7 @@
 	//Variables por GET
 	$cliente=intval($_GET['cliente']);
 	$descripcion=mysqli_real_escape_string($con,(strip_tags($_REQUEST['descripcion'], ENT_QUOTES)));
-	
+	$nombre=mysqli_real_escape_string($con,(strip_tags($_REQUEST['nombre'], ENT_QUOTES)));
 
 	//Fin de variables por GET
 	$sql=mysqli_query($con, "select LAST_INSERT_ID(id) as last from presupuestos order by id desc limit 0,1 ");

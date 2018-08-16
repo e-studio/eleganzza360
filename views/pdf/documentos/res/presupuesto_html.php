@@ -128,7 +128,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
             <td  style="width: 100%; "> 
 			
-				<strong>Nombre: </strong> <?php echo $rw_cliente['nombres'];?><br>
+				<strong>Nombre: </strong> <?php echo $rw_cliente['nombres']." ".$rw_cliente['apellidos'];?><br>
 				<strong>Dirección: </strong> <?php echo $rw_cliente['direccion'];?><br>
 				<strong>E-mail: </strong> <?php echo $rw_cliente['email'];?><br>
 				<strong>Teléfono: </strong> <?php echo $rw_cliente['telefono'];?>
@@ -211,7 +211,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 <?php
 //Guardando los datos del presupuesto
 $fecha=date("Y-m-d H:i:s");
-$sql="INSERT INTO `presupuestos` (`id`, `fecha`, `id_cliente`, `descripcion`, `monto`) VALUES (NULL, '$fecha', '$cliente', '$descripcion', '$suma');";
+$sql="INSERT INTO `presupuestos` (`id`, `fecha`, `id_cliente`, `descripcion`, `monto`) VALUES (NULL, '$fecha', '$nombre', '$descripcion', '$suma');";
 $save=mysqli_query($con,$sql);
 $delete=mysqli_query($con,"delete from tmp");
 ?>    
