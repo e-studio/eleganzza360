@@ -54,13 +54,7 @@ else {
                 this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'
                 "></label>
             </div>
-            <div class="col-md-6">
-              <label>Paquete $
-                <input type="number" placeholder="0.00" required name="paquete" id="paquete" min="0" value="0" step="0.5" pattern="^\d+(?:\.\d{1,2})?$" onblur="
-                this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'
-                "></label>
-<!--              <input type="checkbox" id="paquete" value="0"> <label for="paquete">Se vende en paquete tambien</label>
--->            </div>
+            
             </div>
           </div>
       

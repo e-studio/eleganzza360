@@ -56,18 +56,6 @@ $producto = $_REQUEST['idEditar'];
             <label for="email">Precio</label>
             <input class="form-control" value ="<?php echo $respuesta['precio'];?>" name="precio" id="precio" type="text" aria-describedby="nameHelp" placeholder="Precio del producto" required="true">
           </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="telLocal">Precio de Paquete</label>
-               <input class="form-control" value ="<?php echo $respuesta['paquete'];?>" name="paquete" id="paquete" type="text" name="paquete">
-              </div>
-              <!--  <div class="col-md-6">
-                <label for="celular">Celular</label>
-                <input class="form-control" value ="<?php echo $respuesta['movil'];?>" name="celular" id="celular" type="tel" required="true">
-              </div>  -->
-            </div>
-          </div>
           <input class="btn btn-primary btn-block"  type="submit" value="Actualizar">
           <input type="hidden" id="idProductos" name="idProductos" value="<?php echo $producto; ?>">
        </form>

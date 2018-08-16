@@ -112,8 +112,7 @@ class MvcController{
 			$datosController = array("idProductos"=>$_POST["idProductos"],
 								  "nombre"=>$_POST["nombre"],
 								  "categoria"=>$_POST["categoria"], 
-							      "precio"=>$_POST["precio"],
-							      "paquete"=>$_POST["paquete"]);
+							      "precio"=>$_POST["precio"]);
 
 			$respuesta = Datos::actualizaProductoModel($datosController, "productos");
 			
@@ -125,7 +124,7 @@ class MvcController{
 			else{
 
 				echo '<div class="alert alert-danger">';
-					echo "<strong>Error!</strong> esos datos ya estan registrados.";
+					echo "<strong>Error!</strong> no se pudo actualizar.";
 				echo "</div>";
 			}
 
@@ -199,6 +198,7 @@ class MvcController{
 				<td>'.$item["tratamiento"].'</td>
 				<td>'.$item["start"].'</td>
 				<td>'.$item["empleada"].'</td>
+
 			</tr>';
 		}
 
@@ -233,8 +233,7 @@ class MvcController{
 
 			$datosController = array( "nombre"=>$_POST["nombre"],
 									  "categoria"=>$_POST["categoria"], 
-								      "precio"=>$_POST["precio"],
-								      "paquete"=>$_POST["paquete"]);
+								      "precio"=>$_POST["precio"]);
 
 			$respuesta = Datos::consultaProductosModel($datosController, "productos");
 

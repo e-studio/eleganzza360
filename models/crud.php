@@ -83,9 +83,9 @@ class Datos extends Conexion{
 
 
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idProductos = :producto");
 
-		$stmt->bindParam(":id", $usuario, PDO::PARAM_INT);
+		$stmt->bindParam(":producto", $producto, PDO::PARAM_INT);
 		
 		$stmt -> execute();
 		return $stmt -> fetch();
@@ -272,26 +272,13 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function actualizaProductoModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nombre, categoria=:categoria, precio=:precio, paquete=:paquete WHERE idProductos=:idProductos");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nombre, categoria=:categoria, precio=:precio WHERE idProductos=:idProductos");
 
 		$stmt->bindParam(":idProductos", $datosModel["idProductos"], PDO::PARAM_INT);
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
-		$stmt->bindParam(":paquete", $datosModel["paquete"], PDO::PARAM_STR);
-		/*$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
-
-
-		/*var_dump($stmt);
-		echo "<br>".$datosModel['idclientes'];
-		echo "<br>".$datosModel['nombres'];
-		echo "<br>".$datosModel['apellidos'];
-		echo "<br>".$datosModel['tel'];
-		echo "<br>".$datosModel['movil'];
-		echo "<br>".$datosModel['email'];*/
 		
-
-
 
 		if($stmt->execute()){
 
@@ -348,12 +335,12 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroProductosModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, categoria, precio, paquete) VALUES (:nombre,:categoria,:precio,:paquete)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, categoria, precio) VALUES (:nombre,:categoria,:precio)");
 
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
-		$stmt->bindParam(":paquete", $datosModel["paquete"], PDO::PARAM_STR);
+		
 
 
 		if($stmt->execute()){
@@ -365,8 +352,6 @@ class Datos extends Conexion{
 		else{
 
 			return "error";
-
-			//return "INSERT INTO $tabla (nombre, categoria, precio, paquete) VALUES (".$datosModel["nombre"].",".$datosModel["categoria"].",".$datosModel["precio"].",".$datosModel["paquete"].")";
 
 		}
 
