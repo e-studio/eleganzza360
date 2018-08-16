@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2018 a las 03:12:30
+-- Tiempo de generación: 16-08-2018 a las 02:09:41
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema2`
+-- Base de datos: `sistema`
 --
 
 -- --------------------------------------------------------
@@ -35,26 +35,30 @@ CREATE TABLE `citas` (
   `empleada` varchar(255) DEFAULT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
-  `estado` text
+  `estado` text,
+  `idc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`idCitas`, `title`, `tratamiento`, `empleada`, `start`, `end`, `estado`) VALUES
-(1, 'Alan Urbina', 'Masaje Corporal', '', '2018-08-03 09:15:00', '2018-08-03 10:00:00', ''),
-(2, 'Alan Didier', 'Botox', '130', '2018-08-02 13:05:00', '2018-08-02 13:50:00', NULL),
-(4, 'Alan Didier', 'Masaje', '555', '2018-08-02 12:05:00', '2018-08-02 12:50:00', NULL),
-(5, 'Vilma Portillo Armendariz', 'Depilacion', '555', '2018-08-01 10:00:00', '2018-08-01 10:50:00', NULL),
-(6, 'Vilma Portillo Armendariz', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago'),
-(7, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago'),
-(8, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago'),
-(9, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago'),
-(10, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago'),
-(11, 'Vilma Portillo', 'masaje', '555555', '2018-08-08 12:01:00', '2018-08-08 12:46:00', 'atendido'),
-(12, 'Alan Didier', 'Masaje', '111', '2018-08-09 13:05:00', '2018-08-09 13:50:00', NULL),
-(13, 'Vilma Portillo Armendariz', 'prueba', '12345', '2018-08-15 09:00:00', '2018-08-15 09:45:00', NULL);
+INSERT INTO `citas` (`idCitas`, `title`, `tratamiento`, `empleada`, `start`, `end`, `estado`, `idc`) VALUES
+(1, 'Alan Urbina', 'Masaje Corporal', '', '2018-08-03 09:15:00', '2018-08-03 10:00:00', '', 0),
+(2, 'Alan Didier', 'Botox', '130', '2018-08-02 13:05:00', '2018-08-02 13:50:00', NULL, 0),
+(4, 'Alan Didier', 'Masaje', '555', '2018-08-02 12:05:00', '2018-08-02 12:50:00', NULL, 0),
+(5, 'Vilma Portillo Armendariz', 'Depilacion', '555', '2018-08-01 10:00:00', '2018-08-01 10:50:00', NULL, 0),
+(6, 'Vilma Portillo Armendariz', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago', 0),
+(7, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago', 0),
+(8, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago', 0),
+(9, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago', 0),
+(10, 'Vilma Portillo', 'Depilacion', '123456', '2018-08-01 10:00:00', '2018-08-01 10:45:00', 'pago', 0),
+(11, 'Vilma Portillo', 'masaje', '555555', '2018-08-08 12:01:00', '2018-08-08 12:46:00', 'atendido', 0),
+(12, 'Alan Didier', 'Masaje', '111', '2018-08-09 13:05:00', '2018-08-09 13:50:00', NULL, 0),
+(13, 'Vilma Portillo Armendariz', 'prueba', '12345', '2018-08-15 09:00:00', '2018-08-15 09:45:00', NULL, 0),
+(14, 'Ricardo Urbina Najera', 'asdad', '', '2018-08-17 09:00:00', '2018-08-17 09:45:00', NULL, 0),
+(15, 'Alan Didier Urbina Najera', 'asdsad', NULL, '2018-08-24 09:00:00', '2018-08-24 09:45:00', NULL, 0),
+(16, '1', 'qwe', NULL, '2018-08-23 09:00:00', '2018-08-23 09:45:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -80,7 +84,7 @@ CREATE TABLE `clientes` (
 INSERT INTO `clientes` (`id`, `nombres`, `apellidos`, `telefono`, `movil`, `email`, `direccion`, `fechaNac`) VALUES
 (1, 'Alan Didier', 'Urbina Najera', '6255825230', '6251465670', 'negurbinayeye@gmail.com', '94 y Villa Santa Monica 9406', '1984-08-13'),
 (2, 'Vilma', 'Portillo Armendariz', '6255836328', '6251278325', 'vilma_minino@hotmail.com', '94 y Villa Santa Monica 9406', '1988-04-11'),
-(3, 'Ricardo', 'Urbina Najera', '123', '1234567980', 'rickyurbina@gmail.com', NULL, NULL);
+(5, 'Ricardo', 'Urbina Najera', '1234567', '1234567980', 'rickyurbina@gmail.com', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,14 @@ INSERT INTO `detalle` (`id`, `descripcion`, `cantidad`, `precio`, `id_presupuest
 (38, '', 2, '23.00', 23),
 (39, 'haber', 23, '23.00', 23),
 (40, 'haber', 1, '1.00', 23),
-(41, 'masaje', 1, '300.00', 24);
+(41, 'masaje', 1, '300.00', 24),
+(42, 'qwe', 1, '123.00', 25),
+(43, 'masaje', 1, '300.00', 25),
+(44, 'asd', 12, '12.00', 26),
+(45, 'qwe', 123, '123.00', 27),
+(46, 'asd', 123, '123.00', 28),
+(47, 'crema', 1, '200.00', 29),
+(48, 'haber', 1, '1.00', 30);
 
 -- --------------------------------------------------------
 
@@ -208,7 +219,13 @@ INSERT INTO `presupuestos` (`id`, `fecha`, `id_cliente`, `descripcion`, `monto`)
 (21, '2018-08-11 05:41:54', 1, 'Prueba X', '535.00'),
 (22, '2018-08-14 20:12:57', 1, 'nombres separados', '1604.00'),
 (23, '2018-08-14 20:45:44', 3, 'Checking venta', '577.00'),
-(24, '2018-08-14 20:47:36', 3, 'Venta 2', '300.00');
+(24, '2018-08-14 20:47:36', 3, 'Venta 2', '300.00'),
+(25, '2018-08-15 03:29:09', 1, 'HHHH', '423.00'),
+(26, '2018-08-15 04:49:22', 5, 'asd', '144.00'),
+(27, '2018-08-15 05:12:54', 5, 'haber', '15129.00'),
+(28, '2018-08-15 05:17:54', 5, 'asd', '15129.00'),
+(29, '2018-08-15 06:31:46', 2, 'asd', '200.00'),
+(30, '2018-08-15 23:48:01', 1, 'Nota', '1.00');
 
 -- --------------------------------------------------------
 
@@ -366,19 +383,19 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `idCitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idCitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil`
@@ -390,7 +407,7 @@ ALTER TABLE `perfil`
 -- AUTO_INCREMENT de la tabla `presupuestos`
 --
 ALTER TABLE `presupuestos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -402,7 +419,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `tmp`
 --
 ALTER TABLE `tmp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

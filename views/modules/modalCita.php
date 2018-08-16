@@ -1,6 +1,6 @@
 <?php 
 $serv="localhost";
-$bd="sistema2";
+$bd="sistema";
 $user="root";
 $pass="";
 $link = mysqli_connect($serv, $user, $pass, $bd) ?>

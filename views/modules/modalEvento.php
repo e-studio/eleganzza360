@@ -20,12 +20,12 @@
         <div class="form-group">
           <label for="txtHoraEvento" class="col-sm-10 control-label">Hora de la cita: </label>
           <div class="input-group clockpicker col-sm-10" data-autoclose="true" data-align="center" data-placement="right">
-            <input type="text" id="txtHoraEvento" value="9:00" class="form-control" disabled>
+            <input type="text" id="txtHoraEvento" value="9:00" class="form-control">
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-10">
-            Tratamiento: <input type="text" id="txtTratamientoEvento" name="txtTratamientoEvento" class="form-control" disabled>
+            Tratamiento: <input type="text" id="txtTratamientoEvento" name="txtTratamientoEvento" class="form-control">
           </div>
         </div>
         <div class="form-group">

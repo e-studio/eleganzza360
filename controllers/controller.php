@@ -176,7 +176,7 @@ class MvcController{
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editCliente&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=clientes&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
-				<td><a href="index.php?action=hisCliente&idHis='.$item["id"].'"><button class="btn btn-primary">Historial</button></a></td>
+				<td><a href="index.php?action=hisCliente&idHis='.$item["nombres"].' '.$item["apellidos"].'"><button class="btn btn-primary">Historial</button></a></td>
 			</tr>';
 		}
 
