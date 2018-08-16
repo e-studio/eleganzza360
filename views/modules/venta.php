@@ -79,6 +79,7 @@ else {
                     <h4><strong>Tratamiento #: </strong><?php echo $numero;?></h4>
                     <h4><strong>Fecha: </strong> <?php echo date("d/m/Y");?></h4>
                     <h4><span id="test" hidden></span></h4>
+                    <!-- -->
                 
                     <textarea  class="form-control" id="descripcion" name="descripcion"  required placeholder="Ingresa la descripción del proyecto" ></textarea>
                     
