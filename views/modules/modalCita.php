@@ -55,6 +55,18 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-sm-5">
+            <label>Agendó</label>
+            <input class="form-control" type="text" name="agendo" id="agendo" placeholder="Empleada que agenda">
+          </div>
+          <div class="col-sm-5">
+            <label>Referida</label>
+            <input class="form-control" type="text" name="referida" id="referida" placeholder="Referida por">
+          </div>
+        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" id="btnAgregar">Agregar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

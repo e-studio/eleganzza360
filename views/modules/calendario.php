@@ -127,8 +127,13 @@
 	});
 
 	$("#btnAgregar").click(function(){
-		RecolectarDatos();
-		EnviarInformacion("agregar",NuevoEvento);
+		Requerido = $("#agendo").val();
+		if (Requerido === ""){
+			alert ("Ingresa tu numero de empleada");
+		} else {
+			RecolectarDatos();
+			EnviarInformacion("agregar",NuevoEvento);
+		}
 	});
 
 	$("#btnEliminar").click(function(){
@@ -167,7 +172,9 @@
 			start:$("#txtFecha").val()+" "+$("#txtHora").val(),
 			end:final,
 			color: "#1BC1D7",
-			textColor: "#6B1B9D"
+			textColor: "#6B1B9D",
+			agendo:$("#agendo").val(),
+			referida:$("#referida").val()
 		};
 	}
 

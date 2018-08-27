@@ -5,12 +5,14 @@
 	$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 	switch($accion){
 		case 'agregar':
-			$sentencia = $pdo -> prepare("INSERT INTO citas(title,tratamiento,empleada,start,end,estado) VALUES (:title,:tratamiento,NULL,:start,:end,NULL)");
+			$sentencia = $pdo -> prepare("INSERT INTO citas(title,tratamiento,empleada,start,end,estado,agendo,referida) VALUES (:title,:tratamiento,NULL,:start,:end,NULL,:agendo,:referida)");
 			$resultado = $sentencia -> execute(array(
 				"title" => $_POST['title'],
 				"tratamiento" => $_POST['tratamiento'],
 				"start" => $_POST['start'],
-				"end" => $_POST['end']
+				"end" => $_POST['end'],
+				"agendo" => $_POST['agendo'],
+				"referida" => $_POST['referida']
 			));
 			echo json_encode($resultado);
 		break;
