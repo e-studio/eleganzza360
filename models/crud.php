@@ -169,6 +169,7 @@ class Datos extends Conexion{
 		if($stmt->execute()){
 
 			return "ok";
+		
 
 		}
 
