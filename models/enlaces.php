@@ -19,8 +19,8 @@ class EnlacesModels{
 		   $enlaces == "empleados" ||
 		   $enlaces == "editEmpleados" ||
 		   $enlaces == "addEmpleado" ||
-		   $enlaces == "reimpresion"
-		   //$enlaces == "salir")
+		   $enlaces == "reimpresion" ||
+		   $enlaces == "pdfprint"
 		   ){
 
 			$module = "views/modules/".$enlaces.".php";

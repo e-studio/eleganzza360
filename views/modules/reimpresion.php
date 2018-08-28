@@ -41,9 +41,8 @@ else {
                 <tr>
                   <th>id</th>
                   <th>fecha</th>
-                  <th>id cliente</th>
+                  <th>Cliente</th>
                   <th>descripcion</th>
-                  <th>monto</th>
                   <th></th>
                 </tr>
               </thead>
@@ -51,9 +50,8 @@ else {
                 <tr>
                   <th>id</th>
                   <th>fecha</th>
-                  <th>id cliente</th>
+                  <th>Cliente</th>
                   <th>descripcion</th>
-                  <th>monto</th>
                   <th></th>
                 </tr>
               </tfoot>

@@ -117,7 +117,7 @@ class Datos extends Conexion{
 
 	public function listaClientesModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes");
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -127,9 +127,9 @@ class Datos extends Conexion{
 	#DEVUELVE UN LISTADO DE TODAS LAS NOTAS DE VENTA
 	#-------------------------------------
 
-	public function listaNotasModel($tabla){
+	public function listaNotasModel($tabla,$tablab){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla.nombres, $tabla.apellidos, $tablab.id, $tablab.fecha, $tablab.descripcion FROM $tabla INNER JOIN $tablab ON $tabla.id=$tablab.id_cliente ORDER BY $tablab.id DESC");
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 

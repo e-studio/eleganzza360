@@ -190,16 +190,15 @@ class MvcController{
 
 	public function listaNotasController(){
 
-		$respuesta = Datos::listaNotasModel("presupuestos");
+		$respuesta = Datos::listaNotasModel("clientes","presupuestos");
 
 		foreach ($respuesta as $row => $item){
 		echo'<tr>
 				<td>'.$item["id"].'</td>
 				<td>'.$item["fecha"].'</td>
-				<td>'.$item["id_cliente"].'</td>
+				<td>'.$item["nombres"].' '.$item["apellidos"].'</td>
 				<td>'.$item["descripcion"].'</td>
-				<td>'.$item["monto"].'</td>
-				<td><a href="index.php?action=editCliente&idEditar='.$item["id"].'"><button class="btn btn-warning">Reimprimir</button></a></td>
+				<td><a href="index.php?action=pdfprint&idPrint='.$item["id"].'"><button class="btn btn-warning">Reimprimir</button></a></td>
 			</tr>';
 		}
 
