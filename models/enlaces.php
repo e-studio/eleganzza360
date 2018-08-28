@@ -18,8 +18,8 @@ class EnlacesModels{
 		   $enlaces == "citas" ||
 		   $enlaces == "empleados" ||
 		   $enlaces == "editEmpleados" ||
-		   $enlaces == "addEmpleado"
-		   //$enlaces == "perfil" ||
+		   $enlaces == "addEmpleado" ||
+		   $enlaces == "reimpresion"
 		   //$enlaces == "salir")
 		   ){
 

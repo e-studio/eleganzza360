@@ -43,6 +43,13 @@
             <span class="nav-link-text">Punto de Venta</span>
           </a>
         </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="index.php?action=reimpresion">
+            <i class="fa fa-fw fa-money"></i>
+            <span class="nav-link-text">Reimprimir notas</span>
+          </a>
+        </li>
         
         </ul>
 

@@ -124,6 +124,18 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 
+	#DEVUELVE UN LISTADO DE TODAS LAS NOTAS DE VENTA
+	#-------------------------------------
+
+	public function listaNotasModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
 	#DEVUELVE UN LISTADO DEL HISTORIAL DE CLIENTES
 	#-------------------------------------
 

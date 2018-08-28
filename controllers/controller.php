@@ -185,6 +185,26 @@ class MvcController{
 
 	}
 
+	#LISTADO DE NOTAS DE VENTA
+	#------------------------------------
+
+	public function listaNotasController(){
+
+		$respuesta = Datos::listaNotasModel("presupuestos");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["id"].'</td>
+				<td>'.$item["fecha"].'</td>
+				<td>'.$item["id_cliente"].'</td>
+				<td>'.$item["descripcion"].'</td>
+				<td>'.$item["monto"].'</td>
+				<td><a href="index.php?action=editCliente&idEditar='.$item["id"].'"><button class="btn btn-warning">Reimprimir</button></a></td>
+			</tr>';
+		}
+
+	}
+
 #LISTADO DEL HISTORIAL DE CLIENTES
 	#------------------------------------
 
