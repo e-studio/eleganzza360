@@ -152,7 +152,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		<tr>
 
             <td  style="width: 100%; "> 
-				<?php echo $rw_cliente['descripcion'];?>
+				<?php echo $descripcion;?>
             </td>
 		</tr>
     </table>
