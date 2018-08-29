@@ -188,6 +188,49 @@ class MvcController{
 
 	}
 
+	#LISTADO DE INGRESOS POR CLIENTE
+	#------------------------------------
+
+	public function ingresosClientesController(){
+
+		$respuesta = Datos::ingresosClientesModel("presupuestos");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["nombres"].'</td>
+				<td>'.$item["apellidos"].'</td>
+				<td>';
+		setlocale(LC_MONETARY, 'en_US');
+	  	echo money_format('%(#10n', $item["total"]); 
+	  	echo'</td>
+			</tr>';
+		}
+
+	}
+
+	#LISTADO DE INGRESOS DE LOS CLIENTES POR EL MES ACTUAL
+	#------------------------------------------------------
+
+	public function ingresosMesClientesController(){
+
+		$respuesta = Datos::ingresosMesClientesModel("presupuestos");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["nombres"].'</td>
+				<td>'.$item["apellidos"].'</td>
+				<td>';
+		setlocale(LC_MONETARY, 'en_US');
+	  	echo money_format('%(#10n', $item["total"]); 
+	  	echo'</td>
+			</tr>';
+		}
+
+	}
+
+
+	
+
 	#LISTADO DE CLIENTES PROXIMOS A CUMPLIR ANIOS
 	#------------------------------------
 

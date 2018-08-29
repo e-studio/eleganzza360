@@ -76,6 +76,44 @@ class Datos extends Conexion{
 
 		$stmt->close();
 	}
+
+
+
+	#BUSCA TODOS LOS PAGOS QUE HAN HECHO TODOS CLIENTES
+	#-------------------------------------
+
+	public function ingresosClientesModel($tabla){
+
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT clientes.nombres as nombres, clientes.apellidos as apellidos, sum(presupuestos.monto) AS total FROM presupuestos, clientes where presupuestos.id_cliente = clientes.id group by id_cliente");
+
+		//$stmt->bindParam(":id", $cliente, PDO::PARAM_INT);
+		
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	#BUSCA LOS PAGOS QUE HAN HECHO TODOS CLIENTES POR MES
+	#-------------------------------------
+
+	public function ingresosMesClientesModel($tabla){
+
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT clientes.nombres as nombres, clientes.apellidos as apellidos, sum(presupuestos.monto) AS total FROM presupuestos, clientes where presupuestos.id_cliente = clientes.id AND MONTH(fecha)=MONTH(CURDATE()) group by id_cliente");
+
+		//$stmt->bindParam(":id", $cliente, PDO::PARAM_INT);
+		
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
 	
 	#BUSCA UN PRODUCTO
 	#-------------------------------------

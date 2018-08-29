@@ -68,6 +68,22 @@
             <span class="nav-link-text">Punto de venta</span>
           </a>
         </li>
+
+
+        <li class ="nav-item" data-toggle="tooltip" data-placement="right" title="reportes">
+          <a href="#collapseReportes" class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Reportes</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseReportes">
+            <li>
+              <a href="index.php?action=repEmpleados">Empleados</a>
+            </li>
+            <li>
+              <a href="index.php?action=repClientes">Clientes</a>
+            </li>
+          </ul>
+        </li>
       </ul>
       
       <ul class="navbar-nav sidenav-toggler">
