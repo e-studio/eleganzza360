@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 if(!$_SESSION["validar"]){
 
 	header("location:index.php");
@@ -61,6 +59,26 @@ $usuario = $_REQUEST['idEditar'];
               <div class="col-md-6">
                 <label for="telLocal">E-mail</label>
                <input class="form-control" value ="<?php echo $respuesta['email'];?>" name="email" id="email" type="email" name="email" placeholder="Correo Electronico" required="true">
+              </div>
+              <div class="col-md-6">
+                <label for="celular">Celular</label>
+               <input class="form-control" value="<?php echo $respuesta['celular'];?>" name="celular" id="celular" type="phone" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="rol">Permisos :</label>
+                <select name="rol" id="rol">
+                  <option selected="selected" value="<?php echo $respuesta['rol'];?>"></option>
+                  <option value="0">Administrador</option>
+                  <option value="1">Usuario</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                
               </div>
             </div>
           </div>

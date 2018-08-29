@@ -17,6 +17,7 @@ class Datos extends Conexion{
 		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":celular", $datosModel["celular"], PDO::PARAM_STR);
 		$stmt->bindParam(":sistema", $datosModel["sistema"], PDO::PARAM_STR);
 		$stmt->bindParam(":rol", $datosModel["rol"], PDO::PARAM_INT);
 		$stmt->bindParam(":activo", $datosModel["activo"], PDO::PARAM_STR);
@@ -245,12 +246,14 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function actualizaEmpleadoModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usuario=:usuario, password=:password, nombre=:nombre, email=:email WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usuario=:usuario, password=:password, nombre=:nombre, email=:email, celular=:celular, rol=:rol WHERE id=:id");
 
 		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":celular", $datosModel["celular"], PDO::PARAM_STR);
+		$stmt->bindParam(":rol", $datosModel["rol"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
 
 
@@ -376,12 +379,14 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroEmpleadosModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario, password, nombre, email) VALUES (:usuario,:password,:nombre,:email)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario, password, nombre, email, celular, rol) VALUES (:usuario,:password,:nombre,:email, :celular, :rol)");
 
 		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":celular", $datosModel["celular"], PDO::PARAM_STR);
+		$stmt->bindParam(":rol", $datosModel["rol"], PDO::PARAM_STR);
 
 
 		if($stmt->execute()){

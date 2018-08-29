@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 if(!$_SESSION["validar"]){
 
 	header("location:index.php");
@@ -38,22 +35,22 @@ else {
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
+                  <th>Nombre</th>
                   <th>Usuario</th>
                   <th>Password</th>
-                  <th>Nombre</th>
                   <th>Email</th>
-                  <!--<th>E-Mail</th>-->
+                  <th>Celular</th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
+                  <th>Nombre</th>
                   <th>Usuario</th>
                   <th>Password</th>
-                  <th>Nombre</th>
                   <th>Email</th>
-                  <!--<th>E-Mail</th>-->
+                  <th>Celular</th>
                   <th></th>
                   <th></th>
                 </tr>

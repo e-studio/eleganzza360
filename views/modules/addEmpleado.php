@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 if(!$_SESSION["validar"]){
 
 	header("location:index.php");
@@ -52,8 +49,27 @@ else {
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
-                <label for="telLocal">E-mail</label>
-               <input class="form-control" name="email" id="email" type="email" name="email" required>
+                <label for="email">E-mail</label>
+               <input class="form-control" name="email" id="email" type="email" required>
+              </div>
+              <div class="col-md-6">
+                <label for="telefono">Celular</label>
+               <input class="form-control" name="celular" id="celular" type="phone" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="rol">Permisos :</label>
+                <select name="rol" id="rol">
+                  <option value="1">Selecione ...</option>
+                  <option value="0">Administrador</option>
+                  <option value="1">Usuario</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                
               </div>
             </div>
           </div>

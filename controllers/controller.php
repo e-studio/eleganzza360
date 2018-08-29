@@ -12,6 +12,7 @@ class MvcController{
 									  "usuario"=>$_POST["usuario"], 
 								      "password"=>$_POST["password"],
 								      "email"=>$_POST["email"],
+								      "celular"=>$_POST["celular"],
 								      "sistema"=>$_POST["sistema"],
 								      "rol"=>$_POST["rol"],
 								      "activo"=>$_POST["activo"]);
@@ -143,6 +144,8 @@ class MvcController{
 								  "usuario"=>$_POST["usuario"],
 								  "password"=>$_POST["password"], 
 							      "nombre"=>$_POST["nombre"],
+							      "rol"=>$_POST["rol"],
+							      "celular"=>$_POST["celular"],
 							      "email"=>$_POST["email"]);
 
 			$respuesta = Datos::actualizaEmpleadoModel($datosController, "usuarios");
@@ -231,10 +234,11 @@ class MvcController{
 
 		foreach ($respuesta as $row => $item){
 		echo'<tr>
+				<td>'.$item["nombre"].'</td>
 				<td>'.$item["usuario"].'</td>
 				<td>'.$item["password"].'</td>
-				<td>'.$item["nombre"].'</td>
 				<td>'.$item["email"].'</td>
+				<td>'.$item["celular"].'</td>
 				<td><a href="index.php?action=editEmpleados&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
 				<td><a href="index.php?action=empleados&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
@@ -289,6 +293,8 @@ class MvcController{
 			$datosController = array( "usuario"=>$_POST["usuario"],
 									  "password"=>$_POST["password"], 
 								      "nombre"=>$_POST["nombre"],
+								      "celular"=>$_POST["celular"],
+								      "rol"=>$_POST["rol"],
 								      "email"=>$_POST["email"]);
 
 			$respuesta = Datos::consultaEmpleadosModel($datosController, "usuarios");
