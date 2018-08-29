@@ -118,6 +118,19 @@ class Datos extends Conexion{
 
 	public function listaClientesModel($tabla){
 
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes WHERE MONTH(fechaNac)=MONTH(CURDATE());");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
+	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES QUE CUMPLEN ANIOS EN EL MES ACTUAL
+	#-------------------------------------
+
+	public function listaCumplesModel($tabla){
+
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes");
 		$stmt -> execute();
 		return $stmt -> fetchALL();

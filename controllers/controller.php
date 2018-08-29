@@ -188,6 +188,25 @@ class MvcController{
 
 	}
 
+	#LISTADO DE CLIENTES PROXIMOS A CUMPLIR ANIOS
+	#------------------------------------
+
+	public function listaCumplesController(){
+
+		$respuesta = Datos::listaClientesModel("clientes");
+
+		foreach ($respuesta as $row => $item){
+		echo'<tr>
+				<td>'.$item["nombres"].'</td>
+				<td>'.$item["apellidos"].'</td>
+				<td>'.$item["movil"].'</td>
+				<td>'.$item["telefono"].'</td>
+				<td>'.$item["email"].'</td>
+			</tr>';
+		}
+
+	}
+
 	#LISTADO DE NOTAS DE VENTA
 	#------------------------------------
 

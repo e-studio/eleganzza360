@@ -19,6 +19,9 @@
             <li>
               <a href="index.php?action=addCliente">Agregar Cliente</a>
             </li>
+            <li>
+              <a href="index.php?action=cumples">Proximos Cumplea&ntilde;os</a>
+            </li>
             </ul>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="productos">
