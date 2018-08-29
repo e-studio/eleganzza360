@@ -32,36 +32,13 @@ else {
        <!-- Aqui va el contenido -->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Cumplea&ntilde;os Proximos</div>
+          <i class="fas fa-birthday-cake"></i> Cumplea&ntilde;os Proximos</div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Celular</th>
-                  <th>Tel Casa</th>
-                  <th>E-Mail</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Celular</th>
-                  <th>Tel Casa</th>
-                  <th>E-Mail</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <?php
+          <?php
                   $ingreso = new MvcController();
                   $ingreso -> listaCumplesController();                 
                 ?>
-              </tbody>
-            </table>
-          </div>
+
         </div>
         
       </div>

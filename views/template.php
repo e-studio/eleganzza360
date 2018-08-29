@@ -5,8 +5,11 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="E-studio" />
 
+    
+
 	<!-- Bootstrap core CSS-->
 	  <link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	  <link href="views/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	  <link href="views/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 	  <link href="views/css/sb-admin.css" rel="stylesheet">

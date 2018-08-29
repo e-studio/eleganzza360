@@ -196,13 +196,16 @@ class MvcController{
 		$respuesta = Datos::listaClientesModel("clientes");
 
 		foreach ($respuesta as $row => $item){
-		echo'<tr>
-				<td>'.$item["nombres"].'</td>
-				<td>'.$item["apellidos"].'</td>
-				<td>'.$item["movil"].'</td>
-				<td>'.$item["telefono"].'</td>
-				<td>'.$item["email"].'</td>
-			</tr>';
+		echo '<div class="card">
+			  <h5 class="card-header">'.$item["nombres"]." ".$item["apellidos"].'</h5>
+			  <div class="card-body">
+			    <h5 class="card-title">Datos de Contacto</h5>
+			    <p class="card-text">Telefono Celular : '.$item["movil"].'</p>
+			    <p class="card-text">Telefono Casa : '.$item["telefono"].'</p>
+			    <p class="card-text">E-Mail : '.$item["email"].'</p>
+			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			</div>';
 		}
 
 	}
