@@ -193,7 +193,7 @@ class MvcController{
 
 	public function listaCumplesController(){
 
-		$respuesta = Datos::listaClientesModel("clientes");
+		$respuesta = Datos::listaCumplesModel("clientes");
 
 		foreach ($respuesta as $row => $item){
 		echo '<div class="card">

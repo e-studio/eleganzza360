@@ -118,7 +118,7 @@ class Datos extends Conexion{
 
 	public function listaClientesModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes WHERE MONTH(fechaNac)=MONTH(CURDATE());");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes");
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -131,7 +131,7 @@ class Datos extends Conexion{
 
 	public function listaCumplesModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM clientes WHERE MONTH(fechaNac)=MONTH(CURDATE()) ORDER BY nombres;");
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
