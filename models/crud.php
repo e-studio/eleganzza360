@@ -167,7 +167,7 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroClientesModel($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, telefono, movil, email, direccion, fechaNac) VALUES (:nombres,:apellidos,:telefono, :movil, :email, :direccion, :fechaNac)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombres, apellidos, nomCompleto, telefono, movil, email, direccion, fechaNac) VALUES (:nombres,:apellidos,CONCAT(:nombres,' ',:apellidos),:telefono, :movil, :email, :direccion, :fechaNac)");
 
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
