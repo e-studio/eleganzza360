@@ -78,11 +78,13 @@
 						$("#txtHoraEvento").val(FechaHora[1]);
 						$("#txtFechaEvento").val(FechaHora[0]);
 						$("#txtPacienteEvento").val(calEvent.title);
+						$("#txtNotaEvento").val(calEvent.nota);
 						document.getElementById("txtEmpleadaEvento").disabled=false;
 						document.getElementById("btnEliminar").disabled=false;
 						document.getElementById("btnModificar").disabled=false;
 						document.getElementById("txtTratamientoEvento").disabled=false;
 						document.getElementById("txtHoraEvento").disabled=false;
+						document.getElementById("txtNotaEvento").disabled=false;
 					} else {
 						$("#ModalEventos").modal();
 						$("#tituloEventoE").html(calEvent.title+" PACIENTE YA ATENDIDA");
@@ -91,11 +93,13 @@
 						$("#txtHoraEvento").val(FechaHora[1]);
 						$("#txtFechaEvento").val(FechaHora[0]);
 						$("#txtPacienteEvento").val(calEvent.title);
+						$("#txtNotaEvento").val(calEvent.nota);
 						document.getElementById("txtEmpleadaEvento").disabled=true;
 						document.getElementById("btnEliminar").disabled=true;
 						document.getElementById("btnModificar").disabled=true;
 						document.getElementById("txtTratamientoEvento").disabled=true;
-						document.getElementById("txtHoraEvento").disabled=true;						
+						document.getElementById("txtHoraEvento").disabled=true;	
+						document.getElementById("txtNotaEvento").disabled=true;					
 					}
 				}
 			},
@@ -191,7 +195,8 @@
 			start:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
 			end:final,
 			color: "#1BC1D7",
-			textColor: "#6B1B9D"
+			textColor: "#6B1B9D",
+			nota:$("#txtNotaEvento").val()
 		}
 	}
 

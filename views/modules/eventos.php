@@ -39,18 +39,14 @@
 
 		case 'modificar':
 			$resultado = false;
-			$sentenciaV = $pdo -> prepare ("INSERT INTO ventas (empleadaV,idProducto,fechaV,venta) VALUES (:empleada,:tratamiento,:start,300)");
-			$resultadoV = $sentenciaV -> execute(array(
-				"empleada" => $_POST['empleada'],
-				"tratamiento" => $_POST['tratamiento'],
-				"start" => $_POST['start']
-			));
+			
 			$sentencia = $pdo -> prepare ("UPDATE citas SET
 				title = :title,
 				tratamiento = :tratamiento,
 				empleada = :empleada,
 				start = :start,
-				end = :end
+				end = :end,
+				nota = :nota
 				WHERE idCitas = :idCitas");
 			$resultado = $sentencia -> execute(array(
 				"idCitas" => $_POST['idCitas'],
@@ -58,7 +54,8 @@
 				"tratamiento" => $_POST['tratamiento'],
 				"empleada" => $_POST['empleada'],
 				"start" => $_POST['start'],
-				"end" => $_POST['end']
+				"end" => $_POST['end'],
+				"nota" => $_POST['nota']
 			));
 			echo json_encode($resultado);
 		break;

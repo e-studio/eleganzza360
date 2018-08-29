@@ -47,6 +47,11 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
             Atendio: <input type="text" id="txtEmpleadaEvento" name="txtEmpleadaEvento" class="form-control">
           </div>
         </div>
+         <div class="form-group">
+          <div class="col-sm-10">
+            Notas de la Cita: <input type="text" id="txtNotaEvento" name="txtNotaEvento" class="form-control">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" id="btnModificar">Atendió</button>

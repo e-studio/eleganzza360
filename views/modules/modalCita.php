@@ -57,6 +57,7 @@ $link = mysqli_connect($serv, $user, $pass, $bd) ?>
       </div>
       <div class="form-group">
         <div class="form-row">
+          <div class="col-sm-1"></div>
           <div class="col-sm-5">
             <label>Agendó</label>
             <input class="form-control" type="text" name="agendo" id="agendo" placeholder="Empleada que agenda">
