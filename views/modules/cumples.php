@@ -30,9 +30,10 @@ else {
        
 
        <!-- Aqui va el contenido -->
+       <div class="col-sm-6">
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fas fa-birthday-cake"></i> Cumplea&ntilde;os Proximos</div>
+          <i class="fas fa-birthday-cake"></i> Cumplea&ntilde;os de este Mes</div>
         <div class="card-body">
           <?php
                   $ingreso = new MvcController();
@@ -42,6 +43,7 @@ else {
         </div>
         
       </div>
+    </div>
 
        <!-- Fin del contenido -->
       

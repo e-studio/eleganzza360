@@ -203,7 +203,6 @@ class MvcController{
 			    <p class="card-text">Telefono Celular : '.$item["movil"].'</p>
 			    <p class="card-text">Telefono Casa : '.$item["telefono"].'</p>
 			    <p class="card-text">E-Mail : '.$item["email"].'</p>
-			    <a href="#" class="btn btn-primary">Go somewhere</a>
 			  </div>
 			</div>';
 		}
