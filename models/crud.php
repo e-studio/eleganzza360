@@ -129,7 +129,7 @@ class Datos extends Conexion{
 
 	public function listaNotasModel($tabla,$tablab){
 
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla.nombres, $tabla.apellidos, $tablab.id, $tablab.fecha, $tablab.descripcion FROM $tabla INNER JOIN $tablab ON $tabla.id=$tablab.id_cliente ORDER BY $tablab.id DESC");
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla.nombres, $tabla.apellidos, $tablab.id, $tablab.fecha, $tablab.descripcion FROM $tabla INNER JOIN $tablab ON CONCAT($tabla.nombres,' ',$tabla.apellidos)=$tablab.id_cliente ORDER BY $tablab.id DESC");
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
