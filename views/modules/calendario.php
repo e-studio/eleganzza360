@@ -137,6 +137,7 @@
 		} else {
 			RecolectarDatos();
 			EnviarInformacion("agregar",NuevoEvento);
+			window.location.href="index.php?action=venta";
 		}
 	});
 
