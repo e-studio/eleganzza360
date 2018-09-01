@@ -243,6 +243,7 @@ class MvcController{
 			  <h5 class="card-header">'.$item["nombres"]." ".$item["apellidos"].'</h5>
 			  <div class="card-body">
 			    <h5 class="card-title">Datos de Contacto</h5>
+			    <p class="card-text">Fecha de Nacimiento : '.$item["fechaNac"].'</p>
 			    <p class="card-text">Telefono Celular : '.$item["movil"].'</p>
 			    <p class="card-text">Telefono Casa : '.$item["telefono"].'</p>
 			    <p class="card-text">E-Mail : '.$item["email"].'</p>
