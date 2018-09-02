@@ -1,9 +1,7 @@
 <?php 
-$serv="localhost";
-$bd="sistema";
-$user="root";
-$pass="";
-$link = mysqli_connect($serv, $user, $pass, $bd) ?>
+require_once ("models/db.php");//Contiene las variables de configuracion para conectar a la base de datos
+$link=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
+?>
 <!-- Modal -->
 <div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -25,11 +25,23 @@
 	$cliente=intval($_GET['cliente']);
 	$descripcion=mysqli_real_escape_string($con,(strip_tags($_REQUEST['descripcion'], ENT_QUOTES)));
 	$nombre=mysqli_real_escape_string($con,(strip_tags($_REQUEST['nombre'], ENT_QUOTES)));
+	$cita=intval($_GET['cita']);
 
 	//Fin de variables por GET
-	$sql=mysqli_query($con, "select LAST_INSERT_ID(id) as last from presupuestos order by id desc limit 0,1 ");
-	$rw=mysqli_fetch_array($sql);
-	$numero=$rw['last']+1;	
+	$total=mysqli_num_rows(mysqli_query($con,"SELECT id as last FROM presupuestos WHERE pre_cita=$cita"));
+	if($total===0){
+		$sql=mysqli_query($con, "select LAST_INSERT_ID(id) as last from presupuestos order by id desc limit 0,1");
+		$rw=mysqli_fetch_array($sql);
+		$numero=$rw['last']+1;
+		$grabar=2;
+	} else{
+		$sql=mysqli_query($con,"select id as last from presupuestos where pre_cita = $cita order by id desc limit 0,1");
+		$rw=mysqli_fetch_array($sql);
+		$numero=$rw['last'];
+		$grabar=1;
+	}
+
+
 	$perfil=mysqli_query($con,"select * from perfil limit 0,1");//Obtengo los datos de la empresa
 	$rw_perfil=mysqli_fetch_array($perfil);
 	

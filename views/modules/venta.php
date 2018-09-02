@@ -257,11 +257,12 @@ else {
       var cliente = $("#cliente").val();
       var descripcion = $("#descripcion").val();
       var nombre = $("#test").text();
+      var cita=99999999999999;
      
       
       if (cliente>0)
      {
-      VentanaCentrada('views/pdf/documentos/presupuesto.php?cliente='+cliente+'&descripcion='+descripcion+'&nombre='+nombre,'Presupuesto','','1024','768','true');  
+      VentanaCentrada('views/pdf/documentos/presupuesto.php?cliente='+cliente+'&descripcion='+descripcion+'&nombre='+nombre+'&cita='+cita,'Presupuesto','','1024','768','true');  
      } else {
        alert("Selecciona el cliente");
        return false;
@@ -271,7 +272,7 @@ else {
     
 
     mostrar_items();
-    
+    window.location.href("index.php?action=citas");
     
 </script>
 

@@ -5,7 +5,13 @@
 	$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 	switch($accion){
 		case 'agregar':
-			
+			$resultado = false;
+			$sentpre = $pdo -> prepare("INSERT INTO presupuestos(pre_cita,pre_agendo,pre_referida) VALUES (:ultimacita,:agendo,:referida)");
+			$respre = $sentpre -> execute(array(
+				"ultimacita" => $_POST['ultimacita'],
+				"agendo" => $_POST['agendo'],
+				"referida" => $_POST['referida']
+			));
 			$sentencia = $pdo -> prepare("INSERT INTO citas(title,tratamiento,empleada,start,end,estado,agendo,referida) VALUES (:title,:tratamiento,NULL,:start,:end,NULL,:agendo,:referida)");
 			$resultado = $sentencia -> execute(array(
 				"title" => $_POST['title'],
@@ -41,7 +47,12 @@
 
 		case 'modificar':
 			$resultado = false;
-			
+			$respre=false;
+			$sentpre = $pdo -> prepare("UPDATE presupuestos SET pre_empleada=:empleada WHERE pre_cita=:idCitas");
+			$respre = $sentpre -> execute(array(
+				"idCitas" => $_POST['idCitas'],
+				"empleada" => $_POST['empleada']
+			));
 			$sentencia = $pdo -> prepare ("UPDATE citas SET
 				title = :title,
 				tratamiento = :tratamiento,

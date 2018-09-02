@@ -69,6 +69,12 @@
           </a>
         </li>
 
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="index.php?action=reimpresion">
+            <i class="fa fa-fw fa-money"></i>
+            <span class="nav-link-text">Reimprimir notas</span>
+          </a>
+        </li>
 
         <li class ="nav-item" data-toggle="tooltip" data-placement="right" title="reportes">
           <a href="#collapseReportes" class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-parent="#exampleAccordion">

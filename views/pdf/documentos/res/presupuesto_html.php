@@ -211,7 +211,11 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 <?php
 //Guardando los datos del presupuesto
 $fecha=date("Y-m-d H:i:s");
+if ($grabar===1){
+	$sql="UPDATE presupuestos SET fecha='$fecha', id_cliente='$nombre',descripcion='$descripcion',monto='$suma' WHERE id='$numero';";
+} else {
 $sql="INSERT INTO `presupuestos` (`id`, `fecha`, `id_cliente`, `descripcion`, `monto`) VALUES (NULL, '$fecha', '$nombre', '$descripcion', '$suma');";
+}
 $save=mysqli_query($con,$sql);
 $delete=mysqli_query($con,"delete from tmp");
 ?>    

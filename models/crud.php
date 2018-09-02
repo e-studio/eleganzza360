@@ -163,7 +163,15 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 
-
+	#DEVUELVE LA ULTIMA CITA
+	#-------------------------------------
+	public function ultimaCitaModel($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT LAST_INSERT_ID(idCitas) AS last FROM citas ORDER BY idCitas DESC LIMIT 0,1");
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt->close();
+	}
+	
 	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES QUE CUMPLEN ANIOS EN EL MES ACTUAL
 	#-------------------------------------
 

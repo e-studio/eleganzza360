@@ -50,6 +50,7 @@ else {
 	var descripcion = '<?php echo $rw_cliente['descripcion']; ?>';
 	var ppto = '<?php echo $presupuesto; ?>';
 	
-		VentanaCentrada('views/pdf/documentos/presprint.php?cliente='+cliente+'&descripcion='+descripcion+'&ppto='+ppto,'Presupuesto','','1024','768','true');  
+		VentanaCentrada('views/pdf/documentos/presprint.php?cliente='+cliente+'&descripcion='+descripcion+'&ppto='+ppto,'Presupuesto','','1024','768','true');
+		window.location.href="index.php?action=reimpresion";
    
 </script>

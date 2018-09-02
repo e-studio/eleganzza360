@@ -137,7 +137,6 @@
 		} else {
 			RecolectarDatos();
 			EnviarInformacion("agregar",NuevoEvento);
-			window.location.href="index.php?action=venta";
 		}
 	});
 
@@ -162,6 +161,10 @@
 		} else {
 			DatosEventos();
 			InfoEventos("modificar",ExisteEvento);
+			var cita = $("#txtIDEvento").val();
+			var descr =$("#txtTratamientoEvento").val();
+			var cliente = $("#txtPacienteEvento").val();
+			window.location.href="index.php?action=ventaatendida&cita="+encodeURIComponent(cita)+"&tratamiento="+encodeURIComponent(descr)+"&paciente="+encodeURIComponent(cliente);
 		}
 	});
 
@@ -179,7 +182,8 @@
 			color: "#1BC1D7",
 			textColor: "#6B1B9D",
 			agendo:$("#agendo").val(),
-			referida:$("#referida").val()
+			referida:$("#referida").val(),
+			ultimacita:$("#ultimacita").val()
 		};
 	}
 
@@ -261,6 +265,8 @@
 		$("#txtID").val("");
 		$("#txtPaciente").val("");
 		$("#txtTratamiento").val("");
+		$("#agendo").val("");
+		$("#referida").val("");
 	}
 
 	$(".clockpicker").clockpicker();
