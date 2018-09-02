@@ -285,6 +285,7 @@ class MvcController{
 				<td>'.$item["tratamiento"].'</td>
 				<td>'.$item["start"].'</td>
 				<td>'.$item["empleada"].'</td>
+				<td>'.$item["nota"].'</td>
 
 			</tr>';
 		}

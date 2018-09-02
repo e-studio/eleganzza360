@@ -44,7 +44,7 @@ $histo = $_REQUEST['idHis'];
                   <th>Tratamiento</th>
                   <th>Fecha</th>
                   <th>Atendida por</th>
-                  <th>Total</th>
+                  <th>Notas</th>
                 </tr>
               </thead>
               <tfoot>
@@ -53,7 +53,7 @@ $histo = $_REQUEST['idHis'];
                   <th>Tratamiento</th>
                   <th>Fecha</th>
                   <th>Atendida por</th>
-                  <th>Total</th>
+                  <th>Notas</th>
                 </tr>
               </tfoot>
               <tbody>
