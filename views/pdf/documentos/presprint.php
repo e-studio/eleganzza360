@@ -34,6 +34,10 @@
 	
 	$sql_cliente=mysqli_query($con,"select * from clientes where id='$cliente' limit 0,1");//Obtengo los datos del proveedor
 	$rw_cliente=mysqli_fetch_array($sql_cliente);
+
+	$sql_emp=mysqli_query($con,"select pre_empleada, pre_agendo from presupuestos where id=$numero");
+	$rw_emp=mysqli_fetch_array($sql_emp);
+	
     // get the HTML
     
      include(dirname('__FILE__').'/res/notaprint.php');

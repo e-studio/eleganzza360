@@ -42,7 +42,7 @@ $link=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         </div>
         <div class="form-group">
           <div class="col-sm-10">
-            Atendio: <input type="text" id="txtEmpleadaEvento" name="txtEmpleadaEvento" class="form-control">
+            Atendio: <input type="password" id="txtEmpleadaEvento" name="txtEmpleadaEvento" class="form-control">
           </div>
         </div>
          <div class="form-group">

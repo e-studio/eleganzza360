@@ -25,7 +25,7 @@ table th, td{
 	padding:10px;
 }
 .items th{
-	background-color: #3498db;
+	background-color: #700783;
 	color:white;
 	
 }
@@ -41,11 +41,17 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <table class="page_footer">
             <tr>
 
-                <td style="width: 50%; text-align: left">
+                <td style="width: 30%; text-align: left; color:#700783">
                     P&aacute;gina [[page_cu]]/[[page_nb]]
                 </td>
-                <td style="width: 50%; text-align: right">
-                    &copy; <?php echo "eleganzza 360 "; echo  $anio=date('Y'); ?>
+                <?php 
+                	if ($previa!=0){ ?>
+						<td style="width: 40%; text-align: center; color:#700783">
+                			<strong>Atendida por: </strong><?php echo $rw_emp['pre_empleada'];?>   <strong>Agendada por: </strong><?php echo $rw_emp['pre_agendo']; ?>
+                		</td>
+                	<?php } ?>
+                <td style="width: 30%; text-align: right; color:#700783">
+                    &copy; <?php echo "eleganzza 360 SPA "; echo  $anio=date('Y'); ?>
                 </td>
             </tr>
         </table>
@@ -58,13 +64,13 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 
             </td>
 			<td style="width: 34%;">
-			<strong>E-mail : </strong> <?php echo $rw_perfil['email'];?><br>
-			<strong>Teléfono : </strong> <?php echo $rw_perfil['telefono'];?><br>
-			<strong>Sitio web : </strong> <?php echo $rw_perfil['web'];?><br>
+			<span style="color:#700783"><strong> E-mail :</strong> <?php echo $rw_perfil['email'];?><br></span>
+			<span style="color:#700783"><strong>Teléfono : </strong> <?php echo $rw_perfil['telefono'];?><br></span>
+			<span style="color:#700783"><strong>Sitio web : </strong> <?php echo $rw_perfil['web'];?><br></span>
 			</td>
 			<td style="width: 33%;">
-				<strong><?php echo $rw_perfil['nombre_comercial'];?> </strong> <br>
-				<strong>Dirección : </strong> <?php echo $rw_perfil['direccion'];?><br>
+				<span style="color:#700783"><strong><?php echo $rw_perfil['nombre_comercial'];?> </strong> <br></span>
+				<span style="color:#700783"><strong>Dirección : </strong> <?php echo $rw_perfil['direccion'];?><br></span>
 		
 			</td>
 			
@@ -77,7 +83,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
             <td  style="width: 20%; ">               
             </td>
-			<td style="width: 60%;text-align:center;font-size:27px;color:#3498db; background-color: #eee;padding:10px; border-radius: 10px ">
+			<td style="width: 60%;text-align:center;font-size:27px;color:#0a26c8; background-color: #ffffff;padding:10px; border-radius: 10px ">
 				NOTA DE VENTA
 			</td>
 			
@@ -92,10 +98,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <td  style="width: 60%; "> 
 				
 			</td>
-			<td  style="width: 20%;color:white;background-color:#3498db;padding:5px;text-align:center "> 
+			<td  style="width: 20%;color:white;background-color:#700783;padding:5px;text-align:center "> 
 				<strong style="font-size:14px;" >NOTA #</strong>
 			</td>
-			<td  style="width: 20%; color:white;background-color:#3498db;padding:5px;text-align:center " > 
+			<td  style="width: 20%; color:white;background-color:#700783;padding:5px;text-align:center " > 
 				<strong style="font-size:14px;">FECHA</strong>
 			</td>
 		</tr>
@@ -120,7 +126,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <tr>
 
             <td  style="width: 100%; "> 
-				<strong style="font-size:18px;color:#2c3e50">Detalles del cliente</strong>
+				<strong style="font-size:18px;color:#700783">Detalles del cliente</strong>
 			</td>
 		</tr>
 		
@@ -145,7 +151,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <tr>
 
             <td  style="width: 100%; "> 
-				<strong style="font-size:18px;color:#2c3e50">Descripción del trabajo</strong>
+				<strong style="font-size:18px;color:#700783">Descripción del trabajo</strong>
 
             </td>
 		</tr>
@@ -187,8 +193,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		}
 	?>	
 	<tr >
-		<td colspan=3 class='text-right' style="font-size:24px;color: #3498db">TOTAL </td>
-		<td class='text-right' style="font-size:24px;color:#3498db"><?php echo number_format($suma,2);?> </td>
+		<td colspan=3 class='text-right' style="font-size:24px;color: #700783">TOTAL </td>
+		<td class='text-right' style="font-size:24px;color:#700783"><?php echo number_format($suma,2);?> </td>
 	</tr>
     </table>
 	
@@ -198,14 +204,14 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <tr>
 
             <td  style="width: 100%; "> 
-				<strong>Nota:</strong> Este presupuesto no es un contrato o una factura. Es nuestra mejor estimación al precio total para completar el trabajo indicado anteriormente, basado en nuestra inspección inicial, pero puede estar sujeto a cambios. Si los precios cambian o se requieren piezas y mano de obra adicionales, le informaremos antes de proceder con el trabajo.
-
+				<!--  <strong>Nota:</strong> Este presupuesto no es un contrato o una factura. Es nuestra mejor estimación al precio total para completar el trabajo indicado anteriormente, basado en nuestra inspección inicial, pero puede estar sujeto a cambios. Si los precios cambian o se requieren piezas y mano de obra adicionales, le informaremos antes de proceder con el trabajo.  -->
+				<strong>Nota:</strong> <p class='text-center'>Si tiene alguna consulta relacionada con nota de venta, por favor contáctenos : <br><?php echo $rw_perfil['nombre_comercial'];?>, <?php echo $rw_perfil['telefono'];?>, <?php echo $rw_perfil['email'];?>	</p> 
             </td>
 		</tr>
 		
     </table>
 	<br>
-	<p class='text-center'>Si tiene alguna consulta relacionada con este presupuesto de trabajo, por favor contáctenos : <br><?php echo $rw_perfil['nombre_comercial'];?>, <?php echo $rw_perfil['telefono'];?>, <?php echo $rw_perfil['email'];?> </p>
+	<!-- <p class='text-center'>Si tiene alguna consulta relacionada con nota de venta, por favor contáctenos : <br><?php echo $rw_perfil['nombre_comercial'];?>, <?php echo $rw_perfil['telefono'];?>, <?php echo $rw_perfil['email'];?> </p>  -->
 	
 </page>	
 <?php

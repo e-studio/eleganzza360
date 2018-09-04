@@ -60,7 +60,7 @@ $link=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
           <div class="col-sm-1"></div>
           <div class="col-sm-5">
             <label>Agendó</label>
-            <input class="form-control" type="text" name="agendo" id="agendo" placeholder="Empleada que agenda">
+            <input class="form-control" type="password" name="agendo" id="agendo" placeholder="Empleada que agenda">
           </div>
           <div class="col-sm-5">
             <label>Referida</label>
