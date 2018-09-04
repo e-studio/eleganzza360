@@ -208,6 +208,69 @@ class MvcController{
 
 	}
 
+
+	#LISTADO DE COMISIONES POR EMPLEADO
+	#------------------------------------
+
+	public function comisionesController(){
+
+			if(isset($_POST["fechaInicio"])){
+				$inicio = $_POST["fechaInicio"];
+				$fin = $_POST["fechaFin"];
+				$tipoComision = $_POST["tipoComision"];
+
+				if ($tipoComision == 2) {
+					$campo = 'presupuestos.pre_empleada';
+					$desc = 'Atendidos';
+				}
+				else if ($tipoComision == 1) {
+					$campo = 'presupuestos.pre_agendo';
+					$desc = 'Agendados';
+				}
+				else if ($tipoComision == 3) {
+					$campo = 'presupuestos.pre_referida';
+					$desc = 'Referidos';
+				}
+				else {
+					$campo = 'presupuestos.pre_empleada';
+					$desc = 'Atendidos';
+				}
+
+				$respuesta = Datos::comisionesModel($campo, $inicio, $fin);
+
+				echo '<div class="card mb-3">
+				        <div class="card-header">
+				          <i class="fa fa-table"></i> Comisiones por clientes <strong>'.$desc.'</strong></div>
+				        <div class="card-body">
+				          <div class="table-responsive">
+				            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				              <thead>
+				                <tr>
+				                  <th>Nombre</th>
+				                  <th>Total</th>
+				                </tr>
+				              </thead>';
+
+				foreach ($respuesta as $row => $item){
+				echo'<tr>
+						<td>'.$item["nombre"].'</td>
+						<td>';
+				setlocale(LC_MONETARY, 'en_US');
+			  	echo money_format('%(#10n', $item["Total"]); 
+			  	echo'</td>
+					</tr>';
+				}
+
+				echo '</tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>';
+			}
+
+	}
+
 	#LISTADO DE INGRESOS DE LOS CLIENTES POR EL MES ACTUAL
 	#------------------------------------------------------
 
