@@ -2,6 +2,26 @@
 
 class MvcController{
 
+	#LISTA DE PACIENTES EN MODAL
+	#------------------------------------
+	public function llenaModelos(){
+		$respuesta = Datos::llenaLista("clientes");
+		echo '<option value=""> Seleccione Paciente: </option>';
+		foreach ($respuesta as $row =>$valor){
+			echo '<option value="'.$valor["nomCompleto"].'">'.$valor["nomCompleto"].'</option>';
+		}
+	}
+
+	#LISTA DE PRODUCTOS EN MODAL
+	#------------------------------------
+	public function llenaModelosProd(){
+		$respuesta = Datos::llenaListaProd("productos");
+		echo '<option value=""> Seleccione Producto: </option>';
+		foreach ($respuesta as $row =>$valor){
+			echo '<option value="'.$valor["nombre"].'">'.$valor["nombre"].'</option>';
+		}
+	}
+
 	#REGISTRO DE USUARIOS
 	#------------------------------------
 	public function registroUsuarioController(){

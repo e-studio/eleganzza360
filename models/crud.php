@@ -3,6 +3,24 @@ require_once "conexion.php";
 
 class Datos extends Conexion{
 
+	#LISTA DE PACIENTES EN MODAL
+	#-------------------------------------
+	public function llenaLista($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nomCompleto");
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+	}
+
+	#LISTA DE PRODUCTOS EN MODAL
+	#-------------------------------------
+	public function llenaListaProd($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre");
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+	}
+	
 	#REGISTRO DE USUARIOS
 	#-------------------------------------
 	public function registroUsuarioModel($datosModel, $tabla){

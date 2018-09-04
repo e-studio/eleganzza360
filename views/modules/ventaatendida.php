@@ -138,7 +138,7 @@ Dirección : <?php echo $rw['direccion'];?>
 </div>
 <form class="form-horizontal" name="guardar_item" id="guardar_item">
 <!-- Modal -->
-<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-lg" id="myModal" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
@@ -150,7 +150,10 @@ Dirección : <?php echo $rw['direccion'];?>
 <div class="row">
 <div class="col-md-12">
 <label>Descripción del producto/servicio</label>
-<textarea class="form-control" id="descripcionm" name="descripcionm" required></textarea>
+<select class="descripcionm form-control" name="descripcionm" id="descripcionm" required>
+<option value="">Selecciona el producto</option>
+</select>
+<input type="text" class="form-control" id="testp" name="testp" hidden>
 <input type="hidden" class="form-control" id="action" name="action"  value="ajax">
 </div>
 
@@ -209,6 +212,30 @@ $('#email').html(email);
 $('#telefono').html(telefono);
 $('#direccion').html(direccion);
 $('#test').html(test);
+}),
+$( ".descripcionm" ).select2({
+ajax: {
+url: "views/ajax/prods_json.php",
+dataType: 'json',
+delay: 250,
+data: function (params) {
+return {
+q: params.term // search term
+};
+},
+processResults: function (data) {
+return {
+results: data
+};
+},
+cache: true
+},
+minimumInputLength: 3
+}).on('change', function (e){
+var idprod = $('.descripcionm').select2('data')[0].id;
+var price = $('.descripcionm').select2('data')[0].price;
+var descp = $('.descripcionm').select2('data')[0].text;
+$('#testp').val(descp);
 })
 });
 

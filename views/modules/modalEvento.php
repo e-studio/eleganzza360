@@ -1,6 +1,5 @@
 <?php 
-require_once ("models/db.php");//Contiene las variables de configuracion para conectar a la base de datos
-$link=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
+$lista = new mvcController;
 ?>
 <!-- Modal -->
 <div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -30,14 +29,9 @@ $link=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         <div class="form-group">
           <div class="col-sm-10">
             <label>Tratamiento</label>
-            <?php $con = $link -> query("SELECT nombre as 'nombre' FROM productos ORDER BY nombre"); ?>
-            <select name="txtTratamientoEvento" id="txtTratamientoEvento" class="form-control" onChange="txtTratamientoEvento(this.value);">
-              <option></option>
-              <?php while ($rw = $con -> fetch_object()){
-                echo "<option value='".$rw->nombre."'>".$rw->nombre."</option>";
-              } ?>
-            </select> <!--<input type="text" id="txtTratamiento" name="txtTratamiento" class="form-control">-->
-            <?php $link=NULL; ?>
+            <select name="txtTratamientoEvento" id="txtTratamientoEvento" class="form-control" required>
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
           </div>
         </div>
         <div class="form-group">

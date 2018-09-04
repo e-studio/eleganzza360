@@ -12,7 +12,7 @@ if($action == 'ajax'){
 	
 	if (isset($_POST['descripcionm'])){
 		
-		$descripcion=mysqli_real_escape_string($con,$_POST['descripcionm']);
+		$descripcion=mysqli_real_escape_string($con,$_POST['testp']);
 		$cantidad=intval($_POST['cantidad']);
 		$precio=floatval($_POST['precio']);
 		$sql="INSERT INTO `tmp` (`id`, `descripcion`, `cantidad`, `precio`) VALUES (NULL, '$descripcion', '$cantidad', '$precio');";
