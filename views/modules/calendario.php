@@ -37,8 +37,8 @@
 			eventSources:[
 			{
 				url: "views/modules/eventos.php",
-				color: "#1BC1D7",
-				textColor: "#6B1B9D"
+				color: "#A9ECF5",
+				textColor: "#700783"
 			}
 			],
 
@@ -179,8 +179,8 @@
 			tratamiento:$("#txtTratamiento").val(),
 			start:$("#txtFecha").val()+" "+$("#txtHora").val(),
 			end:final,
-			color: "#1BC1D7",
-			textColor: "#6B1B9D",
+			color: "#A9ECF5",
+			textColor: "#700783",
 			agendo:$("#agendo").val(),
 			referida:$("#referida").val(),
 			ultimacita:$("#ultimacita").val()
@@ -199,8 +199,8 @@
 			empleada:$("#txtEmpleadaEvento").val(),
 			start:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
 			end:final,
-			color: "#1BC1D7",
-			textColor: "#6B1B9D",
+			color: "#A9ECF5",
+			textColor: "#700783",
 			nota:$("#txtNotaEvento").val()
 		}
 	}
