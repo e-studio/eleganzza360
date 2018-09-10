@@ -52,6 +52,24 @@
 	$rw_emp=mysqli_fetch_array($sql_emp);
 	$previa=mysqli_num_rows($sql_emp);	
 	
+	$rwagen=$rw_emp['pre_agendo'];
+	$rwaten=$rw_emp['pre_empleada'];
+
+if ($rwagen != NULL){
+	$sql_empa=mysqli_query($con,"select nombre as nomagen from usuarios where id=$rwagen");
+	$rw_empa=mysqli_fetch_array($sql_empa);
+	$empagendo=$rw_empa['nomagen'];
+} else {
+	$empagendo=" ";
+}
+if ($rwaten != NULL){
+	$sql_empat=mysqli_query($con,"select nombre as nomaten from usuarios where id=$rwaten");
+	$rw_empat=mysqli_fetch_array($sql_empat);
+	$empatendio=$rw_empat['nomaten'];
+} else{
+	$empatendio=" ";
+}	
+
     // get the HTML
     
      include(dirname('__FILE__').'/res/presupuesto_html.php');

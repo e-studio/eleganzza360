@@ -45,7 +45,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                     P&aacute;gina [[page_cu]]/[[page_nb]]
                 </td>
                 <td style="width: 40%; text-align: center; color:#700783">
-                	<strong>Atendida por: </strong><?php echo $rw_emp['pre_empleada'];?>   <strong>Agendada por: </strong><?php echo $rw_emp['pre_agendo']; ?>
+                	<strong>Atendida por: </strong><?php echo $empatendio;?>   <strong>Agendada por: </strong><?php echo $empagendo; ?>
                 </td>
                 <td style="width: 30%; text-align: right; color:#700783">
                     &copy; <?php echo "eleganzza 360 SPA "; echo  $anio=date('Y'); ?>
