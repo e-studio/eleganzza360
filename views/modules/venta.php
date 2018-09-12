@@ -121,7 +121,7 @@ else {
         <div class="row pad-bottom  pull-right">
     
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <button type="submit" class="btn btn-success ">Guardar presupuesto</button>
+                <button type="submit" class="btn btn-success ">Cobrar</button>
              
               
 
