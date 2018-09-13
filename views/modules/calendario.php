@@ -4,11 +4,23 @@
 		vertical-align: left;
 		background: #F2F2F2;
 	}
+	.fc-unthemed td{
+		border-color: #911AA7;
+	}
+	.fc-unthemed th{
+		border-color: #911AA7;
+	}
+	#fill{
+		overflow:hidden;
+		background-size: cover;
+   		background-position: center;
+    	background-image: url('views/img/eleganzzaSilueta.png');
+	}
 </style>
 
 <div class="container">
 	<div class="row">
-		<div class="col"></div>
+		<div class="col" id="fill"></div>
 		<div class="col-8"><div id="calendario"></div></div>
 		<div class="col"></div>
 	</div>
@@ -256,7 +268,6 @@
 			}
 		},
 		error: function(){
-			alert ("hay un error...");
 		}
 		});
 	}

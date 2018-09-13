@@ -161,11 +161,16 @@ else {
             
             <div class="col-md-6">
               <label>Precio unitario</label>
-              <input type="text" class="form-control" id="precio" name="precio" required>
+              <input type="text" class="form-control" id="precio" name="precio" required readonly>
             </div>
             
             </div>
-        
+        <div class="row">
+  <div class="col-md-3">
+    <label>Descuento</label>
+    <input type="text" class="form-control" id="descuento" name="descuento" value=0>
+  </div>
+</div>
           
           </div>
           <div class="modal-footer">
@@ -230,6 +235,7 @@ $( ".descripcionm" ).select2({
       var price = $('.descripcionm').select2('data')[0].price;
       var descp = $('.descripcionm').select2('data')[0].text;
       $('#testp').val(descp);
+      document.getElementById("precio").value=price;
     })
 });
 
@@ -289,17 +295,18 @@ $( ".descripcionm" ).select2({
       
       if (cliente>0)
      {
-      VentanaCentrada('views/pdf/documentos/presupuesto.php?cliente='+cliente+'&descripcion='+descripcion+'&nombre='+nombre+'&cita='+cita,'Presupuesto','','1024','768','true');  
+      VentanaCentrada('views/pdf/documentos/presupuesto.php?cliente='+cliente+'&descripcion='+descripcion+'&nombre='+nombre+'&cita='+cita,'Presupuesto','','1024','768','true'); 
+
      } else {
        alert("Selecciona el cliente");
        return false;
      }
-     
+    window.location.href= 'index.php?action=inicio'; 
    });
     
 
     mostrar_items();
-    window.location.href("index.php?action=citas");
+    
     
 </script>
 
