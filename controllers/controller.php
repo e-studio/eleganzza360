@@ -29,7 +29,7 @@ class MvcController{
 		if(isset($_POST["usuario"])){
 
 			$datosController = array( "nombre"=>$_POST["nombre"],
-									  "usuario"=>$_POST["usuario"], 
+									  "usuario"=>$_POST["usuario"],
 								      "password"=>$_POST["password"],
 								      "email"=>$_POST["email"],
 								      "celular"=>$_POST["celular"],
@@ -41,7 +41,7 @@ class MvcController{
 
 			if($respuesta == "success"){
 
-				//header("location:index.php?action=ok");				
+				//header("location:index.php?action=ok");
 			}
 
 			else{
@@ -59,7 +59,7 @@ class MvcController{
 		if(isset($_POST["nombres"])){
 
 			$datosController = array( "nombres"=>$_POST["nombres"],
-									  "apellidos"=>$_POST["apellidos"], 
+									  "apellidos"=>$_POST["apellidos"],
 								      "email"=>$_POST["email"],
 								      "telefono"=>$_POST["telLocal"],
 								      "movil"=>$_POST["celular"],
@@ -70,7 +70,7 @@ class MvcController{
 
 			if ($respuesta["nombres"]==""){
 				$respuesta = Datos::registroClientesModel($datosController, "clientes");
-				
+
 				if ($respuesta=="ok"){
 					echo '<div class="alert alert-success">';
   					echo 'Cliente Registrado Exitosamente!.';
@@ -98,7 +98,7 @@ class MvcController{
 
 			$datosController = array( "id"=>$_POST["id"],
 								  "nombres"=>$_POST["nombres"],
-								  "apellidos"=>$_POST["apellidos"], 
+								  "apellidos"=>$_POST["apellidos"],
 							      "email"=>$_POST["email"],
 							      "telefono"=>$_POST["telLocal"],
 							      "movil"=>$_POST["celular"],
@@ -106,7 +106,7 @@ class MvcController{
 							      "fechaNac"=>$_POST["fechaNac"]);
 
 			$respuesta = Datos::actualizaClienteModel($datosController, "clientes");
-			
+
 			if ($respuesta=="ok"){
 
 				$mensaje = "Actualizacion correcta";
@@ -132,11 +132,11 @@ class MvcController{
 
 			$datosController = array("idProductos"=>$_POST["idProductos"],
 								  "nombre"=>$_POST["nombre"],
-								  "categoria"=>$_POST["categoria"], 
+								  "categoria"=>$_POST["categoria"],
 							      "precio"=>$_POST["precio"]);
 
 			$respuesta = Datos::actualizaProductoModel($datosController, "productos");
-			
+
 			if ($respuesta=="ok"){
 
 				$mensaje = "Actualizacion correcta";
@@ -162,14 +162,14 @@ class MvcController{
 
 			$datosController = array("id"=>$_POST["id"],
 								  "usuario"=>$_POST["usuario"],
-								  "password"=>$_POST["password"], 
+								  "password"=>$_POST["password"],
 							      "nombre"=>$_POST["nombre"],
 							      "rol"=>$_POST["rol"],
 							      "celular"=>$_POST["celular"],
 							      "email"=>$_POST["email"]);
 
 			$respuesta = Datos::actualizaEmpleadoModel($datosController, "usuarios");
-			
+
 			if ($respuesta=="ok"){
 
 				$mensaje = "Actualizacion correcta";
@@ -201,7 +201,7 @@ class MvcController{
 				<td>'.$item["telefono"].'</td>
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editCliente&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=clientes&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=clientes&idBorrar='.$item["id"].'" onclick="return Confirmation()"><button class="btn btn-danger">Borrar</button></a></td>
 				<td><a href="index.php?action=hisCliente&idHis='.$item["nombres"].' '.$item["apellidos"].'"><button class="btn btn-primary">Historial</button></a></td>
 			</tr>';
 		}
@@ -221,7 +221,7 @@ class MvcController{
 				<td>'.$item["apellidos"].'</td>
 				<td>';
 		setlocale(LC_MONETARY, 'en_US');
-	  	echo money_format('%(#10n', $item["total"]); 
+	  	echo money_format('%(#10n', $item["total"]);
 	  	echo'</td>
 			</tr>';
 		}
@@ -276,7 +276,7 @@ class MvcController{
 						<td>'.$item["nombre"].'</td>
 						<td>';
 				setlocale(LC_MONETARY, 'en_US');
-			  	echo money_format('%(#10n', $item["Total"]); 
+			  	echo money_format('%(#10n', $item["Total"]);
 			  	echo'</td>
 					</tr>';
 				}
@@ -285,7 +285,7 @@ class MvcController{
             </table>
           </div>
         </div>
-        
+
       </div>';
 			}
 
@@ -304,7 +304,7 @@ class MvcController{
 				<td>'.$item["apellidos"].'</td>
 				<td>';
 		setlocale(LC_MONETARY, 'en_US');
-	  	echo money_format('%(#10n', $item["total"]); 
+	  	echo money_format('%(#10n', $item["total"]);
 	  	echo'</td>
 			</tr>';
 		}
@@ -312,7 +312,7 @@ class MvcController{
 	}
 
 
-	
+
 
 	#LISTADO DE CLIENTES PROXIMOS A CUMPLIR ANIOS
 	#------------------------------------
@@ -389,7 +389,7 @@ class MvcController{
 				<td>'.$item["email"].'</td>
 				<td>'.$item["celular"].'</td>
 				<td><a href="index.php?action=editEmpleados&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=empleados&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=empleados&idBorrar='.$item["id"].'" onclick="return Confirmation()"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -404,14 +404,14 @@ class MvcController{
 		if(isset($_POST["nombre"])){
 
 			$datosController = array( "nombre"=>$_POST["nombre"],
-									  "categoria"=>$_POST["categoria"], 
+									  "categoria"=>$_POST["categoria"],
 								      "precio"=>$_POST["precio"]);
 
 			$respuesta = Datos::consultaProductosModel($datosController, "productos");
 
 			if ($respuesta["nombre"]==""){
 				$respuesta = Datos::registroProductosModel($datosController, "productos");
-				
+
 				if ($respuesta=="ok"){
 					echo '<div class="alert alert-success">';
   					echo 'Producto Registrado Exitosamente!.';
@@ -440,7 +440,7 @@ class MvcController{
 		if(isset($_POST["usuario"])){
 
 			$datosController = array( "usuario"=>$_POST["usuario"],
-									  "password"=>$_POST["password"], 
+									  "password"=>$_POST["password"],
 								      "nombre"=>$_POST["nombre"],
 								      "celular"=>$_POST["celular"],
 								      "rol"=>$_POST["rol"],
@@ -450,7 +450,7 @@ class MvcController{
 
 			if ($respuesta["usuario"]==""){
 				$respuesta = Datos::registroEmpleadosModel($datosController, "usuarios");
-				
+
 				if ($respuesta=="ok"){
 					echo '<div class="alert alert-success">';
   					echo 'Empleado Registrado Exitosamente!.';
@@ -486,7 +486,7 @@ class MvcController{
 				<td>'.$item["categoria"].'</td>
 				<td>'.$item["precio"].'</td>
 				<td><a href="index.php?action=editProducto&idEditar='.$item["idProductos"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=productos&idBorrar='.$item["idProductos"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=productos&idBorrar='.$item["idProductos"].'" onclick="return Confirmation()"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -508,7 +508,7 @@ class MvcController{
 				<td>'.$item["password"].'</td>
 				<td>'.$item["email"].'</td>
 				<td><a href="index.php?action=editar&id='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
+				<td><a href="index.php?action=usuarios&idBorrar='.$item["id"].'" onclick="return Confirmation()"><button class="btn btn-danger">Borrar</button></a></td>
 			</tr>';
 
 		}
@@ -525,7 +525,7 @@ class MvcController{
 				echo "<script type='text/javascript'>window.location.href='index.php?action=clientes'</script>";
 			}
 		}
-	}	
+	}
 
 	#BORRAR PRODUCTO
 	#------------------------------------
@@ -549,6 +549,6 @@ class MvcController{
 				echo "<script type='text/javascript'>window.location.href='index.php?action=empleados'</script>";
 			}
 		}
-	}	
+	}
 
 }

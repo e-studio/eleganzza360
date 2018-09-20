@@ -5,7 +5,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="E-studio" />
 
-    
+
 
 	<!-- Bootstrap core CSS-->
 	  <link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,21 +25,34 @@
     <script src="views/js/jquery-ui.min.js"></script>
     <script src="views/js/fullcalendar.js"></script>
     <script src="views/js/es.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="views/js/bootstrap-clockpicker.js"></script>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
     <link href="views/css/style.css" rel="stylesheet"/>
     <script type="text/javascript" src="views/js/VentanaCentrada.js"></script>
+    <script type="text/javascript">
+      function Confirmation() {
+
+        if (confirm('Esta seguro que desea borrar ?')==true) {
+            alert('Borrado Correctamente');
+            //window.location.href='index.php?action=inicio';
+            return true;
+        }else{
+            //alert('Cancelo la eliminacion');
+            return false;
+        }
+      }
+    </script>
 
 	<title>Panel de Control</title>
 
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-		
+
 
  	<?php
 
@@ -83,7 +96,7 @@
                 </div>
                 <div class="modal-body">Seleccione "Salir" abajo para cerrar la sesion actual.</div>
                 <div class="modal-footer">
-                  
+
                   <a class="btn btn-primary" href="index.php?action=clientes">Cerrar</a>
                 </div>
               </div>
@@ -112,8 +125,8 @@
             url: 'views/vendor/datatables/es-mx.json' //Ubicacion del archivo con el json del idioma.
           },
              retrieve: true
-        } ); 
-    
+        } );
+
  </script>
 
 </body>

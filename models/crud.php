@@ -20,14 +20,14 @@ class Datos extends Conexion{
 		return $stmt -> fetchAll();
 		$stmt -> close();
 	}
-	
+
 	#REGISTRO DE USUARIOS
 	#-------------------------------------
 	public function registroUsuarioModel($datosModel, $tabla){
 
 		#prepare() Prepara una sentencia SQL para ser ejecutada por el método PDOStatement::execute(). La sentencia SQL puede contener cero o más marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada. Ayuda a prevenir inyecciones SQL eliminando la necesidad de entrecomillar manualmente los parámetros.
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, usuario, password, email, sistema, rol, activo) VALUES (:nombre,:usuario,:password,:email,:sistema,:rol,:activo)");	
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, usuario, password, email, sistema, rol, activo) VALUES (:nombre,:usuario,:password,:email,:sistema,:rol,:activo)");
 
 		#bindParam() Vincula una variable de PHP a un parámetro de sustitución con nombre o de signo de interrogación correspondiente de la sentencia SQL que fue usada para preparar la sentencia.
 
@@ -69,7 +69,7 @@ class Datos extends Conexion{
 		$stmt->bindParam(":nombres", $datosModel["nombres"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos", $datosModel["apellidos"], PDO::PARAM_STR);
 		$stmt->bindParam(":movil", $datosModel["movil"], PDO::PARAM_STR);
-		
+
 		$stmt -> execute();
 		return $stmt -> fetch();
 
@@ -88,7 +88,7 @@ class Datos extends Conexion{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
 
 		$stmt->bindParam(":id", $cliente, PDO::PARAM_INT);
-		
+
 		$stmt -> execute();
 		return $stmt -> fetch();
 
@@ -111,7 +111,7 @@ class Datos extends Conexion{
 		$stmt->bindParam(":fin", $fin, PDO::PARAM_STR);
 		//$stmt->bindParam(":campo", $campo, PDO::PARAM_STR);
 
-		
+
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -128,7 +128,7 @@ class Datos extends Conexion{
 		$stmt = Conexion::conectar()->prepare("SELECT clientes.nombres as nombres, clientes.apellidos as apellidos, sum(presupuestos.monto) AS total FROM presupuestos, clientes where presupuestos.id_cliente = clientes.id group by id_cliente");
 
 		//$stmt->bindParam(":id", $cliente, PDO::PARAM_INT);
-		
+
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -145,7 +145,7 @@ class Datos extends Conexion{
 		$stmt = Conexion::conectar()->prepare("SELECT clientes.nombres as nombres, clientes.apellidos as apellidos, sum(presupuestos.monto) AS total FROM presupuestos, clientes where presupuestos.id_cliente = clientes.id AND MONTH(fecha)=MONTH(CURDATE()) group by id_cliente");
 
 		//$stmt->bindParam(":id", $cliente, PDO::PARAM_INT);
-		
+
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -153,7 +153,7 @@ class Datos extends Conexion{
 	}
 
 
-	
+
 	#BUSCA UN PRODUCTO
 	#-------------------------------------
 
@@ -164,7 +164,7 @@ class Datos extends Conexion{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idProductos = :producto");
 
 		$stmt->bindParam(":producto", $producto, PDO::PARAM_INT);
-		
+
 		$stmt -> execute();
 		return $stmt -> fetch();
 
@@ -181,14 +181,14 @@ class Datos extends Conexion{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
 
 		$stmt->bindParam(":id", $usuario, PDO::PARAM_INT);
-		
+
 		$stmt -> execute();
 		return $stmt -> fetch();
 
 		$stmt->close();
 	}
-	
-	
+
+
 
 	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES
 	#-------------------------------------
@@ -210,7 +210,7 @@ class Datos extends Conexion{
 		return $stmt -> fetch();
 		$stmt->close();
 	}
-	
+
 	#DEVUELVE UN LISTADO DE TODOS LOS CLIENTES QUE CUMPLEN ANIOS EN EL MES ACTUAL
 	#-------------------------------------
 
@@ -240,7 +240,8 @@ class Datos extends Conexion{
 
 	public function listaHistorialModel($historial,$tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:historial AND empleada <>''");
+		//$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE title=:historial AND empleada <>''");
+		$stmt = Conexion::conectar()->prepare("SELECT citas.title as title, citas.tratamiento as tratamiento, citas.start as start, usuarios.nombre as empleada, citas.nota as nota  FROM citas, usuarios WHERE citas.title=:historial AND citas.empleada <> '' AND citas.empleada = usuarios.password");
 		$stmt->bindParam(":historial",$historial,PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchALL();
@@ -248,7 +249,7 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 
-	
+
 	#DEVUELVE UN LISTADO DE TODOS LOS EMPLEADOS
 	#-------------------------------------
 
@@ -280,7 +281,7 @@ class Datos extends Conexion{
 		if($stmt->execute()){
 
 			return "ok";
-		
+
 
 		}
 
@@ -320,7 +321,7 @@ class Datos extends Conexion{
 		echo "<br>".$datosModel['tel'];
 		echo "<br>".$datosModel['movil'];
 		echo "<br>".$datosModel['email'];*/
-		
+
 
 
 
@@ -362,7 +363,7 @@ class Datos extends Conexion{
 		echo "<br>".$datosModel['tel'];
 		echo "<br>".$datosModel['movil'];
 		echo "<br>".$datosModel['email'];*/
-		
+
 
 
 
@@ -392,7 +393,7 @@ class Datos extends Conexion{
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
-		
+
 
 		if($stmt->execute()){
 
@@ -420,7 +421,7 @@ class Datos extends Conexion{
 
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
-				
+
 		$stmt -> execute();
 		return $stmt -> fetch();
 
@@ -436,7 +437,7 @@ class Datos extends Conexion{
 
 		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
-				
+
 		$stmt -> execute();
 		return $stmt -> fetch();
 
@@ -454,7 +455,7 @@ class Datos extends Conexion{
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":categoria", $datosModel["categoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
-		
+
 
 
 		if($stmt->execute()){
@@ -524,10 +525,10 @@ class Datos extends Conexion{
 
 	public function vistaUsuariosModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT id, usuario, password, email FROM $tabla");	
+		$stmt = Conexion::conectar()->prepare("SELECT id, usuario, password, email FROM $tabla");
 		$stmt->execute();
 
-		#fetchAll(): Obtiene todas las filas de un conjunto de resultados asociado al objeto PDOStatement. 
+		#fetchAll(): Obtiene todas las filas de un conjunto de resultados asociado al objeto PDOStatement.
 		return $stmt->fetchAll();
 
 		$stmt->close();
@@ -558,7 +559,7 @@ class Datos extends Conexion{
 		}
 		$stmt -> close();
 	}
-	
+
 	#BORRAR EMPLEADO
 	#-------------------------------------
 	public function borrarEmpleadoModel($datosModel,$tabla){
