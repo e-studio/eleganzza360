@@ -1,8 +1,27 @@
+<style>
+  #mainNav{
+    background-color: #911AA7;
+  }
+  .nav-link-text{
+    color: #a9ecf5;
+  }
+  .fa-sign-out{
+    color: #a9ecf5;
+  }
+  #exampleAccordion{
+    background-color: #911AA7;
+  }
+  #sidenavToggler{
+    background-color: #911AA7;
+    color: #a9ecf5;
+  }
+</style>
+
 <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php?action=inicio">Eleganzza 360</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <a class="navbar-brand" href="index.php?action=inicio"> <img src="views/img/eleganzzaLogo.png" alt="Eleganzza 360 SPA"></a>
+    <button class="navbar-toggler navbar-toggler-right navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="color: #a9ecf5"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -56,6 +75,14 @@
         
         </ul>
 
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item" >
@@ -64,7 +91,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="color: #a9ecf5">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>

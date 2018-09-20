@@ -41,16 +41,16 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <table class="page_footer">
             <tr>
 
-                <td style="width: 30%; text-align: left; color:#700783">
+                <td style="width: 15%; text-align: left; color:#700783">
                     P&aacute;gina [[page_cu]]/[[page_nb]]
                 </td>
                 <?php 
                 	if ($previa!=0){ ?>
-						<td style="width: 40%; text-align: center; color:#700783">
+						<td style="width: 60%; text-align: center; color:#700783">
                 			<strong>Atendida por: </strong><?php echo $empatendio;?>   <strong>Agendada por: </strong><?php echo $empagendo; ?>
                 		</td>
                 	<?php } ?>
-                <td style="width: 30%; text-align: right; color:#700783">
+                <td style="width: 25%; text-align: right; color:#700783">
                     &copy; <?php echo "eleganzza 360 SPA "; echo  $anio=date('Y'); ?>
                 </td>
             </tr>

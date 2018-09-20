@@ -31,6 +31,9 @@ $rw=mysqli_fetch_assoc($query_perfil);
   $rws=mysqli_fetch_array($sql);
   $numero=$rws['last'];
 
+  $query_cliente=mysqli_query($con,"select * from clientes where nomCompleto='$client'");
+  $rw_cliente=mysqli_fetch_array($query_cliente);
+
 ?>
 <div class="content-wrapper">
 <div class="container-fluid">
@@ -74,9 +77,11 @@ Dirección : <?php echo $rw['direccion'];?>
 <hr />
 <div class="col-lg-6 col-md-6 col-sm-6">
 <h2>Detalles del cliente :</h2>
-<select class="cliente form-control" name="cliente" id="cliente" required>
+<!-- <select class="cliente form-control" name="cliente" id="cliente" required>
 <option value="<?php echo $client; ?>">Selecciona el cliente</option>
-</select>
+</select> -->
+<input type="hidden" name="cliente" id="cliente" value="<?php echo $rw_cliente['id'];?>">
+<input type="text" name="client" id="client" class="form-control" value="<?php echo $rw_cliente['nomCompleto']?>" disabled>
 <span id="direccion"></span>
 <h4><strong>E-mail: </strong><span id="email"></span></h4>
 <h4><strong>Teléfono: </strong><span id="telefono"></span></h4>
@@ -151,6 +156,7 @@ Dirección : <?php echo $rw['direccion'];?>
 <div class="col-md-12">
 <label>Descripción del producto/servicio</label>
 <select class="descripcionm form-control" name="descripcionm" id="descripcionm" required>
+
 <option value="">Selecciona el producto</option>
 </select>
 <input type="text" class="form-control" id="testp" name="testp" hidden>
@@ -167,11 +173,17 @@ Dirección : <?php echo $rw['direccion'];?>
 
 <div class="col-md-6">
 <label>Precio unitario</label>
-<input type="text" class="form-control" id="precio" name="precio" required>
+<input type="text" class="form-control" id="precio" name="precio" required readonly>
 </div>
 
 </div>
 
+<div class="row">
+	<div class="col-md-3">
+		<label>Descuento</label>
+		<input type="text" class="form-control" id="descuento" name="descuento" value=0>
+	</div>
+</div>
 
 </div>
 <div class="modal-footer">
@@ -185,34 +197,34 @@ Dirección : <?php echo $rw['direccion'];?>
 </form>
 <script type="text/javascript">
 $(document).ready(function() {
-$( ".cliente" ).select2({        
-ajax: {
-url: "views/ajax/clientes_json.php",
-dataType: 'json',
-delay: 250,
-data: function (params) {
-return {
-q: params.term // search term
-};
-},
-processResults: function (data) {
-return {
-results: data
-};
-},
-cache: true
-},
-minimumInputLength: 2
-}).on('change', function (e){
-var email = $('.cliente').select2('data')[0].email;
-var telefono = $('.cliente').select2('data')[0].telefono;
-var direccion = $('.cliente').select2('data')[0].direccion;
-var test = $('.cliente').select2('data')[0].text;
-$('#email').html(email);
-$('#telefono').html(telefono);
-$('#direccion').html(direccion);
-$('#test').html(test);
-}),
+// $( ".cliente" ).select2({        
+// ajax: {
+// url: "views/ajax/clientes_json.php",
+// dataType: 'json',
+// delay: 250,
+// data: function (params) {
+// return {
+// q: params.term // search term
+// };
+// },
+// processResults: function (data) {
+// return {
+// results: data
+// };
+// },
+// cache: true
+// },
+// minimumInputLength: 2
+// }).on('change', function (e){
+// var email = $('.cliente').select2('data')[0].email;
+// var telefono = $('.cliente').select2('data')[0].telefono;
+// var direccion = $('.cliente').select2('data')[0].direccion;
+// var test = $('.cliente').select2('data')[0].text;
+// $('#email').html(email);
+// $('#telefono').html(telefono);
+// $('#direccion').html(direccion);
+// $('#test').html(test);
+// }),
 $( ".descripcionm" ).select2({
 ajax: {
 url: "views/ajax/prods_json.php",
@@ -236,8 +248,19 @@ var idprod = $('.descripcionm').select2('data')[0].id;
 var price = $('.descripcionm').select2('data')[0].price;
 var descp = $('.descripcionm').select2('data')[0].text;
 $('#testp').val(descp);
+document.getElementById("precio").value=price;
 })
 });
+
+		var email = '<?php echo $rw_cliente['email']; ?>';
+		var telefono = '<?php echo $rw_cliente['movil']; ?>';
+		var direccion = '<?php echo $rw_cliente['direccion']; ?>';
+		var test = '<?php echo $rw_cliente['nomCompleto']; ?>';
+		$('#email').html(email);
+		$('#telefono').html(telefono);
+		$('#direccion').html(direccion);
+		$('#test').html(test);
+
 
 function mostrar_items(){
 var parametros={"action":"ajax"};
@@ -306,7 +329,7 @@ return false;
 
 mostrar_items();
 
-window.location.href("index.php?action=citas");
+window.location.href("index.php?action=inicio");
 </script>
 
 <!-- Fin del contenido -->

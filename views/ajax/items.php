@@ -15,7 +15,9 @@ if($action == 'ajax'){
 		$descripcion=mysqli_real_escape_string($con,$_POST['testp']);
 		$cantidad=intval($_POST['cantidad']);
 		$precio=floatval($_POST['precio']);
-		$sql="INSERT INTO `tmp` (`id`, `descripcion`, `cantidad`, `precio`) VALUES (NULL, '$descripcion', '$cantidad', '$precio');";
+		$descuent=intval($_POST['descuento']);
+		$descuento=number_format($descuent/100,2,'.','');
+		$sql="INSERT INTO `tmp` (`id`, `descripcion`, `cantidad`, `precio`,`descuento`) VALUES (NULL, '$descripcion', '$cantidad', '$precio', '$descuento');";
 		$insert=mysqli_query($con,$sql);
 	}
 	
@@ -23,8 +25,22 @@ if($action == 'ajax'){
 	$items=1;
 	$suma=0;
 	while($row=mysqli_fetch_array($query)){
+		if($row['descuento']!=0){
+			if ($row['aplicado'] !=0){
+				$total=$row['cantidad']*$row['precio'];
+				$total=number_format($total,2,'.','');
+			} else {
+				$total=$row['cantidad']*$row['precio']-($row['cantidad']*$row['precio']*$row['descuento']);
+				$total=number_format($total,2,'.','');
+				$pre=$row['precio']-($row['precio']*$row['descuento']);
+				$sqld="UPDATE `tmp` SET `precio`=".$pre.",`aplicado`=1 WHERE `id`=".$row['id']."";
+				$upda=mysqli_query($con,$sqld);
+				$listo=1;
+			}
+		} else {
 			$total=$row['cantidad']*$row['precio'];
 			$total=number_format($total,2,'.','');
+		}
 		?>
 	<tr>
 		<td class='text-center'><?php echo $items;?></td>
