@@ -203,7 +203,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
             <td  style="width: 100%; "> 
 				<!--  <strong>Nota:</strong> Este presupuesto no es un contrato o una factura. Es nuestra mejor estimación al precio total para completar el trabajo indicado anteriormente, basado en nuestra inspección inicial, pero puede estar sujeto a cambios. Si los precios cambian o se requieren piezas y mano de obra adicionales, le informaremos antes de proceder con el trabajo.  -->
-				<strong>Nota:</strong> <p class='text-center'>Si tiene alguna consulta relacionada con nota de venta, por favor contáctenos : <br><?php echo $rw_perfil['nombre_comercial'];?>, <?php echo $rw_perfil['telefono'];?>, <?php echo $rw_perfil['email'];?>	</p> 
+				<strong>Nota:</strong>  <?php echo $notacita;?> <!-- <p class='text-center'>Si tiene alguna consulta relacionada con nota de venta, por favor contáctenos : <br><?php echo $rw_perfil['nombre_comercial'];?>, <?php echo $rw_perfil['telefono'];?>, <?php echo $rw_perfil['email'];?>	</p>  -->
             </td>
 		</tr>
 		

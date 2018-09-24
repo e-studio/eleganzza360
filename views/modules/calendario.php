@@ -32,6 +32,7 @@
 	var NuevoEvento;
 	var ExisteEvento;
 	var Requerido;
+	var Cancelado;
 	var horaend;
 	var horainicio;
 
@@ -94,24 +95,47 @@
 						document.getElementById("txtEmpleadaEvento").disabled=false;
 						document.getElementById("btnEliminar").disabled=false;
 						document.getElementById("btnModificar").disabled=false;
+						document.getElementById("btnCambiar").disabled=false;
 						document.getElementById("txtTratamientoEvento").disabled=false;
 						document.getElementById("txtHoraEvento").disabled=false;
 						document.getElementById("txtNotaEvento").disabled=false;
 					} else {
-						$("#ModalEventos").modal();
-						$("#tituloEventoE").html(calEvent.title+" PACIENTE YA ATENDIDA");
-						$("#txtTratamientoEvento").val(calEvent.tratamiento);
-						$("#txtIDEvento").val(calEvent.idCitas);
-						$("#txtHoraEvento").val(FechaHora[1]);
-						$("#txtFechaEvento").val(FechaHora[0]);
-						$("#txtPacienteEvento").val(calEvent.title);
-						$("#txtNotaEvento").val(calEvent.nota);
-						document.getElementById("txtEmpleadaEvento").disabled=true;
-						document.getElementById("btnEliminar").disabled=true;
-						document.getElementById("btnModificar").disabled=true;
-						document.getElementById("txtTratamientoEvento").disabled=true;
-						document.getElementById("txtHoraEvento").disabled=true;	
-						document.getElementById("txtNotaEvento").disabled=true;					
+						$("#cancelado").val(calEvent.estado);
+						Cancelado="";
+						Cancelado=$("#cancelado").val();
+						if (Cancelado != ""){
+							$("#ModalEventos").modal();
+							$("#tituloEventoE").html(calEvent.title+" CITA CANCELADA");
+							$("#txtTratamientoEvento").val(calEvent.tratamiento);
+							$("#txtIDEvento").val(calEvent.idCitas);
+							$("#txtHoraEvento").val(FechaHora[1]);
+							$("#txtFechaEvento").val(FechaHora[0]);
+							$("#txtPacienteEvento").val(calEvent.title);
+							$("#txtNotaEvento").val(calEvent.nota);
+							document.getElementById("txtEmpleadaEvento").disabled=true;
+							document.getElementById("btnEliminar").disabled=true;
+							document.getElementById("btnModificar").disabled=true;
+							document.getElementById("btnCambiar").disabled=true;
+							document.getElementById("txtTratamientoEvento").disabled=true;
+							document.getElementById("txtHoraEvento").disabled=true;	
+							document.getElementById("txtNotaEvento").disabled=true;			
+						} else {
+							$("#ModalEventos").modal();
+							$("#tituloEventoE").html(calEvent.title+" PACIENTE YA ATENDIDA");
+							$("#txtTratamientoEvento").val(calEvent.tratamiento);
+							$("#txtIDEvento").val(calEvent.idCitas);
+							$("#txtHoraEvento").val(FechaHora[1]);
+							$("#txtFechaEvento").val(FechaHora[0]);
+							$("#txtPacienteEvento").val(calEvent.title);
+							$("#txtNotaEvento").val(calEvent.nota);
+							document.getElementById("txtEmpleadaEvento").disabled=true;
+							document.getElementById("btnEliminar").disabled=true;
+							document.getElementById("btnModificar").disabled=true;
+							document.getElementById("btnCambiar").disabled=true;
+							document.getElementById("txtTratamientoEvento").disabled=true;
+							document.getElementById("txtHoraEvento").disabled=true;	
+							document.getElementById("txtNotaEvento").disabled=true;	
+						}				
 					}
 				}
 			},
@@ -177,6 +201,17 @@
 			var descr =$("#txtTratamientoEvento").val();
 			var cliente = $("#txtPacienteEvento").val();
 			window.location.href="index.php?action=ventaatendida&cita="+encodeURIComponent(cita)+"&tratamiento="+encodeURIComponent(descr)+"&paciente="+encodeURIComponent(cliente);
+		}
+	});
+
+	$("#btnCambiar").click(function(){
+		Requerido = $("#txtEmpleadaEvento").val();
+		if (Requerido === "" || Requerido === "0"){
+			alert ("Ingresa Tu Numero de Empleada");
+		} else {
+			DatosEventos();
+			InfoEventos("modificarM",ExisteEvento,true);
+			$("#ModalEventos").modal("toggle");
 		}
 	});
 

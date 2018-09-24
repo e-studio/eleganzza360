@@ -15,6 +15,7 @@ $lista = new mvcController;
 
         <input type="hidden" id="txtIDEvento" name="txtIDEvento">
         <input type="hidden" id="txtFechaEvento" name="txtFechaEvento">
+        <input type="hidden" id="cancelado" name="cancelado">
         <div class="form-group">
           <div class="col-sm-10">
             Paciente: <input type="text" id="txtPacienteEvento" name="txtPacienteEvento" placeholder="Nombre de la paciente" class="form-control" disabled>
@@ -47,7 +48,8 @@ $lista = new mvcController;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" id="btnModificar">Atendió</button>
-        <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+        <button type="button" class="btn btn-danger" id="btnEliminar">Cancelar</button>
+        <button type="button" class="btn btn-info" id="btnCambiar">Modificar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
     </div>

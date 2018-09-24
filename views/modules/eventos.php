@@ -1,8 +1,8 @@
 <?php
 
 	header ('Content-Type: application/json');
-	$pdo = new PDO ("mysql:dbname=sistema; host=localhost","root","");
-	//$pdo = new PDO ("mysql:dbname=multie5_eleganzza360; host=localhost","multie5_eleganzza360","tQ=5%{j+qRxg");
+	//$pdo = new PDO ("mysql:dbname=sistema; host=localhost","root","");
+	$pdo = new PDO ("mysql:dbname=multie5_eleganzza360; host=localhost","multie5_eleganzza360","tQ=5%{j+qRxg");
 	//$pdo = Conexion::conectar();
 	$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 	switch($accion){
@@ -32,7 +32,6 @@
 			$sentencia = $pdo -> prepare ("UPDATE citas SET
 				title = :title,
 				tratamiento = :tratamiento,
-				empleada = :empleada,
 				start = :start,
 				end = :end
 				WHERE idCitas = :idCitas");
@@ -40,7 +39,6 @@
 				"idCitas" => $_POST['idCitas'],
 				"title" => $_POST['title'],
 				"tratamiento" => $_POST['tratamiento'],
-				"empleada" => $_POST['empleada'],
 				"start" => $_POST['start'],
 				"end" => $_POST['end']
 			));
@@ -78,8 +76,8 @@
 		case 'eliminar':
 			$resultado = false;
 			if (isset($_POST["idCitas"])){
-				$sentencia = $pdo -> prepare ("DELETE FROM citas WHERE idCitas = :idCitas");
-				$resultado = $sentencia -> execute(array("idCitas" => $_POST["idCitas"]));
+				$sentencia = $pdo -> prepare ("UPDATE citas SET empleada = :empleada, estado = 'CANCELADA', nota = :nota WHERE idCitas = :idCitas");
+				$resultado = $sentencia -> execute(array("idCitas" => $_POST["idCitas"], "empleada" => $_POST['empleada'], "nota" => $_POST['nota']));
 			}
 			echo json_encode($resultado);
 		break;

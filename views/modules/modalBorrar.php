@@ -7,7 +7,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">Esta seguro que desea eliminar?</div>
+      <div class="modal-body">Esta segura que desea cancelar la cita?</div>
       <div class="modal-footer">
         <a class="btn btn-danger" id="btnConfirmar">SI</a>
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
