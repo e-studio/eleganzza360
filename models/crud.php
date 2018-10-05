@@ -3,6 +3,64 @@ require_once "conexion.php";
 
 class Datos extends Conexion{
 
+
+
+	#DATOS PARA GRAFICA 1
+	#-------------------------------------
+
+	public function grafica1aModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(pre_empleada) AS cantidad , MONTHNAME(fecha) AS mes FROM $tabla WHERE YEAR(fecha)='2018' GROUP BY MONTH(fecha) ORDER BY fecha");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	public function grafica1bModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(pre_agendo) AS cantidad , MONTHNAME(fecha) AS mes FROM $tabla WHERE YEAR(fecha)='2018' GROUP BY MONTH(fecha) ORDER BY fecha");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	public function grafica1cModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(pre_referida) AS cantidad , MONTHNAME(fecha) AS mes FROM $tabla WHERE YEAR(fecha)='2018' GROUP BY MONTH(fecha) ORDER BY fecha");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	#DATOS PARA GRAFICA 2
+	#-------------------------------------
+
+	public function grafica2Model($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(monto) AS total , MONTHNAME(fecha) AS mes FROM $tabla WHERE YEAR(fecha)='2018' GROUP BY MONTH(fecha) ORDER BY fecha");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
+	#DATOS PARA GRAFICA 3
+	#-------------------------------------
+
+	public function grafica3Model(){
+
+		$stmt = Conexion::conectar()->prepare("SELECT usuarios.usuario as empleado,  count(*) as citas, MONTHNAME(fecha) AS mes FROM usuarios, presupuestos WHERE usuarios.id = presupuestos.pre_empleada and MONTHNAME(fecha) = MONTHNAME(now()) GROUP BY usuarios.usuario, mes");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
 	#LISTA DE PACIENTES EN MODAL
 	#-------------------------------------
 	public function llenaLista($tabla){

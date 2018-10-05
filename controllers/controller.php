@@ -2,6 +2,211 @@
 
 class MvcController{
 
+	#DATOS PARA GRAFICA 1
+    #------------------------------------
+    public function grafica1Controller(){
+    	//  crea el array para las citas atendidas
+        $respuesta = Datos::grafica1aModel("presupuestos");
+        $meses = array();
+        $cantA = array();
+        foreach ($respuesta as $row => $item){
+            array_push($meses, $item["mes"]);
+            array_push($cantA, $item["cantidad"]);
+
+        }
+
+
+        // Crea array para citas agendadas
+        $respuesta = Datos::grafica1bModel("presupuestos");
+        //$meses = array();
+        $cantB = array();
+        foreach ($respuesta as $row => $item){
+            //array_push($meses, $item["mes"]);
+            array_push($cantB, $item["cantidad"]);
+
+        }
+
+        // Crea array para citas referidas
+        $respuesta = Datos::grafica1cModel("presupuestos");
+        //$meses = array();
+        $cantC = array();
+        foreach ($respuesta as $row => $item){
+            //array_push($meses, $item["mes"]);
+            array_push($cantC, $item["cantidad"]);
+
+        }
+
+
+
+  /*      echo '<script type="text/javascript">'
+            .'Chart.defaults.global.defaultFontFamily ='."'-apple-system,system-ui,BlinkMacSystemFont,".'"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'."';"
+            ."Chart.defaults.global.defaultFontColor = '#292b2c';"
+            .'var ctx = document.getElementById("myAreaChart");'
+            .'var myLineChart = new Chart(ctx, {'
+            ." type: 'line',"
+            .'data: {'
+            .' labels:'.json_encode($meses).','
+            .'datasets: [{'
+            .'label: "Orders",'
+            .'lineTension: 0.3,'
+            .'backgroundColor: "rgba(2,117,216,0.2)",'
+            .'borderColor: "rgba(2,117,216,1)",'
+            .'pointRadius: 5,'
+            .'pointBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointBorderColor: "rgba(255,255,255,0.8)",'
+            .'pointHoverRadius: 5,'
+            .'pointHoverBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointHitRadius: 20,'
+            .'pointBorderWidth: 2,'
+            .'data:'. json_encode($cant,JSON_NUMERIC_CHECK).','
+            .'}],'
+            .'},'
+            .'options: {'
+            .'legend: {'
+            .'display: false'
+            .'}'
+            .'}'
+            .'});'
+            .'</script>';*/
+
+
+            echo '<script type="text/javascript">'
+            ."var ctxL = document.getElementById('myAreaChart').getContext('2d');
+			var myAreaChart = new Chart(ctxL, {
+			  type: 'line',"
+            .'data: {
+			     labels:'.json_encode($meses).',
+			    datasets: [{
+			        label: "Atendidas",
+			        data:'. json_encode($cantA,JSON_NUMERIC_CHECK).',
+			        backgroundColor: ['
+			      ."    'rgba(50, 200, 50, .3)',
+			        ],
+			        borderColor: [
+			          'rgba(200, 99, 132, .7)',
+			        ],
+			        borderWidth: 2
+			      },
+			      {"
+			      .'  label: "Agendadas",
+			        data:'. json_encode($cantB,JSON_NUMERIC_CHECK).',
+			        backgroundColor: ['
+			      ."    'rgba(200, 50, 50, .3)',
+			        ],
+			        borderColor: [
+			          'rgba(0, 10, 130, .7)',
+			        ],
+			        borderWidth: 2
+			      },
+			      {"
+			      .'  label: "Referidas",
+			        data:'. json_encode($cantC,JSON_NUMERIC_CHECK).',
+			        backgroundColor: ['
+			      ."    'rgba(50, 50, 250, .7)',
+			        ],
+			        borderColor: [
+			          'rgba(50, 50, 250, .7)',
+			        ],
+			        borderWidth: 2
+			      }
+			    ]
+			  },
+			  options: {
+			    responsive: true
+			  }
+            });
+            </script>";
+    }
+
+    #DATOS PARA GRAFICA 2
+    #------------------------------------
+    public function grafica2Controller(){
+
+        $respuesta = Datos::grafica2Model("presupuestos");
+        $meses = array();
+        $cant = array();
+        foreach ($respuesta as $row => $item){
+            array_push($meses, $item["mes"]);
+            $num = number_format($item["total"], 2, '.', '');
+            array_push($cant, $num);
+
+        }
+
+        echo '<script type="text/javascript">'
+            .'var ctx = document.getElementById("myBarChart");'
+            .'var myLineChart = new Chart(ctx, {'
+            ." type: 'bar',"
+            .'data: {'
+            .' labels:'.json_encode($meses).','
+            .'datasets: [{'
+            .'label: "$",'
+            .'lineTension: 0.3,'
+            .'backgroundColor: "rgba(2,117,216,1)",'
+            .'borderColor: "rgba(2,117,216,1)",'
+            .'pointRadius: 5,'
+            .'pointBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointBorderColor: "rgba(255,255,255,0.8)",'
+            .'pointHoverRadius: 5,'
+            .'pointHoverBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointHitRadius: 20,'
+            .'pointBorderWidth: 2,'
+            .'data:'. json_encode($cant,JSON_NUMERIC_CHECK).','
+            .'}],'
+            .'},'
+            .'options: {'
+            .'legend: {'
+            .'display: false'
+            .'}'
+            .'}'
+            .'});'
+            .'</script>';
+    }
+
+
+#DATOS PARA GRAFICA 3
+    #------------------------------------
+    public function grafica3Controller(){
+
+        $respuesta = Datos::grafica3Model();
+        $empleado = array();
+        $citas = array();
+        //$cant = array();
+        foreach ($respuesta as $row => $item){
+            array_push($empleado, $item["empleado"]);
+            array_push($citas, $item["citas"]);
+            //$num = number_format($item["total"], 2, '.', '');
+            //array_push($cant, $num);
+            $mes = $item["mes"];
+
+        }
+
+        //echo 'Este es el mes:'.$mes;
+
+        echo '<script type="text/javascript">'
+        	  .'var ctxP = document.getElementById("myPieChart").getContext("2d");'
+			  .'var myPieChart = new Chart(ctxP, {'
+    		  ."type: 'pie',"
+			  .'data: {
+			       labels:'.json_encode($empleado).',
+			        datasets: [
+			            {
+			            	data:'. json_encode($citas,JSON_NUMERIC_CHECK).',
+			                backgroundColor: ["#FDB45C", "#949FB1", "#F7464A", "#46BFBD", "#4D5360"],
+			                hoverBackgroundColor: ["#FFC870", "#A8B3C5", "#FF5A5E", "#5AD3D1", "#616774"]
+			            }
+			        ]
+			    },
+			    options: {
+			        responsive: true
+			    }
+			});'
+			.'document.getElementById("mesPie").innerHTML="'.$mes.'";'
+			.'</script>'
+			;
+    }
+
+
+
 	#LISTA DE PACIENTES EN MODAL
 	#------------------------------------
 	public function llenaModelos(){
