@@ -30,8 +30,8 @@
 	
 	$busqueda=mysqli_query($con,"select pre_cita as numcita from presupuestos where id=$ppto");
 	$rw_busqueda=mysqli_fetch_array($busqueda);
-	$rowbusqueda=$rw_busqueda['numcita'];
-	if ($rowbusqueda =! NULL){
+	$rowbusqueda=intval($rw_busqueda['numcita']);
+	if ($rowbusqueda != ""){
 		$buscarnota=mysqli_query($con,"select nota from citas where idCitas=$rowbusqueda");
 		$resnota=mysqli_fetch_array($buscarnota);
 		$notacita=$resnota['nota'];

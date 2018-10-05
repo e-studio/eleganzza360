@@ -1,8 +1,8 @@
 <?php
 
 	header ('Content-Type: application/json');
-	$pdo = new PDO ("mysql:dbname=sistema; host=localhost","root","");
-	//$pdo = new PDO ("mysql:dbname=multie5_eleganzza360; host=localhost","multie5_eleganzza360","tQ=5%{j+qRxg");
+	//$pdo = new PDO ("mysql:dbname=sistema; host=localhost","root","");
+	$pdo = new PDO ("mysql:dbname=multie5_eleganzza360; host=localhost","multie5_eleganzza360","tQ=5%{j+qRxg");
 	//$pdo = Conexion::conectar();
 	$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 	switch($accion){
