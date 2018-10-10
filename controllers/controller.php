@@ -206,6 +206,58 @@ class MvcController{
     }
 
 
+    #CORTE DE CAJA
+	#------------------------------------
+	public function corteController(){
+		$suma=0;
+		if(isset($_POST["fechaInicioCorte"])){
+			$inicio = $_POST["fechaInicioCorte"];
+			$fin = date('Y-m-d H:i:s', strtotime('+23 hour +59 minutes +59 seconds', strtotime($inicio)));
+			
+			$respuesta = Datos::corteModel($inicio, $fin);
+			
+			echo '<div class="card mb-3">
+			        <div class="card-header">
+			          <i class="fa fa-table"></i><strong>Corte de caja</strong></div>
+			        <div class="card-body">
+			          <div class="table-responsive">
+			            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			              <thead>
+			                <tr>
+			                  <th>Paciente</th>
+			                  <th>Tratamiento</th>
+			                  <th>Total</th>
+			                </tr>
+			              </thead>';
+
+			foreach ($respuesta as $row => $item){
+				echo'<tr>
+				<td>'.$item["nombre"].'</td>
+				<td>'.$item["descripcion"].'</td>
+				<td>';
+				
+				setlocale(LC_MONETARY, 'en_US');
+				echo money_format('%(#10n', $item["total"]); 
+				echo'</td>
+				</tr>';
+				$suma+=$item["total"];
+			}
+			
+
+
+		}
+
+		echo '</tbody>
+		<tfoot>
+		<th></th>
+		<th><strong>Total del Corte</strong></th>
+		<th><strong>$ '.$suma.'.00</strong></th>
+        </table>
+     	</div>
+    	</div>
+		</div>';
+	}
+
 
 	#LISTA DE PACIENTES EN MODAL
 	#------------------------------------

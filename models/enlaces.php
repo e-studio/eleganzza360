@@ -23,6 +23,7 @@ class EnlacesModels{
 		   $enlaces == "empleados" ||
 		   $enlaces == "editEmpleados" ||
 		   $enlaces == "addEmpleado" ||
+		   $enlaces == "corte" ||
 		   $enlaces == "reimpresion" ||
 		   $enlaces == "pdfprint"
 		   ){

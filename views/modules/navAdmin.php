@@ -107,6 +107,9 @@
             <li>
               <a href="index.php?action=repClientes">Clientes</a>
             </li>
+            <li>
+              <a href="index.php?action=corte">Corte de caja</a>
+            </li>
           </ul>
         </li>
       </ul>

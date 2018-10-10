@@ -73,6 +73,13 @@
           </a>
         </li>
         
+        <li cass="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="index.php?action=corte">
+            <i class="fa fa-fw fa-money"></i>
+            <span class="nav-link-text">Corte de caja</span>
+          </a>
+        </li>
+        
         </ul>
 
       <ul class="navbar-nav sidenav-toggler">

@@ -252,14 +252,14 @@ document.getElementById("precio").value=price;
 })
 });
 
-		var email = '<?php echo $rw_cliente['email']; ?>';
-		var telefono = '<?php echo $rw_cliente['movil']; ?>';
-		var direccion = '<?php echo $rw_cliente['direccion']; ?>';
-		var test = '<?php echo $rw_cliente['nomCompleto']; ?>';
-		$('#email').html(email);
-		$('#telefono').html(telefono);
-		$('#direccion').html(direccion);
-		$('#test').html(test);
+var email = '<?php echo $rw_cliente['email']; ?>';
+var telefono = '<?php echo $rw_cliente['movil']; ?>';
+var direccion = '<?php echo $rw_cliente['direccion']; ?>';
+var test = '<?php echo $rw_cliente['nomCompleto']; ?>';
+$('#email').html(email);
+$('#telefono').html(telefono);
+$('#direccion').html(direccion);
+$('#test').html(test);
 
 
 function mostrar_items(){

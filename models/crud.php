@@ -114,7 +114,22 @@ class Datos extends Conexion{
 
 	}
 
+	#CORTE POR DIA
+	#------------------------------------------------------------------------------
 
+	public function corteModel($inicio, $fin){
+
+		$stmt = Conexion::conectar()->prepare("SELECT id_cliente AS nombre, descripcion, monto AS total FROM presupuestos WHERE fecha BETWEEN :inicio AND :fin GROUP BY fecha");
+
+		$stmt->bindParam(":inicio", $inicio, PDO::PARAM_STR);
+		$stmt->bindParam(":fin", $fin, PDO::PARAM_STR);
+
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+	
 	#VERIFICA SI UN CLIENTE YA ESTA REGISTRADO
 	#-------------------------------------
 
