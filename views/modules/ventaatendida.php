@@ -173,7 +173,7 @@ Dirección : <?php echo $rw['direccion'];?>
 
 <div class="col-md-6">
 <label>Precio unitario</label>
-<input type="text" class="form-control" id="precio" name="precio" required readonly>
+<input type="text" class="form-control" id="precio" name="precio" required>
 </div>
 
 </div>
