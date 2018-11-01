@@ -155,7 +155,7 @@
 						$("#txtFechaEvento").val(FechaHora[0]);
 						$("#txtHoraEvento").val(FechaHora[1]);
 						DatosEventos();
-						InfoEventos("modificarM",ExisteEvento,true);
+						InfoEventosM("modificarM",ExisteEvento,true);
 					} else {
 						revertFunc();
 					}
@@ -169,49 +169,80 @@
 	$("#btnAgregar").click(function(){
 		Requerido = $("#agendo").val();
 		if (Requerido === ""){
-			alert ("Ingresa tu numero de empleada");
+			swal({
+				type: "error",
+				title: "Favor de ingresar tu número de empleada",
+				showConfirmButton: "true",
+				confirmButtonText: "Aceptar",
+				closeOnConfirm: "false",
+			}). then ((result)=>{
+				if (result.value){
+				}
+			});
 		} else {
 			RecolectarDatos();
-			EnviarInformacion("agregar",NuevoEvento);
+			usuarioagenda("usuarioagenda",NuevoEvento);
 		}
 	});
 
 	$("#btnEliminar").click(function(){
 		Requerido = $("#txtEmpleadaEvento").val();
 		if (Requerido === "" || Requerido=== "0"){
-			alert ("Ingresa tu numero de Empleada");
-		} else {	
-			$("#ModalBorrar").modal();
+			swal({
+				type: "error",
+				title: "Favor de ingresar tu número de empleada",
+				showConfirmButton: "true",
+				confirmButtonText: "Aceptar",
+				closeOnConfirm: "false",
+			}). then ((result)=>{
+				if (result.value){
+				}
+			});
+		} else {
+			DatosEventos();
+			usuarioeliminar("usuarioatendio",ExisteEvento);	
 		}
 	});
 
 	$("#btnConfirmar").click(function(){
-		DatosEventos();
 		InfoEventosEliminar("eliminar",ExisteEvento);
 	});
 
 	$("#btnModificar").click(function(){
 		Requerido = $("#txtEmpleadaEvento").val();
 		if (Requerido === "" || Requerido=== "0"){
-			alert ("Ingresa tu numero de empleada");
+			swal({
+				type: "error",
+				title: "Favor de ingresar tu número de empleada",
+				showConfirmButton: "true",
+				confirmButtonText: "Aceptar",
+				closeOnConfirm: "false",
+			}). then ((result)=>{
+				if (result.value){
+				}
+			});
 		} else {
 			DatosEventos();
-			InfoEventos("modificar",ExisteEvento);
-			var cita = $("#txtIDEvento").val();
-			var descr =$("#txtTratamientoEvento").val();
-			var cliente = $("#txtPacienteEvento").val();
-			window.location.href="index.php?action=ventaatendida&cita="+encodeURIComponent(cita)+"&tratamiento="+encodeURIComponent(descr)+"&paciente="+encodeURIComponent(cliente);
+			usuarioatendio("usuarioatendio",ExisteEvento);
 		}
 	});
 
 	$("#btnCambiar").click(function(){
 		Requerido = $("#txtEmpleadaEvento").val();
 		if (Requerido === "" || Requerido === "0"){
-			alert ("Ingresa Tu Numero de Empleada");
+			swal({
+				type: "error",
+				title: "Favor de ingresar tu número de empleada",
+				showConfirmButton: "true",
+				confirmButtonText: "Aceptar",
+				closeOnConfirm: "false",
+			}). then ((result)=>{
+				if (result.value){	
+				}
+			});
 		} else {
 			DatosEventos();
-			InfoEventos("modificarM",ExisteEvento,true);
-			$("#ModalEventos").modal("toggle");
+			usuariocambio("usuarioatendio",ExisteEvento);
 		}
 	});
 
@@ -252,6 +283,179 @@
 		}
 	}
 
+	function usuarioagenda(accion, objEvento){
+		$.ajax({
+			type: "POST",
+			url: "views/modules/eventos.php?accion="+accion,
+			data: objEvento,
+			success: function(msg){
+				console.log("msg", msg);
+				if (msg === false){
+					swal({
+						type: "error",
+						title: "No Existe Esta Empleada",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						if (result.value){
+						}
+					});
+				} else {
+					EnviarInformacion("agregar",NuevoEvento);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
+		})
+	}
+
+	function usuarioatendio(accion, objEvento){
+		$.ajax({
+			type: "POST",
+			url: "views/modules/eventos.php?accion="+accion,
+			data: objEvento,
+			success: function(msg){
+				console.log("msg", msg);
+				if (msg === false){
+					swal({
+						type: "error",
+						title: "No Existe Esta Empleada",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						if (result.value){
+						}
+					});
+				} else {
+					InfoEventos("modificar",ExisteEvento);
+					var cita = $("#txtIDEvento").val();
+					var descr =$("#txtTratamientoEvento").val();
+					var cliente = $("#txtPacienteEvento").val();
+					window.location.href="index.php?action=ventaatendida&cita="+encodeURIComponent(cita)+"&tratamiento="+encodeURIComponent(descr)+"&paciente="+encodeURIComponent(cliente);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
+		})
+	}
+
+	function usuarioeliminar(accion, objEvento){
+		$.ajax({
+			type: "POST",
+			url: "views/modules/eventos.php?accion="+accion,
+			data: objEvento,
+			success: function(msg){
+				console.log("msg", msg);
+				if (msg === false){
+					swal({
+						type: "error",
+						title: "No Existe Esta Empleada",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						if (result.value){
+						}
+					});
+				} else {
+					$("#ModalBorrar").modal();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
+		})
+	}
+
+	function usuariocambio(accion, objEvento){
+		$.ajax({
+			type: "POST",
+			url: "views/modules/eventos.php?accion="+accion,
+			data: objEvento,
+			success: function(msg){
+				console.log("msg", msg);
+				if (msg === false){
+					swal({
+						type: "error",
+						title: "No Existe Esta Empleada",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						if (result.value){
+						}
+					});
+				} else {
+					InfoEventosM("modificarM",ExisteEvento,true);
+					$("#ModalEventos").modal("toggle");
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
+		})
+	}
+
 	function EnviarInformacion(accion,objEvento){
 		$.ajax({
 			type:"POST",
@@ -261,10 +465,34 @@
 				if(msg){
 					$("#calendario").fullCalendar("refetchEvents");
 					$("#ModalCitas").modal("toggle");
+					swal({
+						type: "success",
+						title: "Cita agregada exitosamente",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						if (result.value){
+						}
+					});
 				}
 			},
-			error: function(){
-				alert ("hay un error...");
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
 			}
 		});
 	}
@@ -275,17 +503,41 @@
 			url:"views/modules/eventos.php?accion="+accion,
 			data:objEvento,
 			success: function(msg){
-			if(msg){
-				$("#calendario").fullCalendar("refetchEvents");
-				if (!modal){
-					$("#ModalEventos").modal("toggle");
-					$("#ModalBorrar").modal("toggle");
+				if(msg){
+					$("#calendario").fullCalendar("refetchEvents");
+					swal({
+						type: "info",
+						title: "Cita cancelada exitosamente",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						if (result.value){
+						}
+					});
+					if (!modal){
+						$("#ModalEventos").modal("toggle");
+						$("#ModalBorrar").modal("toggle");
+					}
 				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
 			}
-		},
-		error: function(){
-			alert ("hay un error...");
-		}
 		});
 	}
 
@@ -295,15 +547,58 @@
 			url:"views/modules/eventos.php?accion="+accion,
 			data:objEvento,
 			success: function(msg){
+				if(msg){
+					$("#calendario").fullCalendar("refetchEvents");
+					if (!modal){
+						$("#ModalEventos").modal("toggle");
+					}
+				}
+			},
+			error: function(){
+			}
+		});
+	}
+
+	function InfoEventosM(accion,objEvento,modal){
+		$.ajax({
+			type:"POST",
+			url:"views/modules/eventos.php?accion="+accion,
+			data:objEvento,
+			success: function(msg){
 			if(msg){
 				$("#calendario").fullCalendar("refetchEvents");
+				swal({
+					type: "success",
+					title: "Cita modificada exitosamente",
+					showConfirmButton: "true",
+					confirmButtonText: "Aceptar",
+					closeOnConfirm: "false",
+				}). then ((result)=>{
+					if (result.value){
+					}
+				});
 				if (!modal){
 					$("#ModalEventos").modal("toggle");
 				}
 			}
 		},
-		error: function(){
-		}
+		error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
 		});
 	}
 

@@ -82,6 +82,22 @@
 			echo json_encode($resultado);
 		break;
 
+		case 'usuarioagenda':
+			$resultado = false;
+			$sentencia = $pdo -> prepare ("SELECT * FROM usuarios WHERE password = :agendo");
+			$sentencia -> execute(array("agendo" => $_POST['agendo']));
+			$resultado = $sentencia -> fetch();
+			echo json_encode($resultado);
+		break;
+
+		case 'usuarioatendio':
+			$resultado = false;
+			$sentencia = $pdo -> prepare ("SELECT * FROM usuarios WHERE password = :empleada");
+			$sentencia -> execute(array("empleada" => $_POST['empleada']));
+			$resultado = $sentencia -> fetch();
+			echo json_encode($resultado);
+		break;
+
 		default:	
 			$sentencia = $pdo -> prepare ("SELECT * FROM citas");
 			$sentencia ->execute();

@@ -49,9 +49,9 @@
             <span class="nav-link-text">Productos</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseProductos">
-            <li>
+            <!-- <li>
               <a href="index.php?action=productos">Productos</a>
-            </li>
+            </li> -->
             <li>
               <a href="index.php?action=addProducto">Agregar Producto</a>
             </li>
