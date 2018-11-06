@@ -129,7 +129,7 @@ class Datos extends Conexion{
 
 		$stmt->close();
 	}
-	
+
 	#VERIFICA SI UN CLIENTE YA ESTA REGISTRADO
 	#-------------------------------------
 
@@ -171,11 +171,11 @@ class Datos extends Conexion{
     #BUSCA TODOS INGRESOS QUE HAN GENERADO TODOS EMPLEADOS PARA CALCULAR COMISIONES
 	#------------------------------------------------------------------------------
 
-	public function comisionesModel($campo, $inicio, $fin){
+	public function comisionesModel($tipo, $inicio, $fin){
 
 
 
-		$stmt = Conexion::conectar()->prepare("SELECT usuarios.nombre, SUM(presupuestos.monto) as Total FROM usuarios INNER JOIN presupuestos ON usuarios.id = $campo WHERE presupuestos.fecha BETWEEN :inicio AND :fin GROUP BY usuarios.nombre");
+		$stmt = Conexion::conectar()->prepare("SELECT usuarios.nombre, SUM(presupuestos.monto) as Total FROM usuarios INNER JOIN presupuestos ON usuarios.id = $tipo WHERE presupuestos.fecha BETWEEN :inicio AND :fin GROUP BY usuarios.nombre");
 
 		//SELECT usuarios.nombre, presupuestos.fecha, SUM(presupuestos.monto) as Total FROM usuarios INNER JOIN presupuestos ON usuarios.id = presupuestos.pre_empleada WHERE presupuestos.fecha BETWEEN '2018-10-01' AND '2018-10-30' GROUP BY usuarios.nombre;
 

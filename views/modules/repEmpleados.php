@@ -17,7 +17,7 @@ else {
 ?>
   <div class="content-wrapper">
     <div class="container-fluid">
-      
+
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -25,9 +25,9 @@ else {
         </li>
         <li class="breadcrumb-item active">Descripcion de la ubicacion</li>
       </ol>
-      
+
       <hr>
-       
+
 
        <!-- Aqui va el contenido -->
 
@@ -48,22 +48,22 @@ else {
               </div>
             </div>
           </div>
-          
+
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <label for="rol">Comisiones por:</label>
                 <select name="tipoComision" id="tipoComision">
                   <option value="">Selecione ...</option>
-                  <option value="1">Agendo</option>
-                  <option value="2">Atendio</option>
-                  <option value="3">Referirio</option>
+                  <option value="1">Agendadas</option>
+                  <option value="2">Atendidas</option>
+                  <option value="3">Referidas</option>
                 </select>
               </div>
-            
+
             </div>
           </div>
-      
+
           <input class="btn btn-primary btn-block" type="submit" value="Generar Reporte">
        </form>
      </div>
@@ -71,19 +71,19 @@ else {
      <hr>
 
 
-       
+
                 <?php
                   $ingreso = new MvcController();
-                  $ingreso -> comisionesController();                
+                  $ingreso -> comisionesController();
                 ?>
-              
 
-        
-      
+
+
+
 
 
        <!-- Fin del contenido -->
-      
+
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>
     </div><!-- /.container-fluid-->

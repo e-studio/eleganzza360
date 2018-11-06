@@ -497,7 +497,7 @@ class MvcController{
 	#------------------------------------
 
 	public function comisionesController(){
-
+			$totalReporte =0;
 			if(isset($_POST["fechaInicio"])){
 				$inicio = $_POST["fechaInicio"];
 				$fin = $_POST["fechaFin"];
@@ -524,7 +524,7 @@ class MvcController{
 
 				echo '<div class="card mb-3">
 				        <div class="card-header">
-				          <i class="fa fa-table"></i> Comisiones por clientes <strong>'.$desc.'</strong></div>
+				          <i class="fa fa-table"></i> <h5>Comisiones por clientes <strong>'.$desc.'</strong></h5></div>
 				        <div class="card-body">
 				          <div class="table-responsive">
 				            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -543,9 +543,18 @@ class MvcController{
 			  	echo money_format('%(#10n', $item["Total"]);
 			  	echo'</td>
 					</tr>';
+					$totalReporte += $item["Total"];
 				}
 
+
+
 				echo '</tbody>
+				<tfooter>
+				<tr>
+			    	<td></td>
+						<td><h5>Total: '. money_format('%(#10n', $totalReporte).'</h5></td>
+					</td>
+				</tfooter>
             </table>
           </div>
         </div>
