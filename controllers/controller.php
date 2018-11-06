@@ -213,9 +213,9 @@ class MvcController{
 		if(isset($_POST["fechaInicioCorte"])){
 			$inicio = $_POST["fechaInicioCorte"];
 			$fin = date('Y-m-d H:i:s', strtotime('+23 hour +59 minutes +59 seconds', strtotime($inicio)));
-			
+
 			$respuesta = Datos::corteModel($inicio, $fin);
-			
+
 			echo '<div class="card mb-3">
 			        <div class="card-header">
 			          <i class="fa fa-table"></i><strong>Corte de caja</strong></div>
@@ -235,14 +235,14 @@ class MvcController{
 				<td>'.$item["nombre"].'</td>
 				<td>'.$item["descripcion"].'</td>
 				<td>';
-				
+
 				setlocale(LC_MONETARY, 'en_US');
-				echo money_format('%(#10n', $item["total"]); 
+				echo money_format('%(#10n', $item["total"]);
 				echo'</td>
 				</tr>';
 				$suma+=$item["total"];
 			}
-			
+
 
 
 		}
@@ -469,7 +469,7 @@ class MvcController{
 	#------------------------------------
 
 	public function ingresosClientesController(){
-
+		$totalReporte =0;
 		$respuesta = Datos::ingresosClientesModel("presupuestos");
 
 		foreach ($respuesta as $row => $item){
@@ -481,7 +481,14 @@ class MvcController{
 	  	echo money_format('%(#10n', $item["total"]);
 	  	echo'</td>
 			</tr>';
+			$totalReporte += $item["total"];
+
 		}
+		echo '<tr>
+				<td></td>
+				<td></td>
+				<td ><h4><strong>Total:</strong>'.money_format('%(#10n', $totalReporte).'</h4></td>
+			</tr>';
 
 	}
 

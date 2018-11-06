@@ -19,7 +19,7 @@ else {
 ?>
   <div class="content-wrapper">
     <div class="container-fluid">
-      
+
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -27,9 +27,9 @@ else {
         </li>
         <li class="breadcrumb-item active">Reporte de Clientes</li>
       </ol>
-      
+
       <hr>
-       
+
 
        <!-- Aqui va el contenido -->
 
@@ -46,23 +46,24 @@ else {
                   <th>Total</th>
                 </tr>
               </thead>
-              <tfoot>
-                <tr>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Total</th>                
-                </tr>
-              </tfoot>
+
               <tbody>
                 <?php
                   $ingreso = new MvcController();
-                  $ingreso -> ingresosMesClientesController();                
+                  $ingreso -> ingresosMesClientesController();
                 ?>
               </tbody>
+             <!-- <tfoot>
+                <tr>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Total</th>
+                </tr>
+              </tfoot>-->
             </table>
           </div>
         </div>
-        
+
       </div>
 
       <div><p><hr></p></div>
@@ -80,28 +81,29 @@ else {
                   <th>Total</th>
                 </tr>
               </thead>
-              <tfoot>
+              <!--<tfoot>
                 <tr>
                   <th>Nombres</th>
                   <th>Apellidos</th>
-                  <th>Total</th>                
+                  <th>Total</th>
                 </tr>
-              </tfoot>
+              </tfoot>-->
+
               <tbody>
                 <?php
                   $ingreso = new MvcController();
-                  $ingreso -> ingresosClientesController();                
+                  $ingreso -> ingresosClientesController();
                 ?>
               </tbody>
             </table>
           </div>
         </div>
-        
+
       </div>
 
 
        <!-- Fin del contenido -->
-      
+
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>
     </div><!-- /.container-fluid-->
