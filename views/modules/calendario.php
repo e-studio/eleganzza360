@@ -32,6 +32,8 @@
 	var NuevoEvento;
 	var ExisteEvento;
 	var Requerido;
+	var Requerido2;
+	var Requerido3;
 	var Cancelado;
 	var horaend;
 	var horainicio;
@@ -82,21 +84,31 @@
 				Requerido="";
 				if (FechaHora[0]>=moment().format("YYYY-MM-DD")){
 					$("#txtEmpleadaEvento").val(calEvent.empleada);
+					$("#txtEmpleadaEvento2").val(calEvent.empleada2);
+					$("#txtEmpleadaEvento3").val(calEvent.empleada3);
 					Requerido=$("#txtEmpleadaEvento").val();
 					if (Requerido===""||Requerido==="0"){
 						$("#ModalEventos").modal();
 						$("#tituloEventoE").html(calEvent.title);
 						$("#txtTratamientoEvento").val(calEvent.tratamiento);
+						$("#txtTratamientoEvento2").val(calEvent.tratamiento2);
+						$("#txtTratamientoEvento3").val(calEvent.tratamiento3);
+						$("#txtTratamientoEvento4").val(calEvent.tratamiento4);
 						$("#txtIDEvento").val(calEvent.idCitas);
 						$("#txtHoraEvento").val(FechaHora[1]);
 						$("#txtFechaEvento").val(FechaHora[0]);
 						$("#txtPacienteEvento").val(calEvent.title);
 						$("#txtNotaEvento").val(calEvent.nota);
 						document.getElementById("txtEmpleadaEvento").disabled=false;
+						document.getElementById("txtEmpleadaEvento2").disabled=false;
+						document.getElementById("txtEmpleadaEvento3").disabled=false;
 						document.getElementById("btnEliminar").disabled=false;
 						document.getElementById("btnModificar").disabled=false;
 						document.getElementById("btnCambiar").disabled=false;
 						document.getElementById("txtTratamientoEvento").disabled=false;
+						document.getElementById("txtTratamientoEvento2").disabled=false;
+						document.getElementById("txtTratamientoEvento3").disabled=false;
+						document.getElementById("txtTratamientoEvento4").disabled=false;
 						document.getElementById("txtHoraEvento").disabled=false;
 						document.getElementById("txtNotaEvento").disabled=false;
 					} else {
@@ -107,32 +119,48 @@
 							$("#ModalEventos").modal();
 							$("#tituloEventoE").html(calEvent.title+" CITA CANCELADA");
 							$("#txtTratamientoEvento").val(calEvent.tratamiento);
+							$("#txtTratamientoEvento2").val(calEvent.tratamiento2);
+							$("#txtTratamientoEvento3").val(calEvent.tratamiento3);
+							$("#txtTratamientoEvento4").val(calEvent.tratamiento4);
 							$("#txtIDEvento").val(calEvent.idCitas);
 							$("#txtHoraEvento").val(FechaHora[1]);
 							$("#txtFechaEvento").val(FechaHora[0]);
 							$("#txtPacienteEvento").val(calEvent.title);
 							$("#txtNotaEvento").val(calEvent.nota);
 							document.getElementById("txtEmpleadaEvento").disabled=true;
+							document.getElementById("txtEmpleadaEvento2").disabled=true;
+							document.getElementById("txtEmpleadaEvento3").disabled=true;
 							document.getElementById("btnEliminar").disabled=true;
 							document.getElementById("btnModificar").disabled=true;
 							document.getElementById("btnCambiar").disabled=true;
 							document.getElementById("txtTratamientoEvento").disabled=true;
+							document.getElementById("txtTratamientoEvento2").disabled=true;
+							document.getElementById("txtTratamientoEvento3").disabled=true;
+							document.getElementById("txtTratamientoEvento4").disabled=true;
 							document.getElementById("txtHoraEvento").disabled=true;	
 							document.getElementById("txtNotaEvento").disabled=true;			
 						} else {
 							$("#ModalEventos").modal();
 							$("#tituloEventoE").html(calEvent.title+" PACIENTE YA ATENDIDA");
 							$("#txtTratamientoEvento").val(calEvent.tratamiento);
+							$("#txtTratamientoEvento2").val(calEvent.tratamiento2);
+							$("#txtTratamientoEvento3").val(calEvent.tratamiento3);
+							$("#txtTratamientoEvento4").val(calEvent.tratamiento4);
 							$("#txtIDEvento").val(calEvent.idCitas);
 							$("#txtHoraEvento").val(FechaHora[1]);
 							$("#txtFechaEvento").val(FechaHora[0]);
 							$("#txtPacienteEvento").val(calEvent.title);
 							$("#txtNotaEvento").val(calEvent.nota);
 							document.getElementById("txtEmpleadaEvento").disabled=true;
+							document.getElementById("txtEmpleadaEvento2").disabled=true;
+							document.getElementById("txtEmpleadaEvento3").disabled=true;
 							document.getElementById("btnEliminar").disabled=true;
 							document.getElementById("btnModificar").disabled=true;
 							document.getElementById("btnCambiar").disabled=true;
 							document.getElementById("txtTratamientoEvento").disabled=true;
+							document.getElementById("txtTratamientoEvento2").disabled=true;
+							document.getElementById("txtTratamientoEvento3").disabled=true;
+							document.getElementById("txtTratamientoEvento4").disabled=true;
 							document.getElementById("txtHoraEvento").disabled=true;	
 							document.getElementById("txtNotaEvento").disabled=true;	
 						}				
@@ -210,6 +238,8 @@
 
 	$("#btnModificar").click(function(){
 		Requerido = $("#txtEmpleadaEvento").val();
+		Requerido2 = $("#txtEmpleadaEvento2").val();
+		Requerido3 = $("#txtEmpleadaEvento3").val();
 		if (Requerido === "" || Requerido=== "0"){
 			swal({
 				type: "error",
@@ -223,7 +253,13 @@
 			});
 		} else {
 			DatosEventos();
-			usuarioatendio("usuarioatendio",ExisteEvento);
+			if (Requerido3 != "" && Requerido2 != "" && Requerido != ""){
+				usuarioatendio3("usuarioatendio3", ExisteEvento);
+			} else if (Requerido2 != "" && Requerido != ""){
+				usuarioatendio2("usuarioatendio2", ExisteEvento);
+			} else if (Requerido != ""){
+				usuarioatendio("usuarioatendio", ExisteEvento);
+			}
 		}
 	});
 
@@ -255,6 +291,9 @@
 			idCitas:$("#txtID").val(),
 			title:$("#txtPaciente").val(),
 			tratamiento:$("#txtTratamiento").val(),
+			tratamiento2:$("#txtTratamiento2").val(),
+			tratamiento3:$("#txtTratamiento3").val(),
+			tratamiento4:$("#txtTratamiento4").val(),
 			start:$("#txtFecha").val()+" "+$("#txtHora").val(),
 			end:final,
 			color: "#A9ECF5",
@@ -274,7 +313,12 @@
 			idCitas:$("#txtIDEvento").val(),
 			title:$("#txtPacienteEvento").val(),
 			tratamiento:$("#txtTratamientoEvento").val(),
+			tratamiento2:$("#txtTratamientoEvento2").val(),
+			tratamiento3:$("#txtTratamientoEvento3").val(),
+			tratamiento4:$("#txtTratamientoEvento4").val(),
 			empleada:$("#txtEmpleadaEvento").val(),
+			empleada2:$("#txtEmpleadaEvento2").val(),
+			empleada3:$("#txtEmpleadaEvento3").val(),
 			start:$("#txtFechaEvento").val()+" "+$("#txtHoraEvento").val(),
 			end:final,
 			color: "#A9ECF5",
@@ -335,7 +379,7 @@
 				if (msg === false){
 					swal({
 						type: "error",
-						title: "No Existe Esta Empleada",
+						title: "No Existe La Empleada #1",
 						showConfirmButton: "true",
 						confirmButtonText: "Aceptar",
 						closeOnConfirm: "false",
@@ -346,9 +390,95 @@
 				} else {
 					InfoEventos("modificar",ExisteEvento);
 					var cita = $("#txtIDEvento").val();
-					var descr =$("#txtTratamientoEvento").val();
+					var descr =$("#txtTratamientoEvento").val()+" -- "+$("#txtTratamientoEvento2").val()+" -- "+$("#txtTratamientoEvento3").val()+" -- "+$("#txtTratamientoEvento4").val();
 					var cliente = $("#txtPacienteEvento").val();
 					window.location.href="index.php?action=ventaatendida&cita="+encodeURIComponent(cita)+"&tratamiento="+encodeURIComponent(descr)+"&paciente="+encodeURIComponent(cliente);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
+		})
+	}
+
+	function usuarioatendio3(accion, objEvento){
+		$.ajax({
+			type: "POST",
+			url: "views/modules/eventos.php?accion="+accion,
+			data: objEvento,
+			success: function(msg){
+				//console.log("msg", msg);
+				if (msg === false){
+					swal({
+						type: "error",
+						title: "No Existe La Empleada #3",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						console.log("result", result);
+						if (result.value){
+						}
+					});
+				} else {
+					usuarioatendio2("usuarioatendio2", ExisteEvento);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown, exception){
+				if (jqXHR.status === 0) {
+	                alert('Not connect.\n Verify Network.');
+	            } else if (jqXHR.status == 404) {
+	                alert('Requested page not found. [404]');
+	            } else if (jqXHR.status == 500) {
+	                alert('Internal Server Error [500].');
+	            } else if (exception === 'parsererror') {
+	                alert('Requested JSON parse failed.');
+	            } else if (exception === 'timeout') {
+	                alert('Time out error.');
+	            } else if (exception === 'abort') {
+	                alert('Ajax request aborted.');
+	            } else {
+	                alert('Uncaught Error.\n' + jqXHR.responseText);
+	            }
+			}
+		})
+	}
+
+	function usuarioatendio2(accion, objEvento){
+		$.ajax({
+			type: "POST",
+			url: "views/modules/eventos.php?accion="+accion,
+			data: objEvento,
+			success: function(msg){
+				//console.log("msg", msg);
+				if (msg === false){
+					swal({
+						type: "error",
+						title: "No Existe La Empleada #2",
+						showConfirmButton: "true",
+						confirmButtonText: "Aceptar",
+						closeOnConfirm: "false",
+					}). then ((result)=>{
+						console.log("result", result);
+						if (result.value){
+						}
+					});
+				} else {
+					usuarioatendio("usuarioatendio",ExisteEvento);
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown, exception){
@@ -473,6 +603,7 @@
 						closeOnConfirm: "false",
 					}). then ((result)=>{
 						if (result.value){
+							window.location.reload();
 						}
 					});
 				}
@@ -606,6 +737,9 @@
 		$("#txtID").val("");
 		$("#txtPaciente").val("");
 		$("#txtTratamiento").val("");
+		$("#txtTratamiento2").val("");
+		$("#txtTratamiento3").val("");
+		$("#txtTratamiento4").val("");
 		$("#agendo").val("");
 		$("#referida").val("");
 	}

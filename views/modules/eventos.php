@@ -14,10 +14,13 @@
 				"agendo" => $_POST['agendo'],
 				"referida" => $_POST['referida']
 			));
-			$sentencia = $pdo -> prepare("INSERT INTO citas(title,tratamiento,empleada,start,end,estado,agendo,referida) VALUES (:title,:tratamiento,NULL,:start,:end,NULL,:agendo,:referida)");
+			$sentencia = $pdo -> prepare("INSERT INTO citas(title,tratamiento,tratamiento2,tratamiento3,tratamiento4,empleada,start,end,estado,agendo,referida) VALUES (:title,:tratamiento,:tratamiento2,:tratamiento3,:tratamiento4,NULL,:start,:end,NULL,:agendo,:referida)");
 			$resultado = $sentencia -> execute(array(
 				"title" => $_POST['title'],
 				"tratamiento" => $_POST['tratamiento'],
+				"tratamiento2" => $_POST['tratamiento2'],
+				"tratamiento3" => $_POST['tratamiento3'],
+				"tratamiento4" => $_POST['tratamiento4'],
 				"start" => $_POST['start'],
 				"end" => $_POST['end'],
 				"agendo" => $_POST['agendo'],
@@ -32,6 +35,9 @@
 			$sentencia = $pdo -> prepare ("UPDATE citas SET
 				title = :title,
 				tratamiento = :tratamiento,
+				tratamiento2 = :tratamiento2,
+				tratamiento3 = :tratamiento3,
+				tratamiento4 = :tratamiento4,
 				start = :start,
 				end = :end
 				WHERE idCitas = :idCitas");
@@ -39,6 +45,9 @@
 				"idCitas" => $_POST['idCitas'],
 				"title" => $_POST['title'],
 				"tratamiento" => $_POST['tratamiento'],
+				"tratamiento2" => $_POST['tratamiento2'],
+				"tratamiento3" => $_POST['tratamiento3'],
+				"tratamiento4" => $_POST['tratamiento4'],
 				"start" => $_POST['start'],
 				"end" => $_POST['end']
 			));
@@ -47,16 +56,26 @@
 
 		case 'modificar':
 			$resultado = false;
-			$respre=false;
-			$sentpre = $pdo -> prepare("UPDATE presupuestos SET pre_empleada=:empleada WHERE pre_cita=:idCitas");
-			$respre = $sentpre -> execute(array(
+			$sentencia = $pdo -> prepare("UPDATE presupuestos SET 
+				pre_empleada = :empleada,
+				pre_empleada2 = :empleada2,
+				pre_empleada3 = :empleada3
+				WHERE pre_cita = :idCitas");
+			$resultado = $sentencia -> execute(array(
 				"idCitas" => $_POST['idCitas'],
-				"empleada" => $_POST['empleada']
+				"empleada" => $_POST['empleada'],
+				"empleada2" => $_POST['empleada2'],
+				"empleada3" => $_POST['empleada3']
 			));
 			$sentencia = $pdo -> prepare ("UPDATE citas SET
 				title = :title,
 				tratamiento = :tratamiento,
+				tratamiento2 = :tratamiento2,
+				tratamiento3 = :tratamiento3,
+				tratamiento4 = :tratamiento4,
 				empleada = :empleada,
+				empleada2 = :empleada2,
+				empleada3 = :empleada3,
 				start = :start,
 				end = :end,
 				nota = :nota
@@ -65,7 +84,12 @@
 				"idCitas" => $_POST['idCitas'],
 				"title" => $_POST['title'],
 				"tratamiento" => $_POST['tratamiento'],
+				"tratamiento2" => $_POST['tratamiento2'],
+				"tratamiento3" => $_POST['tratamiento3'],
+				"tratamiento4" => $_POST['tratamiento4'],
 				"empleada" => $_POST['empleada'],
+				"empleada2" => $_POST['empleada2'],
+				"empleada3" => $_POST['empleada3'],
 				"start" => $_POST['start'],
 				"end" => $_POST['end'],
 				"nota" => $_POST['nota']
@@ -94,6 +118,22 @@
 			$resultado = false;
 			$sentencia = $pdo -> prepare ("SELECT * FROM usuarios WHERE password = :empleada");
 			$sentencia -> execute(array("empleada" => $_POST['empleada']));
+			$resultado = $sentencia -> fetch();
+			echo json_encode($resultado);
+		break;
+
+		case 'usuarioatendio2':
+			$resultado = false;
+			$sentencia = $pdo -> prepare ("SELECT * FROM usuarios WHERE password = :empleada2");
+			$sentencia -> execute(array("empleada2" => $_POST['empleada2']));
+			$resultado = $sentencia -> fetch();
+			echo json_encode($resultado);
+		break;
+
+		case 'usuarioatendio3':
+			$resultado = false;
+			$sentencia = $pdo -> prepare ("SELECT * FROM usuarios WHERE password = :empleada3");
+			$sentencia -> execute(array("empleada3" => $_POST['empleada3']));
 			$resultado = $sentencia -> fetch();
 			echo json_encode($resultado);
 		break;

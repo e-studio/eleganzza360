@@ -34,10 +34,34 @@ $lista = new mvcController;
               <?php $lista -> llenaModelosProd(); ?>
             </select>
           </div>
+           <div class="col-sm-10">
+            <label>Tratamiento 2</label>
+            <select name="txtTratamientoEvento2" id="txtTratamientoEvento2" class="form-control" required>
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
+          </div>
+          <div class="col-sm-10">
+            <label>Tratamiento 3</label>
+            <select name="txtTratamientoEvento3" id="txtTratamientoEvento3" class="form-control" required>
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
+          </div>
+          <div class="col-sm-10">
+            <label>Tratamiento 4</label>
+            <select name="txtTratamientoEvento4" id="txtTratamientoEvento4" class="form-control" required>
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
+          </div>
         </div>
         <div class="form-group">
           <div class="col-sm-10">
             Atendio: <input type="password" id="txtEmpleadaEvento" name="txtEmpleadaEvento" class="form-control">
+          </div>
+           <div class="col-sm-10">
+            Atendio 2: <input type="password" id="txtEmpleadaEvento2" name="txtEmpleadaEvento2" class="form-control">
+          </div>
+          <div class="col-sm-10">
+            Atendio 3: <input type="password" id="txtEmpleadaEvento3" name="txtEmpleadaEvento3" class="form-control">
           </div>
         </div>
          <div class="form-group">

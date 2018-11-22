@@ -40,6 +40,24 @@ $lista = new mvcController;
             </select>
           </div>
         </div>
+        <div class="col-sm-10">
+            <label>Tratamiento 2</label>
+             <select name="txtTratamiento2" id="txtTratamiento2" class="form-control">
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
+          </div>
+          <div class="col-sm-10">
+            <label>Tratamiento 3</label>
+             <select name="txtTratamiento3" id="txtTratamiento3" class="form-control">
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
+          </div>
+          <div class="col-sm-10">
+            <label>Tratamiento 4</label>
+             <select name="txtTratamiento4" id="txtTratamiento4" class="form-control">
+              <?php $lista -> llenaModelosProd(); ?>
+            </select>
+          </div>
       </div>
       <div class="form-group">
         <div class="form-row">
