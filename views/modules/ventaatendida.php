@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("America/Chihuahua");
+date_default_timezone_get();
 if (!isset($_SESSION)){
 session_start();
 }

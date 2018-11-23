@@ -1,3 +1,5 @@
+<?php date_default_timezone_set("America/Chihuahua");
+date_default_timezone_get(); ?>
 <style type="text/css">
 <!--
 table { vertical-align: top; }
@@ -216,12 +218,35 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 </page>	
 <?php
 //Guardando los datos del presupuesto
+
 $fecha=date("Y-m-d H:i:s");
+$com2=$suma/2;
+$com3=$suma/3;
+if ($rwaten2 === NULL || $rwaten2 === ""){
+		$sql2="INSERT INTO comisiones VALUES (NULL, '$fecha', '$rwaten', $suma, $cita)";
+		$save2=mysqli_query($con,$sql2);
+	}
+	if (($rwaten2 != NULL || $rwaten2 != "") && ($rwaten3 === NULL || $rwaten3 === "")){
+		$sql2="INSERT INTO comisiones VALUES (NULL, '$fecha', '$rwaten', $com2, $cita)";
+		$sql3="INSERT INTO comisiones VALUES (NULL, '$fecha', '$rwaten2', $com2, $cita)";
+		$save2=mysqli_query($con,$sql2);
+		$save3=mysqli_query($con,$sql3);
+	}
+	if (($rwaten2 != NULL || $rwaten2 != "") && ($rwaten3 != NULL || $rwaten3 != "")){
+		$sql2="INSERT INTO comisiones VALUES (NULL, '$fecha', '$rwaten', $com3, $cita)";
+		$sql3="INSERT INTO comisiones VALUES (NULL, '$fecha', '$rwaten2', $com3, $cita)";
+		$sql4="INSERT INTO comisiones VALUES (NULL, '$fecha', '$rwaten3', $com3, $cita)";
+		mysqli_query($con,$sql2);
+		mysqli_query($con,$sql3);
+		mysqli_query($con,$sql4);
+	}
 if ($grabar===1){
 	$sql="UPDATE presupuestos SET fecha='$fecha', id_cliente='$nombre',descripcion='$descripcion',monto='$suma' WHERE id='$numero';";
 } else {
 $sql="INSERT INTO `presupuestos` (`id`, `fecha`, `id_cliente`, `descripcion`, `monto`) VALUES (NULL, '$fecha', '$nombre', '$descripcion', '$suma');";
+
 }
 $save=mysqli_query($con,$sql);
+echo $sql2;
 $delete=mysqli_query($con,"delete from tmp");
 ?>    

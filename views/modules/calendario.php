@@ -40,7 +40,7 @@
 
 	$(document).ready(function(){
 		$("#calendario").fullCalendar({
-
+			
 			eventLimit: 2,
 			hiddenDays: [ 0 ],
 			editable: true,
@@ -333,7 +333,6 @@
 			url: "views/modules/eventos.php?accion="+accion,
 			data: objEvento,
 			success: function(msg){
-				console.log("msg", msg);
 				if (msg === false){
 					swal({
 						type: "error",
@@ -375,7 +374,6 @@
 			url: "views/modules/eventos.php?accion="+accion,
 			data: objEvento,
 			success: function(msg){
-				console.log("msg", msg);
 				if (msg === false){
 					swal({
 						type: "error",
@@ -421,7 +419,6 @@
 			url: "views/modules/eventos.php?accion="+accion,
 			data: objEvento,
 			success: function(msg){
-				//console.log("msg", msg);
 				if (msg === false){
 					swal({
 						type: "error",
@@ -430,7 +427,6 @@
 						confirmButtonText: "Aceptar",
 						closeOnConfirm: "false",
 					}). then ((result)=>{
-						console.log("result", result);
 						if (result.value){
 						}
 					});
@@ -464,7 +460,6 @@
 			url: "views/modules/eventos.php?accion="+accion,
 			data: objEvento,
 			success: function(msg){
-				//console.log("msg", msg);
 				if (msg === false){
 					swal({
 						type: "error",
@@ -507,7 +502,6 @@
 			url: "views/modules/eventos.php?accion="+accion,
 			data: objEvento,
 			success: function(msg){
-				console.log("msg", msg);
 				if (msg === false){
 					swal({
 						type: "error",
@@ -549,7 +543,6 @@
 			url: "views/modules/eventos.php?accion="+accion,
 			data: objEvento,
 			success: function(msg){
-				console.log("msg", msg);
 				if (msg === false){
 					swal({
 						type: "error",
