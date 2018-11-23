@@ -247,6 +247,5 @@ $sql="INSERT INTO `presupuestos` (`id`, `fecha`, `id_cliente`, `descripcion`, `m
 
 }
 $save=mysqli_query($con,$sql);
-echo $sql2;
 $delete=mysqli_query($con,"delete from tmp");
 ?>    
