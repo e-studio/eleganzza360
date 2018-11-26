@@ -18,7 +18,11 @@ $lista = new mvcController;
         <input type="hidden" id="cancelado" name="cancelado">
         <div class="form-group">
           <div class="col-sm-10">
-            Paciente: <input type="text" id="txtPacienteEvento" name="txtPacienteEvento" placeholder="Nombre de la paciente" class="form-control" disabled>
+            <label>Paciente</label>
+            <select name="txtPacienteEvento" id="txtPacienteEvento" class="form-control">
+              <?php $lista -> llenaModelos(); ?>
+            </select>
+            <!-- Paciente: <input type="text" id="txtPacienteEvento" name="txtPacienteEvento" placeholder="Nombre de la paciente" class="form-control" disabled> -->
           </div>
         </div>
         <div class="form-group">
